@@ -2,9 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -28,7 +25,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <font>
-                  <Font name="Calibri" size="12.0" />
+                  <Font name="Calibri" size="14.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
@@ -40,7 +37,7 @@
             </Button>
             <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="250.0" style="-fx-background-color: #F9E754;" text="Comics" textFill="#070707">
                <font>
-                  <Font name="Calibri" size="12.0" />
+                  <Font name="Calibri" size="14.0" />
                </font>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -55,7 +52,7 @@
             </Button>
             <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="250.0" style="-fx-background-color: #F9E754;" text="Actores" textFill="#070707">
                <font>
-                  <Font name="Calibri" size="12.0" />
+                  <Font name="Calibri" size="14.0" />
                </font>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -68,27 +65,40 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="250.0" style="-fx-background-color: #F9E754;" text="Informes" textFill="#070707">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icon_reports.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="250.0" style="-fx-background-color: #F9E754;" text="Configuración" textFill="#070707">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icon_gear.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>
-   <top>
-      <MenuBar depthTest="DISABLE" style="-fx-background-color: #FDF3A1;" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" style="-fx-background-color: #F9E754;" text="Archivo">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Cerrar" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" style="-fx-background-color: #F9E754;" text="Configuración">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Idioma" />
-                  <MenuItem mnemonicParsing="false" text="Ayuda" />
-            </items>
-          </Menu>
-        </menus>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </MenuBar>
-   </top>
+   <center>
+      <VBox prefHeight="789.0" prefWidth="965.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
