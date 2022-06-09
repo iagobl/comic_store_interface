@@ -80,7 +80,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnHelp" mnemonicParsing="false" prefHeight="47.0" prefWidth="250.0" style="-fx-background-color: #F9E754;" text="Ayuda" textFill="#070707">
+            <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#openJavaHelp" prefHeight="47.0" prefWidth="250.0" style="-fx-background-color: #F9E754;" text="Ayuda" textFill="#070707">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
