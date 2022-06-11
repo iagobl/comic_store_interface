@@ -18,6 +18,8 @@ public class HomeController {
 
     @FXML
     private VBox PanelFrame;
+    @FXML
+    private Label lblTitle;
     private JButton help = new JButton();
 
     public HomeController(){
@@ -49,6 +51,7 @@ public class HomeController {
             VBox voxConfiguration = fxmlLoader.load();
 
             PanelFrame.getChildren().add(voxConfiguration);
+            lblTitle.setText("Configuración");
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error al abrir la configuración");
@@ -61,10 +64,11 @@ public class HomeController {
         try {
             PanelFrame.getChildren().clear();
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(HomeController.class.getResource("report.fxml"));
+            fxmlLoader.setLocation(HomeController.class.getResource("reports.fxml"));
             VBox voxConfiguration = fxmlLoader.load();
 
             PanelFrame.getChildren().add(voxConfiguration);
+            lblTitle.setText("Informes");
 
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -72,6 +76,7 @@ public class HomeController {
             alert.showAndWait();
         }
     }
+
 
 
 }
