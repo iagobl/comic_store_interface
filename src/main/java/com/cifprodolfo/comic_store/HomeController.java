@@ -2,18 +2,15 @@ package com.cifprodolfo.comic_store;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
 import javax.swing.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -67,7 +64,8 @@ public class HomeController {
 
     public void getPanelConfiguration(){
         try {
-            FXMLLoader fxmlLoader  = new FXMLLoader(HomeController.class.getResource("configuration.fxml"));
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
+            FXMLLoader fxmlLoader  = new FXMLLoader(HomeController.class.getResource("configuration.fxml"), resourceBundle);
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
             stage.setTitle("Configuración");
