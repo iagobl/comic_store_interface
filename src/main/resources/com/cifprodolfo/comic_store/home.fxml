@@ -25,7 +25,7 @@
                   <Image url="@../../../images/icon_photo.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnHome" mnemonicParsing="false" onMouseClicked="#getPanelHome" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="Home" textFill="#070707">
+            <Button fx:id="btnHome" mnemonicParsing="false" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="Home" textFill="#070707">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>

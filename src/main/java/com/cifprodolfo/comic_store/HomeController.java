@@ -3,14 +3,17 @@ package com.cifprodolfo.comic_store;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,8 +44,6 @@ public class HomeController {
         help.doClick();
     }
 
-    public void getPanelConfiguration(){getPanel("configuration.fxml", "Configuración");}
-
     public void getPanelReport() {
         getPanel("reports.fxml", "Informes");
     }
@@ -61,6 +62,24 @@ public class HomeController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error al abrir la pestaña");
             alert.showAndWait();
+        }
+    }
+
+    public void getPanelConfiguration(){
+        try {
+            FXMLLoader fxmlLoader  = new FXMLLoader(HomeController.class.getResource("configuration.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("Configuración");
+            stage.setResizable(false);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Huno un error al abrir la configuración");
+            alert.showAndWait();
+            e.printStackTrace();
         }
     }
 
