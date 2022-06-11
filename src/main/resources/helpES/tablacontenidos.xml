@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <toc version="1.0"> 
 	<!--  categoryclosedimage="FolderClosed" categoryopenimage="FolderOpened" topicimage="ItemIco"-->
-	<tocitem text="Manual" target="handbook">
-		<tocitem text="Menú" target="menu"/>
-		<tocitem text="Instalar" target="instalar"/>
-	</tocitem>
+	<tocitem text="Manual" target="manual"/>
 </toc>
 

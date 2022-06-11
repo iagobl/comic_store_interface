@@ -2,7 +2,7 @@
 <!DOCTYPE helpset PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp HelpSet Version 1.0//EN" "http://java.sun.com/products/javahelp/helpset_1_0.dtd">
  
 <helpset version="1.0">
-	<title>Ayuda Ejemplo JavaHelp</title>
+	<title>Ayuda</title>
 	<maps>
 		<!-- Pagina por defecto al mostrar la ayuda -->
 		<homeID>manual</homeID>
@@ -19,7 +19,7 @@
 		<data>tablacontenidos.xml</data>
 	</view>
  
- 	<!-- Vista de índice -->
+ 	<!-- Vista de ï¿½ndice -->
 	<view>
 		<name>Indice</name>
 		<label>El indice</label>
@@ -27,7 +27,7 @@
 		<data>indice.xml</data>
 	</view>
  
- 	 <!-- Vista de búsqueda -->
+ 	 <!-- Vista de bï¿½squeda -->
 	 <view>
 		<name>Buscar</name>
 		<label>Buscar</label>
@@ -44,7 +44,7 @@
       <type>javax.help.FavoritesView</type>
    </view>
    
-   <!-- Configuración de la pantalla de ayuda -->
+   <!-- Configuraciï¿½n de la pantalla de ayuda -->
     <presentation default="true" displayviews="false" displayviewimages="true">
 		<name>MainWin</name>
 		<size width="750" height="850"/>		
