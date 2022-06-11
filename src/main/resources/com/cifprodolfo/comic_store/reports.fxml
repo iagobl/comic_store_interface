@@ -40,7 +40,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblReportActor" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="Informe de actores">
+                        <Label fx:id="lblReportAuthor" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="Informe de autores">
                            <font>
                               <Font name="Calibri Light" size="18.0" />
                            </font>
@@ -48,7 +48,7 @@
                               <Insets left="100.0" top="40.0" />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="btnReportActor" mnemonicParsing="false" text="Generar">
+                        <Button fx:id="btnReportAuthor" mnemonicParsing="false" text="Generar">
                            <HBox.margin>
                               <Insets left="60.0" top="40.0" />
                            </HBox.margin>
