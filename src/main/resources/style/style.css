@@ -9,3 +9,7 @@
 .transparent{
     -fx-background-color: rgba(0, 0, 0, 0);
 }
+
+.information-database{
+    -fx-background-radius: 0, 50, 50, 50;
+}
