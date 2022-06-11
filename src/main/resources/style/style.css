@@ -1,7 +1,11 @@
 .button-search{
-    -fx-background-radius: 50;
+    -fx-background-radius: 60;
 }
 
 .button-menu{
-    -fx-background-radius: 20;
+    -fx-background-radius: 10;
+}
+
+.transparent{
+    -fx-background-color: rgba(0, 0, 0, 0);
 }
