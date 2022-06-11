@@ -56,5 +56,22 @@ public class HomeController {
         }
     }
 
+    public void getPanelReport() {
+
+        try {
+            PanelFrame.getChildren().clear();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(HomeController.class.getResource("report.fxml"));
+            VBox voxConfiguration = fxmlLoader.load();
+
+            PanelFrame.getChildren().add(voxConfiguration);
+
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Hubo un error al abrir los informes");
+            alert.showAndWait();
+        }
+    }
+
 
 }
