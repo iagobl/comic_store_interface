@@ -41,9 +41,7 @@ public class HomeController {
         help.doClick();
     }
 
-    public void getPanelConfiguration(){
-        getPanel("configuration.fxml", "Configuración");
-    }
+    public void getPanelConfiguration(){getPanel("configuration.fxml", "Configuración");}
 
     public void getPanelReport() {
         getPanel("reports.fxml", "Informes");
