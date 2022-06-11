@@ -17,7 +17,7 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblReportComic" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="Informe de comics">
+                        <Label fx:id="lblReportComic" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportComic">
                            <font>
                               <Font name="Calibri Light" size="18.0" />
                            </font>
@@ -25,7 +25,7 @@
                               <Insets left="100.0" top="40.0" />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="btnReportComics" mnemonicParsing="false" text="Generar">
+                        <Button fx:id="btnReportComics" mnemonicParsing="false" text="%btnReportComics">
                            <HBox.margin>
                               <Insets left="60.0" top="40.0" />
                            </HBox.margin>
@@ -40,7 +40,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblReportAuthor" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="Informe de autores">
+                        <Label fx:id="lblReportAuthor" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportAuthor">
                            <font>
                               <Font name="Calibri Light" size="18.0" />
                            </font>
@@ -48,7 +48,7 @@
                               <Insets left="100.0" top="40.0" />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="btnReportAuthor" mnemonicParsing="false" text="Generar">
+                        <Button fx:id="btnReportAuthor" mnemonicParsing="false" text="%btnReportAuthor">
                            <HBox.margin>
                               <Insets left="60.0" top="40.0" />
                            </HBox.margin>
@@ -60,7 +60,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblReportCollectionName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="Informe de colecciones">
+                        <Label fx:id="lblReportCollectionName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportCollectionName">
                            <font>
                               <Font name="Calibri Light" size="18.0" />
                            </font>
@@ -73,7 +73,7 @@
                               <Insets left="60.0" top="40.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button fx:id="btnReportCollectionName" mnemonicParsing="false" text="Generar">
+                        <Button fx:id="btnReportCollectionName" mnemonicParsing="false" text="%btnReportCollectionName">
                            <font>
                               <Font name="Calibri Light" size="16.0" />
                            </font>
@@ -88,7 +88,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblReportComicsName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="Informe de comics">
+                        <Label fx:id="lblReportComicsName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportComicsName">
                            <font>
                               <Font name="Calibri Light" size="18.0" />
                            </font>
@@ -101,7 +101,7 @@
                               <Insets left="60.0" top="40.0" />
                            </HBox.margin>
                         </TextField>
-                        <Button fx:id="btnReportComicsName" mnemonicParsing="false" text="Generar">
+                        <Button fx:id="btnReportComicsName" mnemonicParsing="false" text="%btnReportComicsName">
                            <font>
                               <Font name="Calibri Light" size="16.0" />
                            </font>

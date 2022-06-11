@@ -6,17 +6,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox fx:id="PanelFrame" prefHeight="261.0" prefWidth="459.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="322.0" prefWidth="429.0">
          <children>
-            <Label fx:id="lblIdioma" layoutX="107.0" layoutY="120.0" text="Idioma">
+            <Label fx:id="lblIdioma" layoutX="90.0" layoutY="120.0" text="%lblIdioma">
                <font>
                   <Font name="Gentium Book Basic" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmbIdioma" layoutX="179.0" layoutY="118.0" prefHeight="25.0" prefWidth="173.0" />
+            <ComboBox fx:id="cmbIdioma" layoutX="196.0" layoutY="118.0" prefHeight="25.0" prefWidth="173.0" />
          </children>
       </AnchorPane>
    </children>
