@@ -11,16 +11,6 @@
 <VBox fx:id="PanelFrame" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0">
-         <top>
-            <Label fx:id="lblConfiguracion" text="Configuración " BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets top="30.0" />
-               </BorderPane.margin>
-               <font>
-                  <Font name="Calibri Light" size="36.0" />
-               </font>
-            </Label>
-         </top>
          <center>
             <HBox BorderPane.alignment="CENTER">
                <children>
