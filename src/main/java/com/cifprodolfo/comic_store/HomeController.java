@@ -42,41 +42,28 @@ public class HomeController {
     }
 
     public void getPanelConfiguration(){
-
-        try{
-            PanelFrame.getChildren().clear();
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(HomeController.class.getResource("configuration.fxml"));
-            VBox voxConfiguration = fxmlLoader.load();
-
-            PanelFrame.getChildren().add(voxConfiguration);
-            lblTitle.setText("Configuración");
-        } catch(Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al abrir la configuración");
-            alert.showAndWait();
-        }
+        getPanel("configuration.fxml", "Configuración");
     }
 
     public void getPanelReport() {
+        getPanel("reports.fxml", "Informes");
+    }
+
+    public void getPanel(String namePanel, String titlePanel){
 
         try {
             PanelFrame.getChildren().clear();
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(HomeController.class.getResource("reports.fxml"));
+            fxmlLoader.setLocation(HomeController.class.getResource(namePanel));
             VBox voxConfiguration = fxmlLoader.load();
 
             PanelFrame.getChildren().add(voxConfiguration);
-            lblTitle.setText("Informes");
-
+            lblTitle.setText(titlePanel);
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al abrir los informes");
+            alert.setContentText("Hubo un error al abrir la pestaña");
             alert.showAndWait();
         }
     }
-
-
 
 }
