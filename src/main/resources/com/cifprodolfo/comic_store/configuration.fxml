@@ -17,19 +17,22 @@
                   <Font name="Gentium Book Basic" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btnFlagSpain" layoutX="203.0" layoutY="117.0" mnemonicParsing="false" styleClass="transparent" stylesheets="@../../../style/style.css" />
-            <Button fx:id="btnFlagGalicia" layoutX="264.0" layoutY="117.0" mnemonicParsing="false" styleClass="transparent" stylesheets="@../../../style/style.css" />
-            <Button fx:id="btnFlagUK" layoutX="331.0" layoutY="115.0" mnemonicParsing="false" styleClass="transparent" stylesheets="@../../../style/style.css" />
-            <ImageView fitHeight="47.0" fitWidth="44.0" layoutX="308.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/flag_galicia.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="86.0" layoutX="247.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/flag_spain.png" />
-               </image>
-            </ImageView>
+            <Button fx:id="btnFlagSpain" layoutX="204.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#getLanguageSpanish" styleClass="transparent" stylesheets="@../../../style/style.css">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="86.0" onMouseClicked="#getLanguageSpanish" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/flag_spain.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="btnFlagGalicia" layoutX="265.0" layoutY="109.0" mnemonicParsing="false" onMouseClicked="#getLanguageGalician" styleClass="transparent" stylesheets="@../../../style/style.css">
+               <graphic>
+                  <ImageView fitHeight="47.0" fitWidth="44.0" onMouseClicked="#getLanguageGalician" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/flag_galicia.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </children>
       </AnchorPane>
    </children>

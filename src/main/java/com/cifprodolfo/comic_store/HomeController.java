@@ -5,17 +5,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
 import javax.swing.*;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class HomeController {
 
+    @FXML
+    private BorderPane PanelMain;
     @FXML
     private VBox PanelFrame;
     @FXML
@@ -63,6 +68,7 @@ public class HomeController {
     }
 
     public void getPanelConfiguration(){
+
         try {
             ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
             FXMLLoader fxmlLoader  = new FXMLLoader(HomeController.class.getResource("configuration.fxml"), resourceBundle);
@@ -71,13 +77,16 @@ public class HomeController {
             stage.setTitle("Configuración");
             stage.setResizable(false);
             stage.setScene(scene);
-            stage.show();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.showAndWait();
+
+            Scene panel = PanelMain.getScene();
+            panel.setRoot(FXMLLoader.load(getClass().getResource("home.fxml"),ResourceBundle.getBundle("language/language", Locale.getDefault())));
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Huno un error al abrir la configuración");
+            alert.setContentText("Hubo un error al abrir la configuración");
             alert.showAndWait();
-            e.printStackTrace();
         }
     }
 

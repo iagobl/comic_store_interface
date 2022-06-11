@@ -13,6 +13,7 @@ public class HomeApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Locale.setDefault(new Locale("es"));
+        //Locale.setDefault(Locale.ENGLISH);
         ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
         FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource("home.fxml"), resourceBundle);
         Scene scene = new Scene(fxmlLoader.load(), 1200, 900);
