@@ -4,13 +4,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.help.HelpBroker;
+import javafx.event.ActionEvent;
 import javax.help.HelpSet;
 import javax.swing.*;
 import java.net.URL;
@@ -20,9 +21,7 @@ import java.util.ResourceBundle;
 public class HomeController {
 
     @FXML
-    private BorderPane PanelMain;
-    @FXML
-    private VBox PanelFrame;
+    private BorderPane PanelHome;
     @FXML
     private Label lblTitle;
     private JButton help = new JButton();
@@ -46,25 +45,35 @@ public class HomeController {
         help.doClick();
     }
 
-    public void getPanelReport() {
-        getPanel("reports.fxml", "Informes");
-    }
-
-    public void getPanel(String namePanel, String titlePanel){
+    public void getPanel(ActionEvent actionEvent) {
 
         try {
-            PanelFrame.getChildren().clear();
+            Button button = (Button) actionEvent.getSource();
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(HomeController.class.getResource(namePanel));
-            VBox voxConfiguration = fxmlLoader.load();
+            String namePanel = button.getId();
 
-            PanelFrame.getChildren().add(voxConfiguration);
-            lblTitle.setText(titlePanel);
-        } catch(Exception e) {
+            switch(namePanel){
+                case "btnComics":
+                    fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
+                    break;
+                case "btnCollection":
+                    //fxmlLoader.setLocation(HomeController.class.getResource(""));
+                    break;
+                case "btnReports":
+                    fxmlLoader = new FXMLLoader(HomeController.class.getResource("reports.fxml"), resourceBundle);
+                    break;
+                default:
+                    fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
+            }
+
+            PanelHome.setCenter(fxmlLoader.load());
+        } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error al abrir la pestaña");
             alert.showAndWait();
         }
+
     }
 
     public void getPanelConfiguration(){
@@ -80,7 +89,7 @@ public class HomeController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.showAndWait();
 
-            Scene panel = PanelMain.getScene();
+            Scene panel = PanelHome.getScene();
             panel.setRoot(FXMLLoader.load(getClass().getResource("home.fxml"),ResourceBundle.getBundle("language/language", Locale.getDefault())));
 
         } catch (Exception e) {
@@ -89,5 +98,4 @@ public class HomeController {
             alert.showAndWait();
         }
     }
-
 }

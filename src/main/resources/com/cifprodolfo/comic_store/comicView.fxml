@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.StackPane?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView prefHeight="200.0" prefWidth="200.0">
+      <TableView prefHeight="366.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="lblImageComic" prefWidth="143.0" text="%lblImageComic" />
           <TableColumn fx:id="lblNameComic" minWidth="7.0" prefWidth="142.0" text="%lblNameComic" />
@@ -20,4 +20,7 @@
          </columnResizePolicy>
       </TableView>
    </children>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
 </StackPane>

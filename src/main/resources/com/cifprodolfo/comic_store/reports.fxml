@@ -9,111 +9,108 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane prefHeight="750.0" prefWidth="750.0">
-         <center>
-            <VBox prefHeight="474.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+
+<BorderPane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="474.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="lblReportComic" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportComic">
-                           <font>
-                              <Font name="Calibri Light" size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="100.0" top="40.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Button fx:id="btnReportComics" mnemonicParsing="false" text="%btnReportComics">
-                           <HBox.margin>
-                              <Insets left="60.0" top="40.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Calibri Light" size="16.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="40.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="lblReportAuthor" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportAuthor">
-                           <font>
-                              <Font name="Calibri Light" size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="100.0" top="40.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Button fx:id="btnReportAuthor" mnemonicParsing="false" text="%btnReportAuthor">
-                           <HBox.margin>
-                              <Insets left="60.0" top="40.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Calibri Light" size="16.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="lblReportCollectionName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportCollectionName">
-                           <font>
-                              <Font name="Calibri Light" size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="100.0" top="40.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="txtReportCollectionName">
-                           <HBox.margin>
-                              <Insets left="60.0" top="40.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Button fx:id="btnReportCollectionName" mnemonicParsing="false" text="%btnReportCollectionName">
-                           <font>
-                              <Font name="Calibri Light" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="15.0" top="40.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="lblReportComicsName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportComicsName">
-                           <font>
-                              <Font name="Calibri Light" size="18.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="100.0" top="40.0" />
-                           </HBox.margin>
-                        </Label>
-                        <TextField fx:id="txtReportComicsName">
-                           <HBox.margin>
-                              <Insets left="60.0" top="40.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Button fx:id="btnReportComicsName" mnemonicParsing="false" text="%btnReportComicsName">
-                           <font>
-                              <Font name="Calibri Light" size="16.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="15.0" top="40.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                  </HBox>
+                  <Label fx:id="lblReportComic" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportComic">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="100.0" top="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button fx:id="btnReportComics" mnemonicParsing="false" text="%btnReportComics">
+                     <HBox.margin>
+                        <Insets left="60.0" top="40.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Button>
                </children>
-            </VBox>
-         </center>
-      </BorderPane>
-   </children>
-</VBox>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lblReportAuthor" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportAuthor">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="100.0" top="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button fx:id="btnReportAuthor" mnemonicParsing="false" text="%btnReportAuthor">
+                     <HBox.margin>
+                        <Insets left="60.0" top="40.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lblReportCollectionName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportCollectionName">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="100.0" top="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="txtReportCollectionName">
+                     <HBox.margin>
+                        <Insets left="60.0" top="40.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button fx:id="btnReportCollectionName" mnemonicParsing="false" text="%btnReportCollectionName">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="40.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lblReportComicsName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportComicsName">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="100.0" top="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="txtReportComicsName">
+                     <HBox.margin>
+                        <Insets left="60.0" top="40.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button fx:id="btnReportComicsName" mnemonicParsing="false" text="%btnReportComicsName">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="15.0" top="40.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
