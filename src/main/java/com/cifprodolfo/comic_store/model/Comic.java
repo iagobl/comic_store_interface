@@ -10,9 +10,7 @@ public class Comic {
     private int page;
     private int anhoPublication;
 
-    public Comic(){
-
-    }
+    public Comic(){}
 
     public Comic(Long id, String name, String image, String synopsis, int number, int page, int anhoPublication){
         this.id = id;
@@ -24,9 +22,7 @@ public class Comic {
         this.anhoPublication = anhoPublication;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
     public void setId(Long id) {
         this.id = id;
