@@ -2,11 +2,10 @@ package com.cifprodolfo.comic_store;
 
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.util.Locale;
 
 public class ConfigurationController {
@@ -29,12 +28,15 @@ public class ConfigurationController {
     public void changeLanguaje(Locale language){
 
         try {
-            System.out.println("Hola");
             if (Locale.getDefault().equals(language)){
                 return;
             }
 
             Locale.setDefault(language);
+
+            //Metodo para cerrar la ventana
+            Stage stage = (Stage) this.PanelFrame.getScene().getWindow();
+            stage.close();
 
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
