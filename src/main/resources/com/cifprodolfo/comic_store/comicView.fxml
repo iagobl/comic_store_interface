@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.ComicViewController">
    <children>
-      <TableView prefHeight="366.0" prefWidth="600.0">
-        <columns>
-          <TableColumn fx:id="lblImageComic" prefWidth="143.0" text="%lblImageComic" />
-          <TableColumn fx:id="lblNameComic" minWidth="7.0" prefWidth="142.0" text="%lblNameComic" />
-            <TableColumn fx:id="lblNumberComic" prefWidth="114.0" text="%lblNumberComic" />
-            <TableColumn fx:id="lblPagesComic" prefWidth="75.0" text="%lblPagesComic" />
-            <TableColumn fx:id="lblPublicationComic" prefWidth="75.0" text="%lblPublicationComic" />
-        </columns>
+      <TableView fx:id="tableComics" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="286.0" prefWidth="538.0">
          <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
    </children>

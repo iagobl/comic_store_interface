@@ -31,7 +31,6 @@ public class ConfigurationController {
             if (Locale.getDefault().equals(language)){
                 return;
             }
-
             Locale.setDefault(language);
 
             //Metodo para cerrar la ventana

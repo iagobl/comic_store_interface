@@ -1,5 +1,8 @@
 package com.cifprodolfo.comic_store;
 
+import com.cifprodolfo.comic_store.tabla_adapter.ComicAdapter;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,6 +17,7 @@ import javax.help.HelpBroker;
 import javafx.event.ActionEvent;
 import javax.help.HelpSet;
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -25,6 +29,8 @@ public class HomeController {
     @FXML
     private Label lblTitle;
     private JButton help = new JButton();
+    private ObservableList<ComicAdapter> comicData = FXCollections.observableArrayList();
+
 
     public HomeController(){
         try {
@@ -32,6 +38,8 @@ public class HomeController {
             HelpSet helpSet = new HelpSet(null, helpURL);
             HelpBroker browser = helpSet.createHelpBroker();
             browser.enableHelpOnButton(help, "manual", helpSet);
+
+            comicData.add(new ComicAdapter(178823411L, "Prueba2", "imagen", "pruueba synopsis", 2, 123, 1023));
 
         } catch(Exception e){
             e.printStackTrace();
@@ -87,6 +95,7 @@ public class HomeController {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(PanelHome.getScene().getWindow());
             stage.showAndWait();
 
             Scene panel = PanelHome.getScene();
