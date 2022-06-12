@@ -1,12 +1,13 @@
 package com.cifprodolfo.comic_store.tabla_adapter;
 
 import javafx.beans.property.*;
+import javafx.scene.image.ImageView;
 
 public class ComicAdapter {
 
     private final LongProperty id;
     private final StringProperty name;
-    private final StringProperty image;
+    private ImageView image;
     private final StringProperty synopsis;
     private final IntegerProperty number;
     private final IntegerProperty page;
@@ -16,10 +17,10 @@ public class ComicAdapter {
         this(null, null, null, null, 0, 0, 0);
     }
 
-    public ComicAdapter(Long id, String name, String image, String synopsis, int number, int page, int anhoPublication){
+    public ComicAdapter(Long id, String name, ImageView image, String synopsis, int number, int page, int anhoPublication){
         this.id = new SimpleLongProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.image = new SimpleStringProperty(image);
+        this.image = image;
         this.synopsis = new SimpleStringProperty(synopsis);
         this.number = new SimpleIntegerProperty(number);
         this.page = new SimpleIntegerProperty(page);
@@ -32,14 +33,6 @@ public class ComicAdapter {
 
     public void setName(String name) {
         this.name.set(name);
-    }
-
-    public String getImage() {
-        return image.get();
-    }
-
-    public void setImage(String image) {
-        this.image.set(image);
     }
 
     public String getSynopsis() {
@@ -81,4 +74,8 @@ public class ComicAdapter {
     public void setId(long id) {
         this.id.set(id);
     }
+
+    public ImageView getImage() { return image; }
+
+    public void setImage(ImageView image){ this.image = image; }
 }

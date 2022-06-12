@@ -14,3 +14,7 @@
     -fx-background-radius: 30;
     -fx-background-color:  #F9E754;
 }
+
+.table-view-center{
+    -fx-alignment: CENTER;
+}

@@ -29,7 +29,6 @@ public class HomeController {
     @FXML
     private Label lblTitle;
     private JButton help = new JButton();
-    private ObservableList<ComicAdapter> comicData = FXCollections.observableArrayList();
 
 
     public HomeController(){
@@ -38,8 +37,6 @@ public class HomeController {
             HelpSet helpSet = new HelpSet(null, helpURL);
             HelpBroker browser = helpSet.createHelpBroker();
             browser.enableHelpOnButton(help, "manual", helpSet);
-
-            comicData.add(new ComicAdapter(178823411L, "Prueba2", "imagen", "pruueba synopsis", 2, 123, 1023));
 
         } catch(Exception e){
             e.printStackTrace();
