@@ -7,19 +7,21 @@ public class Comic {
     private String image;
     private String synopsis;
     private int number;
-    private double price;
+    private int page;
+    private int anhoPublication;
 
     public Comic(){
 
     }
 
-    public Comic(Long id, String name, String image, String synopsis, int number, double price){
+    public Comic(Long id, String name, String image, String synopsis, int number, int page, int anhoPublication){
         this.id = id;
         this.name = name;
         this.image = image;
         this.synopsis = synopsis;
         this.number = number;
-        this.price = price;
+        this.page = page;
+        this.anhoPublication = anhoPublication;
     }
 
     public Long getId() {
@@ -42,17 +44,13 @@ public class Comic {
         return image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+    public void setImage(String image) { this.image = image; }
 
     public String getSynopsis() {
         return synopsis;
     }
 
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
-    }
+    public void setSynopsis(String synopsis) { this.synopsis = synopsis; }
 
     public int getNumber() {
         return number;
@@ -62,11 +60,11 @@ public class Comic {
         this.number = number;
     }
 
-    public double getPrice() {
-        return price;
-    }
+    public int getPage() { return page; }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+    public void setPage(int page) { this.page = page; }
+
+    public int getAnhoPublication() {return anhoPublication; }
+
+    public void setAnhoPublication(int anhoPublication) { this.anhoPublication = anhoPublication; }
 }
