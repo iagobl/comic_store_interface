@@ -1,4 +1,4 @@
-package com.cifprodolfo.comic_store.tabla_adapter;
+package com.cifprodolfo.comic_store.table_adapter;
 
 import javafx.beans.property.*;
 import javafx.scene.image.ImageView;
