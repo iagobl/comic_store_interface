@@ -4,15 +4,17 @@ import com.cifprodolfo.comic_store.model.Comic;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -96,5 +98,19 @@ public class ComicViewController {
 
         return comicAdaptersList;
     }
+
+    public void getSelectRowTable(MouseEvent event){
+
+        TablePosition tablePosition = (TablePosition) tableComics.getSelectionModel().getSelectedCells().get(0);
+        int row = tablePosition.getRow();
+        ComicAdapter item = (ComicAdapter) tableComics.getItems().get(row);
+        TableColumn tableColumn = tablePosition.getTableColumn();
+        String data = (String) tableColumn.getCellObservableValue(item).getValue();
+        System.out.println(data);
+
+    }
+
+
+
 
 }
