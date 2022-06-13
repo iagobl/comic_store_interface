@@ -10,11 +10,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -24,6 +29,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.List;
+import java.util.ResourceBundle;
 
 
 public class ComicViewController {
@@ -116,13 +122,30 @@ public class ComicViewController {
         TablePosition tablePosition = (TablePosition) tableComics.getSelectionModel().getSelectedCells().get(0);
         int row = tablePosition.getRow();
         ComicAdapter item = (ComicAdapter) tableComics.getItems().get(row);
-        System.out.println(item.getDateAcquistion());
-
-
+        getPanelDetailsShow(item);
     }
 
-    public void getPanelDetailsShow(){
+    public void getPanelDetailsShow(ComicAdapter comicAdapter){
 
+        try {
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
+            FXMLLoader fxmlLoader = new FXMLLoader(ComicViewController.class.getResource("comicDetails.fxml"), resourceBundle);
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(tableComics.getScene().getWindow());
+
+            ComicDetailsController detailsController = fxmlLoader.<ComicDetailsController>getController();
+            detailsController.initData(comicAdapter);
+
+            stage.showAndWait();
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Hubo un error al mostrar el comic");
+            alert.showAndWait();
+            e.printStackTrace();
+        }
 
     }
 
