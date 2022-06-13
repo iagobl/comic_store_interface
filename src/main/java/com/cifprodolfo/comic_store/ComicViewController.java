@@ -53,12 +53,6 @@ public class ComicViewController {
 
     public void initialize(){
 
-        /*ImageView photoExample = new ImageView(new Image(this.getClass().getResourceAsStream("/images/icon_photo.png")));
-        photoExample.setFitWidth(60);
-        photoExample.setFitHeight(60);
-        ObservableList<ComicAdapter> data = FXCollections.observableArrayList(
-                //new ComicAdapter(1321312L, "iago", photoExample, "lkjlfdf", 2, 322, 123)
-        );*/
         ObservableList<ComicAdapter> data = FXCollections.observableArrayList();
         data = getDataComic();
 
@@ -106,7 +100,6 @@ public class ComicViewController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Error al mostrar los comics");
             alert.showAndWait();
-            e.printStackTrace();
         }
 
         return comicAdaptersList;
