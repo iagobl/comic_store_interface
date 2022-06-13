@@ -14,12 +14,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.awt.image.SampleModel;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -44,13 +53,14 @@ public class ComicViewController {
 
     public void initialize(){
 
-        getDataComic();
-        ImageView photoExample = new ImageView(new Image(this.getClass().getResourceAsStream("/images/icon_photo.png")));
+        /*ImageView photoExample = new ImageView(new Image(this.getClass().getResourceAsStream("/images/icon_photo.png")));
         photoExample.setFitWidth(60);
         photoExample.setFitHeight(60);
         ObservableList<ComicAdapter> data = FXCollections.observableArrayList(
-                new ComicAdapter(1321312L, "iago", photoExample, "lkjlfdf", 2, 322, 123)
-        );
+                //new ComicAdapter(1321312L, "iago", photoExample, "lkjlfdf", 2, 322, 123)
+        );*/
+        ObservableList<ComicAdapter> data = FXCollections.observableArrayList();
+        data = getDataComic();
 
         lblImageComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, String>("image"));
         /*lblImageComic.setCellFactory(new Callback<TableColumn<ComicAdapter, String>, TableCell<ComicAdapter, String>>() {
@@ -71,23 +81,35 @@ public class ComicViewController {
         tableComics.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
-    public void getDataComic(){
+    public ObservableList<ComicAdapter> getDataComic(){
+        ObservableList<ComicAdapter> comicAdaptersList = FXCollections.observableArrayList();
+        ObjectMapper objectMapper = new ObjectMapper();
+
         try {
 
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
             HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/comic")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            ObservableList<Comic> data = FXCollections.observableArrayList();
-            data = (ObservableList<Comic>) objectMapper.readValue(response.body(), new TypeReference<List<Comic>>() {});
-            System.out.println(data.size());
-            ;
+            List<Comic> data =  objectMapper.readValue(response.body(), new TypeReference<>() {});
+            System.out.println(response.body());
+            for(Comic comic: data){
+                final byte[] ImageBytes = comic.getImage();
+                ImageView photoExample = new ImageView(new Image(new ByteArrayInputStream(ImageBytes)));
+                photoExample.setFitWidth(60);
+                photoExample.setFitHeight(60);
+
+                comicAdaptersList.add(new ComicAdapter(comic.getId(), comic.getName(), photoExample, comic.getSynopsis(), comic.getNumber(), comic.getPage(), comic.getAnhoPublication()));
+            }
+
         } catch (IOException | InterruptedException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Error al mostrar los comics");
             alert.showAndWait();
             e.printStackTrace();
         }
+
+        return comicAdaptersList;
     }
+
 }
