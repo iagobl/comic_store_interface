@@ -80,14 +80,26 @@ public class ComicViewController {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             List<Comic> data =  objectMapper.readValue(response.body(), new TypeReference<>() {});
-            System.out.println(response.body());
             for(Comic comic: data){
                 final byte[] ImageBytes = comic.getImage();
                 ImageView photoExample = new ImageView(new Image(new ByteArrayInputStream(ImageBytes)));
                 photoExample.setFitWidth(60);
                 photoExample.setFitHeight(60);
 
-                comicAdaptersList.add(new ComicAdapter(comic.getId(), comic.getName(), photoExample, comic.getSynopsis(), comic.getNumber(), comic.getPage(), comic.getAnhoPublication()));
+                comicAdaptersList.add(
+                        new ComicAdapter(
+                                comic.getId(),
+                                comic.getName(),
+                                photoExample,
+                                comic.getSynopsis(),
+                                comic.getNumber(),
+                                comic.getPage(),
+                                comic.getAnhoPublication(),
+                                comic.getDateAcquistion(),
+                                comic.getState(),
+                                comic.getPrice(),
+                                comic.getAuthorComic())
+                );
             }
 
         } catch (IOException | InterruptedException e) {
@@ -104,13 +116,15 @@ public class ComicViewController {
         TablePosition tablePosition = (TablePosition) tableComics.getSelectionModel().getSelectedCells().get(0);
         int row = tablePosition.getRow();
         ComicAdapter item = (ComicAdapter) tableComics.getItems().get(row);
-        TableColumn tableColumn = tablePosition.getTableColumn();
-        String data = (String) tableColumn.getCellObservableValue(item).getValue();
-        System.out.println(data);
+        System.out.println(item.getDateAcquistion());
+
 
     }
 
+    public void getPanelDetailsShow(){
 
+
+    }
 
 
 }
