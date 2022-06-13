@@ -1,18 +1,22 @@
 package com.cifprodolfo.comic_store.model;
 
+import java.util.List;
+
 public class Comic {
 
     private Long id;
     private String name;
-    private String image;
+    private byte[] image;
     private String synopsis;
     private int number;
     private int page;
     private int anhoPublication;
+    private List<AuthorComic> authorComic;
+    private List<ComicDetails> comicDetails;
 
     public Comic(){}
 
-    public Comic(Long id, String name, String image, String synopsis, int number, int page, int anhoPublication){
+    public Comic(Long id, String name, byte[] image, String synopsis, int number, int page, int anhoPublication, List<AuthorComic> authorComic, List<ComicDetails> comicDetails){
         this.id = id;
         this.name = name;
         this.image = image;
@@ -20,6 +24,8 @@ public class Comic {
         this.number = number;
         this.page = page;
         this.anhoPublication = anhoPublication;
+        this.authorComic = authorComic;
+        this.comicDetails = comicDetails;
     }
 
     public Long getId() { return id; }
@@ -36,11 +42,11 @@ public class Comic {
         this.name = name;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) { this.image = image; }
+    public void setImage(byte[] image) { this.image = image; }
 
     public String getSynopsis() {
         return synopsis;
@@ -63,4 +69,12 @@ public class Comic {
     public int getAnhoPublication() {return anhoPublication; }
 
     public void setAnhoPublication(int anhoPublication) { this.anhoPublication = anhoPublication; }
+
+    public List<AuthorComic> getAuthorComic() { return authorComic; }
+
+    public void setAuthorComic(List<AuthorComic> authorComic) { this.authorComic = authorComic; }
+
+    public List<ComicDetails> getComicDetails() { return comicDetails; }
+
+    public void setComicDetail(List<ComicDetails> comicDetails) { this.comicDetails = comicDetails; }
 }
