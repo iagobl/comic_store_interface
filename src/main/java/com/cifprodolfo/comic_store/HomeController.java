@@ -1,8 +1,6 @@
 package com.cifprodolfo.comic_store;
 
-import com.cifprodolfo.comic_store.model.Collection;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
-import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -190,6 +188,8 @@ public class HomeController {
             String deleteCollection = "http://localhost:8080/api-spring/collection/"+collection.getId();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
             client.send(request, HttpResponse.BodyHandlers.ofString());
+            GetCollectionList.updateDataCollections();
+
 
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);

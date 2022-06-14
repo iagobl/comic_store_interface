@@ -39,7 +39,7 @@ public class AuthorViewController {
     public void initialize(){
 
         ObservableList<AuthorAdapter> data = FXCollections.observableArrayList();
-        data = getDataAuthors();
+        data = GetAuthorList.getDataAuthors();
 
         lblImageAuthor.setCellValueFactory(new PropertyValueFactory<AuthorAdapter, String>("image"));
         lblNameAuthor.setCellValueFactory(new PropertyValueFactory<AuthorAdapter, String>("name"));
@@ -47,42 +47,6 @@ public class AuthorViewController {
 
         tableAuthor.setItems(data);
         tableAuthor.setColumnResizePolicy(javafx.scene.control.TableView.CONSTRAINED_RESIZE_POLICY);
-    }
-
-    public ObservableList<AuthorAdapter> getDataAuthors() {
-        ObservableList<AuthorAdapter> authorAdaptersList = FXCollections.observableArrayList();
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-
-            HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/author")).build();
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-            List<Author> data = objectMapper.readValue(response.body(), new TypeReference<>() {});
-            for(Author author : data){
-                final byte[] ImageBytes = author.getImage();
-                ImageView photo = new ImageView(new Image(new ByteArrayInputStream(ImageBytes)));
-                photo.setFitWidth(60);
-                photo.setFitHeight(60);
-
-                authorAdaptersList.add(
-                        new AuthorAdapter(
-                                author.getId(),
-                                author.getName(),
-                                photo,
-                                author.getSurname(),
-                                author.getAuthorComicList()
-                        )
-                );
-            }
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al mostrar los autores");
-            alert.showAndWait();
-        }
-
-        return authorAdaptersList;
     }
 
 }
