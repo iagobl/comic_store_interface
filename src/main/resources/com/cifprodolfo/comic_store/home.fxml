@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="PanelMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.HomeController">
+<BorderPane fx:id="PanelMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.HomeController">
    <left>
       <VBox alignment="CENTER" prefHeight="560.0" prefWidth="249.0" style="-fx-background-color: #FDF3A1;" BorderPane.alignment="CENTER">
          <children>
@@ -97,7 +97,7 @@
                   </ImageView>
                </graphic>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets bottom="20.0" top="20.0" />
                </VBox.margin>
             </Button>
          </children>
@@ -128,9 +128,9 @@
                   <Insets />
                </BorderPane.margin>
                <children>
-                  <FlowPane alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="721.0">
+                  <FlowPane alignment="TOP_RIGHT" prefHeight="69.0" prefWidth="721.0">
                      <children>
-                        <TextField fx:id="txtSearch" prefHeight="26.0" prefWidth="275.0" promptText="%txtSearch" stylesheets="@../../../style/style.css">
+                        <TextField fx:id="txtSearch" prefHeight="26.0" prefWidth="290.0" promptText="%txtSearch" stylesheets="@../../../style/style.css">
                            <FlowPane.margin>
                               <Insets right="10.0" />
                            </FlowPane.margin>
@@ -152,40 +152,49 @@
                         </Button>
                      </children>
                   </FlowPane>
-                  <FlowPane alignment="CENTER" prefHeight="110.0" prefWidth="721.0">
-                     <children>
-                        <Label fx:id="lblNumComics" alignment="CENTER" prefHeight="80.0" prefWidth="190.0" styleClass="information-database" stylesheets="@../../../style/style.css" text="%lblNumComics">
-                           <font>
-                              <Font name="Gentium Book Basic Bold" size="18.0" />
-                           </font>
-                           <FlowPane.margin>
-                              <Insets left="25.0" right="25.0" />
-                           </FlowPane.margin>
-                        </Label>
-                        <Label fx:id="lblNumCollection" alignment="CENTER" prefHeight="80.0" prefWidth="190.0" styleClass="information-database" stylesheets="@../../../style/style.css" text="%lblNumCollection">
-                           <font>
-                              <Font name="Gentium Book Basic Bold" size="18.0" />
-                           </font>
-                           <FlowPane.margin>
-                              <Insets left="25.0" right="25.0" />
-                           </FlowPane.margin>
-                        </Label>
-                        <Label fx:id="lblNumAuthors" alignment="CENTER" prefHeight="80.0" prefWidth="190.0" styleClass="information-database" stylesheets="@../../../style/style.css" text="%lblNumAuthors">
-                           <font>
-                              <Font name="Gentium Book Basic Bold" size="18.0" />
-                           </font>
-                           <FlowPane.margin>
-                              <Insets left="25.0" right="25.0" />
-                           </FlowPane.margin>
-                        </Label>
-                     </children>
-                  </FlowPane>
                </children>
             </VBox>
          </top>
          <center>
             <fx:include maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="comicView.fxml" />
          </center>
+         <bottom>
+            <FlowPane alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="62.0" prefWidth="721.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnAddElement" minWidth="40.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="54.0" styleClass="button-new-delete" stylesheets="@../../../style/style.css">
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" right="20.0" />
+                     </FlowPane.margin>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/icon_add.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnDeleteElement" minWidth="45.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="button-new-delete" stylesheets="@../../../style/style.css">
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" right="25.0" />
+                     </FlowPane.margin>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/icon_delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </FlowPane>
+         </bottom>
       </BorderPane>
    </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="18.0" prefWidth="970.0" style="-fx-background-color: #FDF3A1;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="200.0" />
+         </padding>
+      </HBox>
+   </bottom>
 </BorderPane>
