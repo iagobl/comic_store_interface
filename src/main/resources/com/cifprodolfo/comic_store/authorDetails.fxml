@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="518.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.AuthorDetailsController">
+    <children>
+        <TextField fx:id="txtName" layoutX="168.0" layoutY="336.0" prefHeight="25.0" prefWidth="240.0" />
+        <TextField fx:id="txtSurname" layoutX="168.0" layoutY="386.0" prefHeight="25.0" prefWidth="240.0" />
+        <Label fx:id="lblAuthorName" alignment="CENTER_RIGHT" layoutX="31.0" layoutY="335.0" prefHeight="27.0" prefWidth="110.0" text="%lblAuthorName">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblAuthorSurname" alignment="CENTER_RIGHT" layoutX="41.0" layoutY="385.0" prefHeight="17.0" prefWidth="100.0" text="%lblAuthorSurname">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnAuthorDetails" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" prefHeight="221.0" prefWidth="217.0" styleClass="image-author" stylesheets="@../../../style/style.css">
+            <graphic>
+                <ImageView fx:id="imageViewAuthor" fitHeight="189.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true" styleClass="image-author" />
+            </graphic>
+        </Button>
+        <Button fx:id="btnSetImageAuthor" layoutX="149.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#changeImage" prefHeight="36.0" prefWidth="140.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnSetImageAuthor" />
+        <Button fx:id="btnModifyAuthor" layoutX="106.0" layoutY="451.0" mnemonicParsing="false" onMouseClicked="#updateAuthor" prefHeight="36.0" prefWidth="110.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnModifyAuthor" />
+        <Button fx:id="btnCancelAuthor" layoutX="230.0" layoutY="451.0" mnemonicParsing="false" onMouseClicked="#cancelButton" prefHeight="36.0" prefWidth="110.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnCancelAuthor" />
+    </children>
+</AnchorPane>

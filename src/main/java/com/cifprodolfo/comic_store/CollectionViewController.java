@@ -66,6 +66,7 @@ public class CollectionViewController {
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setScene(scene);
+            stage.setTitle("Colecciones");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(tableCollection.getScene().getWindow());
 
@@ -77,7 +78,6 @@ public class CollectionViewController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error al mostrar el comic");
             alert.showAndWait();
-            e.printStackTrace();
         }
 
     }

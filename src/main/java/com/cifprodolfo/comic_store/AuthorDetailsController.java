@@ -31,7 +31,12 @@ public class AuthorDetailsController {
 
     public void initialize() {}
 
-    // Implement the method initData()
+    public void initData(AuthorAdapter author){
+        txtName.setText(author.getName());
+        txtSurname.setText(author.getSurname());
+        imageViewAuthor.setImage(author.getImage().getImage());
+        authorAdapter = author;
+    }
 
     public void changeImage() {
 
