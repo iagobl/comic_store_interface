@@ -1,9 +1,21 @@
 package com.cifprodolfo.comic_store;
 
+import com.cifprodolfo.comic_store.services.CollectionServices;
+import com.cifprodolfo.comic_store.services.GetCollectionList;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.net.MalformedURLException;
 
 public class CollectionDetailsController {
 
@@ -13,7 +25,13 @@ public class CollectionDetailsController {
     private TextField txtEditorialDetailsCollections;
     @FXML
     private ImageView imageViewCollectionsDetails;
-
+    @FXML
+    private Button btnSaveModificationsDetails;
+    @FXML
+    private Button btnCancelDetails;
+    private CollectionAdapter collection;
+    private boolean newImage = false;
+    private String pathImage;
     public CollectionDetailsController() {}
 
     public void initialize() {}
@@ -22,5 +40,76 @@ public class CollectionDetailsController {
         txtNameDetailsCollection.setText(collectionAdapter.getName());
         txtEditorialDetailsCollections.setText(collectionAdapter.getEditorial());
         imageViewCollectionsDetails.setImage(collectionAdapter.getImage().getImage());
+        collection = collectionAdapter;
+    }
+
+    public void changeImage() {
+
+        FileChooser fileChooser = new FileChooser();
+        Stage stage = new Stage();
+
+        try {
+            newImage = true;
+            stage.setTitle("Seleccione la foto");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png"));
+            File selectFile = fileChooser.showOpenDialog(stage);
+
+            if (selectFile == null){
+                newImage = false;
+                return;
+            }
+
+            pathImage = selectFile.toURI().toURL().toString();
+            imageViewCollectionsDetails.setImage(new Image(pathImage));
+            imageViewCollectionsDetails.setFitWidth(120);
+            imageViewCollectionsDetails.setFitHeight(100);
+
+            pathImage = selectFile.getAbsolutePath();
+        } catch(Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateCollection() {
+
+        try {
+            String nameUpdate = txtNameDetailsCollection.getText();
+            String editorialUpdate = txtEditorialDetailsCollections.getText();
+
+            if((nameUpdate.isBlank() || nameUpdate.isEmpty()) || (editorialUpdate.isBlank() || editorialUpdate.isEmpty())){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Los campos no estan completos",ButtonType.OK);
+                alert.showAndWait();
+            }
+
+            if(newImage){
+                CollectionServices.uploadImage(collection, pathImage);
+            }
+
+            collection.setName(nameUpdate);
+            collection.setEditorial(editorialUpdate);
+
+            CollectionServices.putCollections(collection);
+
+            GetCollectionList.updateDataCollections();
+            Stage stage = (Stage) this.txtNameDetailsCollection.getScene().getWindow();
+            stage.close();
+
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al modificar la coleción");
+            alert.showAndWait();
+            e.printStackTrace();
+        }
+    }
+
+    public void cancelButton() {
+        try {
+            Stage stage = (Stage) this.txtNameDetailsCollection.getScene().getWindow();
+            stage.close();
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al cerra la pestaña");
+            alert.showAndWait();
+        }
     }
 }

@@ -40,7 +40,7 @@
                         <Insets />
                      </FlowPane.margin>
                      <graphic>
-                        <ImageView fx:id="imageViewCollectionsDetails" fitHeight="349.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent" />
+                        <ImageView fx:id="imageViewCollectionsDetails" fitHeight="349.0" fitWidth="270.0" onMouseClicked="#changeImage" pickOnBounds="true" preserveRatio="true" styleClass="transparent" />
                      </graphic>
                   </Button>
                </children>
@@ -81,6 +81,14 @@
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </FlowPane>
+                  <FlowPane alignment="CENTER" prefHeight="95.0" prefWidth="392.0">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <Button fx:id="btnChangeImage" mnemonicParsing="false" onMouseClicked="#changeImage" prefHeight="39.0" prefWidth="118.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnChangeImage" />
+                     </children>
+                  </FlowPane>
                </children>
             </VBox>
          </items>
@@ -89,7 +97,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" prefHeight="71.0" prefWidth="908.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnSaveModificationsDetails" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnSaveModificationsDetails">
+            <Button fx:id="btnSaveModificationsDetails" mnemonicParsing="false" onMouseClicked="#updateCollection" prefHeight="50.0" prefWidth="200.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnSaveModificationsDetails">
                <FlowPane.margin>
                   <Insets right="20.0" />
                </FlowPane.margin>
@@ -97,7 +105,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnCancelDetails" mnemonicParsing="false" prefHeight="50.0" prefWidth="122.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnCancelDetails">
+            <Button fx:id="btnCancelDetails" mnemonicParsing="false" onMouseClicked="#cancelButton" prefHeight="50.0" prefWidth="122.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnCancelDetails">
                <FlowPane.margin>
                   <Insets right="20.0" />
                </FlowPane.margin>
