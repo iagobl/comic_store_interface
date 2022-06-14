@@ -1,5 +1,6 @@
 package com.cifprodolfo.comic_store;
 
+import com.cifprodolfo.comic_store.services.GetComicList;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -50,12 +52,17 @@ public class ComicViewController {
         tableComics.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
     }
 
-    public void getSelectRowTable(MouseEvent event){
-
-        TablePosition tablePosition = (TablePosition) tableComics.getSelectionModel().getSelectedCells().get(0);
-        int row = tablePosition.getRow();
-        ComicAdapter item = (ComicAdapter) tableComics.getItems().get(row);
-        getPanelDetailsShow(item);
+    public void doubleClickButton(){
+        tableComics.setOnMouseClicked(mouseEvent -> {
+            if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                if(mouseEvent.getClickCount() == 2){
+                    TablePosition tablePosition = (TablePosition) tableComics.getSelectionModel().getSelectedCells().get(0);
+                    int row = tablePosition.getRow();
+                    ComicAdapter item = (ComicAdapter) tableComics.getItems().get(row);
+                    getPanelDetailsShow(item);
+                }
+            }
+        });
     }
 
     public void getPanelDetailsShow(ComicAdapter comicAdapter){

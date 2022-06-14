@@ -1,5 +1,6 @@
 package com.cifprodolfo.comic_store;
 
+import com.cifprodolfo.comic_store.services.GetCollectionList;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
