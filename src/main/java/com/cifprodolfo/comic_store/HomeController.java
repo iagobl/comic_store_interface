@@ -111,7 +111,7 @@ public class HomeController {
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newCollection.fxml"), resourceBundle);
                     stage.setResizable(true);
                     break;
-                case "Autores":
+                case "Actores":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newAuthor.fxml"), resourceBundle);
                     stage.setResizable(false);
                     break;
