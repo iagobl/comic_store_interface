@@ -78,4 +78,13 @@ public class AuthorServices {
         httpClient.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
+    public static void deleteAuthor(AuthorAdapter author) throws IOException, InterruptedException{
+
+        HttpClient client = HttpClient.newHttpClient();
+        String deleteCollection = "http://localhost:8080/api-spring/author/"+author.getId();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
+        client.send(request, HttpResponse.BodyHandlers.ofString());
+        GetAuthorList.updateDataAuthor();
+    }
+
 }

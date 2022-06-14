@@ -1,9 +1,12 @@
 package com.cifprodolfo.comic_store.services;
 
+import com.cifprodolfo.comic_store.CollectionViewController;
 import com.cifprodolfo.comic_store.model.Collection;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableView;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -22,6 +25,8 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 public class CollectionServices {
+
+
 
     public static Collection saveCollections(String nameCollection, String editorialCollection) throws IOException, InterruptedException {
 
@@ -77,6 +82,14 @@ public class CollectionServices {
         httpClient.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
     }
 
+    public static void deleteCollection(CollectionAdapter collection) throws IOException, InterruptedException{
 
+        HttpClient client = HttpClient.newHttpClient();
+        String deleteCollection = "http://localhost:8080/api-spring/collection/"+collection.getId();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
+        client.send(request, HttpResponse.BodyHandlers.ofString());
+        GetCollectionList.updateDataCollections();
+
+    }
 
 }

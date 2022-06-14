@@ -1,6 +1,9 @@
 package com.cifprodolfo.comic_store;
 
+import com.cifprodolfo.comic_store.services.AuthorServices;
+import com.cifprodolfo.comic_store.services.CollectionServices;
 import com.cifprodolfo.comic_store.services.GetCollectionList;
+import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -166,40 +169,46 @@ public class HomeController {
 
                 break;
             case "Colecciones":
-                deleteCollection();
+                getCollection();
                 break;
             case "Actores":
-
+                getAuthors();
                 break;
             default: {}
         }
     }
 
-    public CollectionAdapter getCollection(){
-
-        table = (TableView) lblTitle.getScene().lookup("#tableCollection");
-        TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
-        int row = tablePosition.getRow();
-        CollectionAdapter item = (CollectionAdapter) table.getItems().get(row);
-        return item;
-    }
-
-    public void deleteCollection() {
-
-        CollectionAdapter collection = getCollection();
+    public void getCollection(){
 
         try {
-            HttpClient client = HttpClient.newHttpClient();
-            String deleteCollection = "http://localhost:8080/api-spring/collection/"+collection.getId();
-            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
-            client.send(request, HttpResponse.BodyHandlers.ofString());
-            GetCollectionList.updateDataCollections();
-
-
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            table = (TableView) lblTitle.getScene().lookup("#tableCollection");
+            TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
+            int row = tablePosition.getRow();
+            CollectionAdapter item = (CollectionAdapter) table.getItems().get(row);
+            CollectionServices.deleteCollection(item);
+        } catch(IOException | InterruptedException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al borrar la colección");
+            alert.showAndWait();
         }
     }
+
+    public void getAuthors(){
+
+        try {
+            table = (TableView) lblTitle.getScene().lookup("#tableAuthor");
+            TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
+            int row = tablePosition.getRow();
+            AuthorAdapter item = (AuthorAdapter) table.getItems().get(row);
+            AuthorServices.deleteAuthor(item);
+        } catch(IOException | InterruptedException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al borrar la colección");
+            alert.showAndWait();
+        }
+    }
+
+
 
 
 }
