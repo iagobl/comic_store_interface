@@ -98,7 +98,38 @@ public class AuthorDetailsController {
 
     }
 
+    public void updateAuthor() {
 
+        try{
+
+            String nameUpdate = txtName.getText();
+            String surnameUpdate = txtSurname.getText();
+
+            if((nameUpdate.isBlank() || nameUpdate.isEmpty()) || (surnameUpdate.isBlank() || surnameUpdate.isEmpty())){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Los campos no estan completos", ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+
+            if(newImage){
+                AuthorServices.uploadImage(authorAdapter, pathImage);
+            }
+
+            authorAdapter.setName(nameUpdate);
+            authorAdapter.setSurname(surnameUpdate);
+
+            AuthorServices.putAuthors(authorAdapter);
+
+            GetAuthorList.updateDataAuthor();
+            Stage stage = (Stage) this.txtName.getScene().getWindow();
+            stage.close();
+
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al modificar el autor");
+            alert.showAndWait();
+        }
+    }
 
     public void cancelButton() {
         try {

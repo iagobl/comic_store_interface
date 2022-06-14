@@ -65,4 +65,17 @@ public class AuthorServices {
         httpClient.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
     }
 
+    public static void putAuthors(AuthorAdapter authorAdapter) throws IOException, InterruptedException {
+
+        String url = "http://localhost:8080/api-spring/author/"+authorAdapter.getId()+"?name="+authorAdapter.getName()+"&surname="+authorAdapter.getSurname();
+        String json = new StringBuilder()
+                .append("{")
+                .append("\"nombre\":\"prueba\",")
+                .append("}")
+                .toString();
+        HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(5)).build();
+        HttpRequest request = HttpRequest.newBuilder().PUT(HttpRequest.BodyPublishers.ofString(json)).uri(URI.create(url)).build();
+        httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
 }
