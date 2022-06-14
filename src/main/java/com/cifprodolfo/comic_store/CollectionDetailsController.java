@@ -1,12 +1,11 @@
 package com.cifprodolfo.comic_store;
 
+import com.cifprodolfo.comic_store.model.Collection;
 import com.cifprodolfo.comic_store.services.CollectionServices;
 import com.cifprodolfo.comic_store.services.GetCollectionList;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -14,8 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.net.MalformedURLException;
 
 public class CollectionDetailsController {
 
@@ -26,9 +25,7 @@ public class CollectionDetailsController {
     @FXML
     private ImageView imageViewCollectionsDetails;
     @FXML
-    private Button btnSaveModificationsDetails;
-    @FXML
-    private Button btnCancelDetails;
+    private ImageView imageSaveCollection;
     private CollectionAdapter collection;
     private boolean newImage = false;
     private String pathImage;
@@ -61,12 +58,43 @@ public class CollectionDetailsController {
 
             pathImage = selectFile.toURI().toURL().toString();
             imageViewCollectionsDetails.setImage(new Image(pathImage));
-            imageViewCollectionsDetails.setFitWidth(120);
-            imageViewCollectionsDetails.setFitHeight(100);
+            imageViewCollectionsDetails.setFitWidth(350);
+            imageViewCollectionsDetails.setFitHeight(330);
 
             pathImage = selectFile.getAbsolutePath();
         } catch(Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void saveCollection(){
+
+        try {
+            Collection newCollection;
+            String nameUpdate = txtNameDetailsCollection.getText();
+            String editorialUpdate = txtEditorialDetailsCollections.getText();
+
+            if((nameUpdate.isBlank() || nameUpdate.isEmpty()) || (editorialUpdate.isBlank() || editorialUpdate.isEmpty())){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Los campos no estan completos",ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+
+            newCollection = CollectionServices.saveCollections(nameUpdate, editorialUpdate);
+            collection = new CollectionAdapter(newCollection.getId(), newCollection.getName(), null, newCollection.getEditorial(), newCollection.getComicList());
+
+            if(newImage){
+                CollectionServices.uploadImage(collection, pathImage);
+            } else {
+                CollectionServices.uploadImage(collection, CollectionServices.class.getResource("/images/icon_photo.png").getPath());
+            }
+
+            GetCollectionList.updateDataCollections();
+            Stage stage = (Stage) this.txtNameDetailsCollection.getScene().getWindow();
+            stage.close();
+
+        } catch(Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -79,6 +107,7 @@ public class CollectionDetailsController {
             if((nameUpdate.isBlank() || nameUpdate.isEmpty()) || (editorialUpdate.isBlank() || editorialUpdate.isEmpty())){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Los campos no estan completos",ButtonType.OK);
                 alert.showAndWait();
+                return;
             }
 
             if(newImage){
