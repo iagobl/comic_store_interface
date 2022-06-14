@@ -1,5 +1,114 @@
 package com.cifprodolfo.comic_store;
 
+import com.cifprodolfo.comic_store.model.Author;
+import com.cifprodolfo.comic_store.services.AuthorServices;
+import com.cifprodolfo.comic_store.services.GetAuthorList;
+import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+
 public class AuthorDetailsController {
+
+    @FXML
+    private TextField txtName;
+    @FXML
+    private TextField txtSurname;
+    @FXML
+    private ImageView imageViewAuthor;
+    private boolean newImage = false;
+    private String pathImage;
+    private AuthorAdapter authorAdapter;
+
+    public AuthorDetailsController() {}
+
+    public void initialize() {}
+
+    // Implement the method initData()
+
+    public void changeImage() {
+
+        FileChooser fileChooser = new FileChooser();
+        Stage stage = new Stage();
+
+        try {
+            newImage = true;
+            stage.setTitle("Seleccione la foto");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png"));
+            File selectedFile = fileChooser.showOpenDialog(stage);
+
+            if(selectedFile == null) {
+                newImage = false;
+                return;
+            }
+
+            pathImage = selectedFile.toURI().toURL().toString();
+            imageViewAuthor.setImage(new Image(pathImage));
+            imageViewAuthor.setFitHeight(220);
+            imageViewAuthor.setFitWidth(250);
+
+            pathImage = selectedFile.getAbsolutePath();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al seleccionar la foto");
+            alert.showAndWait();
+        }
+    }
+
+    public void saveAuthor() {
+
+        try {
+
+            Author newAuthor;
+            String nameAuthor = txtName.getText();
+            String surnameAuthor = txtSurname.getText();
+
+            if((nameAuthor.isBlank() || nameAuthor.isEmpty()) || (surnameAuthor.isBlank() || surnameAuthor.isEmpty())){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Los campos no estan completos", ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+
+            newAuthor = AuthorServices.saveAuthors(nameAuthor, surnameAuthor);
+            authorAdapter = new AuthorAdapter(newAuthor.getId(), newAuthor.getName(), null, newAuthor.getSurname(), newAuthor.getAuthorComicList());
+
+            if(newImage) {
+                AuthorServices.uploadImage(authorAdapter, pathImage);
+            } else {
+                AuthorServices.uploadImage(authorAdapter, AuthorServices.class.getResource("/images/icon_author.png").getPath());
+            }
+
+            GetAuthorList.updateDataAuthor();
+            Stage stage = (Stage) this.txtName.getScene().getWindow();
+            stage.close();
+
+        } catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al guardar el comic");
+            alert.showAndWait();
+        }
+
+    }
+
+
+
+    public void cancelButton() {
+        try {
+            Stage stage = (Stage) this.txtName.getScene().getWindow();
+            stage.close();
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al cerrar la pestaña");
+            alert.showAndWait();
+        }
+    }
 
 }

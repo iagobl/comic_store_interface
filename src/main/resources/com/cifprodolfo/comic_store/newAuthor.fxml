@@ -22,17 +22,17 @@
                 <Font size="16.0" />
             </font>
         </Label>
-        <Button fx:id="btnAuthorDetails" layoutX="110.0" layoutY="35.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="217.0" styleClass="image-author" stylesheets="@../../../style/style.css">
+        <Button fx:id="btnAuthorDetails" layoutX="110.0" layoutY="14.0" mnemonicParsing="false" prefHeight="221.0" prefWidth="217.0" styleClass="image-author" stylesheets="@../../../style/style.css">
             <graphic>
-                <ImageView fitHeight="176.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="image-author">
+                <ImageView fx:id="imageViewAuthor" fitHeight="189.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true" styleClass="image-author">
                     <image>
                         <Image url="@../../../images/icon_author.png" />
                     </image>
                 </ImageView>
             </graphic>
         </Button>
-        <Button fx:id="btnSetImageAuthor" layoutX="149.0" layoutY="256.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="%btnSetImageAuthor" />
-        <Button fx:id="btnSaveAuthor" layoutX="105.0" layoutY="426.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="%btnSaveAuthor" />
-        <Button fx:id="btnCancelAuthor" layoutX="229.0" layoutY="426.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="110.0" text="%btnCancelAuthor" />
+        <Button fx:id="btnSetImageAuthor" layoutX="149.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#changeImage" prefHeight="25.0" prefWidth="140.0" text="%btnSetImageAuthor" />
+        <Button fx:id="btnSaveAuthor" layoutX="105.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#saveAuthor" prefHeight="27.0" prefWidth="110.0" text="%btnSaveAuthor" />
+        <Button fx:id="btnCancelAuthor" layoutX="229.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#cancelButton" prefHeight="27.0" prefWidth="110.0" text="%btnCancelAuthor" />
     </children>
 </AnchorPane>

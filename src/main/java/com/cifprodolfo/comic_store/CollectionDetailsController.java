@@ -127,7 +127,6 @@ public class CollectionDetailsController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Error al modificar la coleción");
             alert.showAndWait();
-            e.printStackTrace();
         }
     }
 
@@ -137,7 +136,7 @@ public class CollectionDetailsController {
             stage.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al cerra la pestaña");
+            alert.setContentText("Error al cerrar la pestaña");
             alert.showAndWait();
         }
     }
