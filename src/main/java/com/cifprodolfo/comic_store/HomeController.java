@@ -1,11 +1,12 @@
 package com.cifprodolfo.comic_store;
 
+import com.cifprodolfo.comic_store.model.Collection;
+import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
+import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -14,8 +15,12 @@ import javax.help.HelpBroker;
 import javafx.event.ActionEvent;
 import javax.help.HelpSet;
 import javax.swing.*;
+import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -26,7 +31,11 @@ public class HomeController {
     @FXML
     private Label lblTitle;
     private JButton help = new JButton();
+    TableView table = new TableView<>();
 
+
+    public void initialize(){
+    }
 
     public HomeController(){
         try {
@@ -77,6 +86,7 @@ public class HomeController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error al abrir la pestaña");
             alert.showAndWait();
+            e.printStackTrace();
         }
 
     }
@@ -146,15 +156,39 @@ public class HomeController {
 
         switch(namePanel){
             case "Comics":
-                CollectionViewController.deleteCollection();
+
                 break;
             case "Colecciones":
-
+                deleteCollection();
                 break;
             case "Actores":
 
                 break;
             default: {}
+        }
+    }
+
+    public CollectionAdapter getCollection(){
+
+        table = (TableView) lblTitle.getScene().lookup("#tableCollection");
+        TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
+        int row = tablePosition.getRow();
+        CollectionAdapter item = (CollectionAdapter) table.getItems().get(row);
+        return item;
+    }
+
+    public void deleteCollection() {
+
+        CollectionAdapter collection = getCollection();
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            String deleteCollection = "http://localhost:8080/api-spring/collection/"+collection.getId();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

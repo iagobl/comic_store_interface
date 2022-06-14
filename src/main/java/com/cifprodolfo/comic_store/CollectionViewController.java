@@ -83,27 +83,6 @@ public class CollectionViewController {
         return collectionAdaptersList;
     }
 
-    public static Collection getCollection(){
 
-        /*TablePosition tablePosition = (TablePosition) tableCollection.getSelectionModel().getSelectedCells().get(0);
-        int row = tablePosition.getRow();
-        ComicAdapter item = (ComicAdapter) tableCollection.getItems().get(row);*/
-        return null;
-    }
 
-    public static void deleteCollection(){
-
-        Collection collection = getCollection();
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            String deleteCollection = "localhost:8080/api-spring/collection/"+collection.getId();
-            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
-            client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 }
