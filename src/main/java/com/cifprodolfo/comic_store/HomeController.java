@@ -59,7 +59,7 @@ public class HomeController {
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
                     break;
                 case "btnCollection":
-                    //fxmlLoader.setLocation(HomeController.class.getResource(""));
+                    fxmlLoader = new FXMLLoader(HomeController.class.getResource("collectionView.fxml"), resourceBundle);
                     break;
                 case "btnReports":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("reports.fxml"), resourceBundle);
@@ -73,6 +73,7 @@ public class HomeController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error al abrir la pestaña");
             alert.showAndWait();
+            e.printStackTrace();
         }
 
     }

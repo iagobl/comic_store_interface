@@ -6,14 +6,16 @@ public class Collection {
 
     private Long id;
     private String name;
+    private byte[] image;
     private String editorial;
     private List<Comic> comicList;
 
     public Collection() {}
 
-    public Collection(Long id, String name, String editorial, List<Comic> comicList) {
+    public Collection(Long id, String name, byte[] image, String editorial, List<Comic> comicList) {
         this.id = id;
         this.name = name;
+        this.image = image;
         this.editorial = editorial;
         this.comicList = comicList;
     }
@@ -25,6 +27,10 @@ public class Collection {
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
+
+    public byte[] getImage() { return image; }
+
+    public void setImage(byte[] image) { this.image = image; }
 
     public String getEditorial() { return editorial; }
 

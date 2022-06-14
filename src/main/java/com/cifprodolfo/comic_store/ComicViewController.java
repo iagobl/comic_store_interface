@@ -4,10 +4,7 @@ import com.cifprodolfo.comic_store.model.Comic;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,19 +54,10 @@ public class ComicViewController {
         data = getDataComic();
 
         lblImageComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, String>("image"));
-        /*lblImageComic.setCellFactory(new Callback<TableColumn<ComicAdapter, String>, TableCell<ComicAdapter, String>>() {
-            @Override
-            public TableCell<ComicAdapter, String> call(TableColumn<ComicAdapter, String> comicAdapterStringTableColumn) {
-                TableCell<ComicAdapter, String> tc = new TableCell<>();
-                tc.setAlignment(Pos.CENTER);
-                return tc;
-            }
-        });*/
-
         lblNameComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, String>("name"));
         lblNumberComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, Integer>("number"));
         lblPagesComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, Integer>("page"));
-        lblPublicationComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, Integer>("number"));
+        lblPublicationComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, Integer>("anhoPublication"));
 
         tableComics.setItems(data);
         tableComics.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -88,15 +76,15 @@ public class ComicViewController {
             List<Comic> data =  objectMapper.readValue(response.body(), new TypeReference<>() {});
             for(Comic comic: data){
                 final byte[] ImageBytes = comic.getImage();
-                ImageView photoExample = new ImageView(new Image(new ByteArrayInputStream(ImageBytes)));
-                photoExample.setFitWidth(60);
-                photoExample.setFitHeight(60);
+                ImageView photo = new ImageView(new Image(new ByteArrayInputStream(ImageBytes)));
+                photo.setFitWidth(60);
+                photo.setFitHeight(60);
 
                 comicAdaptersList.add(
                         new ComicAdapter(
                                 comic.getId(),
                                 comic.getName(),
-                                photoExample,
+                                photo,
                                 comic.getSynopsis(),
                                 comic.getNumber(),
                                 comic.getPage(),
@@ -144,7 +132,6 @@ public class ComicViewController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error al mostrar el comic");
             alert.showAndWait();
-            e.printStackTrace();
         }
 
     }
