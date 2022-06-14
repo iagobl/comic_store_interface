@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javax.help.HelpSet;
 import javax.swing.*;
 import java.net.URL;
+import java.net.http.HttpClient;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -57,12 +58,15 @@ public class HomeController {
             switch(namePanel){
                 case "btnComics":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
+                    lblTitle.setText("Comics");
                     break;
                 case "btnCollection":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("collectionView.fxml"), resourceBundle);
+                    lblTitle.setText("Colecciones");
                     break;
                 case "btnReports":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("reports.fxml"), resourceBundle);
+                    lblTitle.setText("Informes");
                     break;
                 default:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
@@ -73,9 +77,43 @@ public class HomeController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error al abrir la pestaña");
             alert.showAndWait();
-            e.printStackTrace();
         }
 
+    }
+
+    public void getPanelAdd(){
+
+        try {
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            String panelName = lblTitle.getText();
+
+            switch(panelName){
+                case "Comics":
+                    //fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
+                    break;
+                case "Colecciones":
+                    //fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
+                    break;
+                case "Autores":
+                    //fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
+                    break;
+                default:{}
+            }
+
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setTitle("Añadir " + lblTitle.getText());
+            stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(PanelHome.getScene().getWindow());
+            stage.showAndWait();
+
+        } catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Hubo un error al abrir la pestaña de añadir");
+            alert.showAndWait();
+        }
     }
 
     public void getPanelConfiguration(){
@@ -101,4 +139,24 @@ public class HomeController {
             alert.showAndWait();
         }
     }
+
+    public void getDeleteSelectedMethod() {
+
+        String namePanel = lblTitle.getText();
+
+        switch(namePanel){
+            case "Comics":
+                CollectionViewController.deleteCollection();
+                break;
+            case "Colecciones":
+
+                break;
+            case "Actores":
+
+                break;
+            default: {}
+        }
+    }
+
+
 }
