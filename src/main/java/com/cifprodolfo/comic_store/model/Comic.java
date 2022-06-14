@@ -17,6 +17,7 @@ public class Comic {
     private String synopsis;
     private int number;
     private int page;
+    private String tapa;
     private int anhoPublication;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -28,13 +29,14 @@ public class Comic {
 
     public Comic(){}
 
-    public Comic(Long id, String name, byte[] image, String synopsis, int number, int page, int anhoPublication, LocalDate dateAcquistion, String state, double price, List<AuthorComic> authorComic){
+    public Comic(Long id, String name, byte[] image, String synopsis, int number, int page, String tapa, int anhoPublication, LocalDate dateAcquistion, String state, double price, List<AuthorComic> authorComic){
         this.id = id;
         this.name = name;
         this.image = image;
         this.synopsis = synopsis;
         this.number = number;
         this.page = page;
+        this.tapa = tapa;
         this.anhoPublication = anhoPublication;
         this.dateAcquistion = dateAcquistion;
         this.state = state;
@@ -79,6 +81,10 @@ public class Comic {
     public int getPage() { return page; }
 
     public void setPage(int page) { this.page = page; }
+
+    public String getTapa() { return tapa; }
+
+    public void setTapa(String tapa) { this.tapa = tapa; }
 
     public int getAnhoPublication() {return anhoPublication; }
 

@@ -15,6 +15,7 @@ public class ComicAdapter {
     private final StringProperty synopsis;
     private final IntegerProperty number;
     private final IntegerProperty page;
+    private final StringProperty tapa;
     private final IntegerProperty anhoPublication;
     private LocalDate  dateAcquistion;
     private final StringProperty state;
@@ -22,16 +23,17 @@ public class ComicAdapter {
     private  List<AuthorComic> authorComic;
 
     public ComicAdapter(){
-        this(null, null, null, null, 0, 0, 0, null, null, 0.0, null);
+        this(null, null, null, null, 0, 0, null, 0, null, null, 0.0, null);
     }
 
-    public ComicAdapter(Long id, String name, ImageView image, String synopsis, int number, int page, int anhoPublication, LocalDate dateAcquistion, String state, double price, List<AuthorComic> authorComic){
+    public ComicAdapter(Long id, String name, ImageView image, String synopsis, int number, int page, String tapa, int anhoPublication, LocalDate dateAcquistion, String state, double price, List<AuthorComic> authorComic){
         this.id = new SimpleLongProperty(id);
         this.name = new SimpleStringProperty(name);
         this.image = image;
         this.synopsis = new SimpleStringProperty(synopsis);
         this.number = new SimpleIntegerProperty(number);
         this.page = new SimpleIntegerProperty(page);
+        this.tapa = new SimpleStringProperty(tapa);
         this.anhoPublication = new SimpleIntegerProperty(anhoPublication);
         this.dateAcquistion = dateAcquistion;
         this.state = new SimpleStringProperty(state);
@@ -70,6 +72,10 @@ public class ComicAdapter {
     public void setPage(int page) {
         this.page.set(page);
     }
+
+    public String getTapa() {return tapa.get(); }
+
+    public void setTapa(String tapa) { this.tapa.set(tapa); }
 
     public int getAnhoPublication() {
         return anhoPublication.get();
