@@ -73,6 +73,10 @@ public class HomeController {
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("collectionView.fxml"), resourceBundle);
                     lblTitle.setText("Colecciones");
                     break;
+                case "btnAuthor":
+                    fxmlLoader = new FXMLLoader(HomeController.class.getResource("authorView.fxml"), resourceBundle);
+                    lblTitle.setText("Actores");
+                    break;
                 case "btnReports":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("reports.fxml"), resourceBundle);
                     lblTitle.setText("Informes");
