@@ -99,23 +99,26 @@ public class HomeController {
         try {
             ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
             FXMLLoader fxmlLoader = new FXMLLoader();
+            Stage stage = new Stage();
             String panelName = lblTitle.getText();
 
             switch(panelName){
                 case "Comics":
                     //fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
+                    //stage.setResizable(true);
                     break;
                 case "Colecciones":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newCollection.fxml"), resourceBundle);
+                    stage.setResizable(true);
                     break;
                 case "Autores":
-                    //fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
+                    fxmlLoader = new FXMLLoader(HomeController.class.getResource("newAuthor.fxml"), resourceBundle);
+                    stage.setResizable(false);
                     break;
                 default:{}
             }
 
             Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
             stage.setTitle("Añadir " + lblTitle.getText());
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
@@ -126,6 +129,7 @@ public class HomeController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Hubo un error al abrir la pestaña de añadir");
             alert.showAndWait();
+            e.printStackTrace();
         }
     }
 

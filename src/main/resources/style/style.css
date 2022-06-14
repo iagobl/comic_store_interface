@@ -28,3 +28,16 @@
     -fx-background-radius: 30;
     -fx-background-color:  #F9E754;
 }
+
+/*Not used*/
+.image-author {
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-radius: 100;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+}
+
+.button-circle {
+    -fx-background-radius: 90;
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
