@@ -2,9 +2,11 @@ package com.cifprodolfo.comic_store;
 
 import com.cifprodolfo.comic_store.services.AuthorServices;
 import com.cifprodolfo.comic_store.services.CollectionServices;
+import com.cifprodolfo.comic_store.services.ComicServices;
 import com.cifprodolfo.comic_store.services.GetCollectionList;
 import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
+import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -126,6 +128,12 @@ public class HomeController {
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(PanelHome.getScene().getWindow());
+
+            if(lblTitle.getText().equals("Comics")){
+                ComicDetailsController detailsController = fxmlLoader.<ComicDetailsController>getController();
+                detailsController.initData2();
+            }
+
             stage.showAndWait();
 
         } catch(Exception e){
@@ -166,7 +174,7 @@ public class HomeController {
 
         switch(namePanel){
             case "Comics":
-
+                getComic();
                 break;
             case "Colecciones":
                 getCollection();
@@ -203,7 +211,22 @@ public class HomeController {
             AuthorServices.deleteAuthor(item);
         } catch(IOException | InterruptedException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al borrar la colección");
+            alert.setContentText("Error al borrar el autor");
+            alert.showAndWait();
+        }
+    }
+
+    public void getComic(){
+
+        try {
+            table = (TableView) lblTitle.getScene().lookup("#tableComics");
+            TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
+            int row = tablePosition.getRow();
+            ComicAdapter item = (ComicAdapter) table.getItems().get(row);
+            ComicServices.deleteComic(item);
+        } catch(IOException | InterruptedException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al borrar el comic");
             alert.showAndWait();
         }
     }
