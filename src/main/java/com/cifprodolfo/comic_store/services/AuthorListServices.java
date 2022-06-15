@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -18,9 +19,10 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.List;
 
-public class GetAuthorList {
+public class AuthorListServices {
 
     static ObservableList<AuthorAdapter> authorAdaptersList = FXCollections.observableArrayList();
+    static ObservableList<Author> authorList = FXCollections.observableArrayList();
 
     public static ObservableList<AuthorAdapter> getDataAuthors() {
 
@@ -94,5 +96,22 @@ public class GetAuthorList {
         }
 
         return authorAdaptersList;
+    }
+
+    public static ObservableList<Author> getAuthorfromCombo() throws IOException, InterruptedException {
+
+        authorList.clear();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/author")).build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        List<Author> data = objectMapper.readValue(response.body(), new TypeReference<>() {});
+        for(Author author : data){
+            authorList.add(author);
+        }
+
+        return authorList;
     }
 }

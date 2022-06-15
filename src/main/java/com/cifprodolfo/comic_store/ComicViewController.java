@@ -1,6 +1,6 @@
 package com.cifprodolfo.comic_store;
 
-import com.cifprodolfo.comic_store.services.GetComicList;
+import com.cifprodolfo.comic_store.services.ComicListServices;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,7 +39,7 @@ public class ComicViewController {
     public void initialize(){
 
         ObservableList<ComicAdapter> data = FXCollections.observableArrayList();
-        data = GetComicList.getDataComic();
+        data = ComicListServices.getDataComic();
 
         lblImageComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, String>("image"));
         lblNameComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, String>("name"));

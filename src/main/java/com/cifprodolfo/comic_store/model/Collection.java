@@ -39,4 +39,9 @@ public class Collection {
     public List<Comic> getComicList() { return comicList; }
 
     public void setComicList(List<Comic> comicList) { this.comicList = comicList; }
+
+    @Override
+    public String toString() {
+        return name + "---" + editorial;
+    }
 }

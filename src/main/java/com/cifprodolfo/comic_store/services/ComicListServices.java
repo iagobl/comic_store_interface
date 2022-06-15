@@ -19,7 +19,7 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.List;
 
-public class GetComicList {
+public class ComicListServices {
 
     static ObservableList<ComicAdapter> comicAdaptersList = FXCollections.observableArrayList();
 
@@ -110,4 +110,5 @@ public class GetComicList {
 
         return comicAdaptersList;
     }
+
 }

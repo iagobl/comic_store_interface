@@ -2,7 +2,7 @@ package com.cifprodolfo.comic_store;
 
 import com.cifprodolfo.comic_store.model.Author;
 import com.cifprodolfo.comic_store.services.AuthorServices;
-import com.cifprodolfo.comic_store.services.GetAuthorList;
+import com.cifprodolfo.comic_store.services.AuthorListServices;
 import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -91,7 +91,7 @@ public class AuthorDetailsController {
                 AuthorServices.uploadImage(authorAdapter, AuthorServices.class.getResource("/images/icon_author.png").getPath());
             }
 
-            GetAuthorList.updateDataAuthor();
+            AuthorListServices.updateDataAuthor();
             Stage stage = (Stage) this.txtName.getScene().getWindow();
             stage.close();
 
@@ -125,7 +125,7 @@ public class AuthorDetailsController {
 
             AuthorServices.putAuthors(authorAdapter);
 
-            GetAuthorList.updateDataAuthor();
+            AuthorListServices.updateDataAuthor();
             Stage stage = (Stage) this.txtName.getScene().getWindow();
             stage.close();
 

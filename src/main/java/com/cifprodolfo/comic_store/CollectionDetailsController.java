@@ -2,7 +2,7 @@ package com.cifprodolfo.comic_store;
 
 import com.cifprodolfo.comic_store.model.Collection;
 import com.cifprodolfo.comic_store.services.CollectionServices;
-import com.cifprodolfo.comic_store.services.GetCollectionList;
+import com.cifprodolfo.comic_store.services.CollectionListServices;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 
 public class CollectionDetailsController {
@@ -89,7 +88,7 @@ public class CollectionDetailsController {
                 CollectionServices.uploadImage(collection, CollectionServices.class.getResource("/images/icon_photo.png").getPath());
             }
 
-            GetCollectionList.updateDataCollections();
+            CollectionListServices.updateDataCollections();
             Stage stage = (Stage) this.txtNameDetailsCollection.getScene().getWindow();
             stage.close();
 
@@ -119,7 +118,7 @@ public class CollectionDetailsController {
 
             CollectionServices.putCollections(collection);
 
-            GetCollectionList.updateDataCollections();
+            CollectionListServices.updateDataCollections();
             Stage stage = (Stage) this.txtNameDetailsCollection.getScene().getWindow();
             stage.close();
 

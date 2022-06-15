@@ -4,7 +4,6 @@ import com.cifprodolfo.comic_store.model.Author;
 import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -84,7 +83,7 @@ public class AuthorServices {
         String deleteCollection = "http://localhost:8080/api-spring/author/"+author.getId();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
         client.send(request, HttpResponse.BodyHandlers.ofString());
-        GetAuthorList.updateDataAuthor();
+        AuthorListServices.updateDataAuthor();
     }
 
 }

@@ -19,9 +19,10 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.List;
 
-public class GetCollectionList {
+public class CollectionListServices {
 
     static ObservableList <CollectionAdapter> collectionAdaptersList = FXCollections.observableArrayList();
+    static ObservableList <Collection> collectionList = FXCollections.observableArrayList();
     public static ObservableList<CollectionAdapter> getDataCollections(){
 
         collectionAdaptersList.clear();
@@ -92,5 +93,22 @@ public class GetCollectionList {
         }
 
         return collectionAdaptersList;
+    }
+
+    public static ObservableList <Collection> getCollectionfromCombo() throws IOException, InterruptedException {
+
+        collectionList.clear();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/collection")).build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        List<Collection> data =  objectMapper.readValue(response.body(), new TypeReference<>() {});
+        for(Collection collection: data){
+            collectionList.add(collection);
+        }
+
+        return collectionList;
     }
 }

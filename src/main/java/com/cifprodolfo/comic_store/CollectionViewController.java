@@ -1,7 +1,6 @@
 package com.cifprodolfo.comic_store;
 
-import com.cifprodolfo.comic_store.services.CollectionServices;
-import com.cifprodolfo.comic_store.services.GetCollectionList;
+import com.cifprodolfo.comic_store.services.CollectionListServices;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +35,7 @@ public class CollectionViewController {
     public void initialize(){
 
         ObservableList<CollectionAdapter> data = FXCollections.observableArrayList();
-        data = GetCollectionList.getDataCollections();
+        data = CollectionListServices.getDataCollections();
 
         lblImageCollection.setCellValueFactory(new PropertyValueFactory<CollectionAdapter, String>("image"));
         lblNameCollection.setCellValueFactory(new PropertyValueFactory<CollectionAdapter, String>("name"));

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="984.0" prefWidth="1028.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.ComicDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1028.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.ComicDetailsController">
    <top>
       <FlowPane alignment="CENTER" prefHeight="70.0" prefWidth="908.0" BorderPane.alignment="CENTER">
          <children>
@@ -31,9 +31,9 @@
       </FlowPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.49334600760456276" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.39278752436647174" BorderPane.alignment="CENTER">
          <items>
-            <VBox>
+            <VBox prefHeight="841.0" prefWidth="491.0">
                <children>
                   <FlowPane alignment="CENTER" prefHeight="550.0" prefWidth="400.0">
                      <children>
@@ -116,12 +116,12 @@
                   </FlowPane>
                   <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
                      <children>
-                        <Label fx:id="lblAnhoPublicationDetailsComic" prefHeight="17.0" prefWidth="150.0" text="%lblAnhoPublicationDetailsComic">
+                        <Label fx:id="lblTapeDetailsComic" prefHeight="17.0" prefWidth="150.0" text="%lblTapeDetailsComic">
                            <FlowPane.margin>
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="txtAnhoPublicationDetailsComic" prefHeight="25.0" prefWidth="350.0">
+                        <TextField fx:id="txtTapeDetailsComic" prefHeight="25.0" prefWidth="350.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
@@ -139,6 +139,23 @@
                            </FlowPane.margin>
                         </Label>
                         <TextField fx:id="txtDateDetailsComic" prefHeight="25.0" prefWidth="350.0">
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
+                     <children>
+                        <Label fx:id="lblAnhoPublicationDetailsComic" prefHeight="17.0" prefWidth="150.0" text="%lblAnhoPublicationDetailsComic">
+                           <FlowPane.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="txtAnhoPublicationDetailsComic" prefHeight="25.0" prefWidth="350.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
@@ -219,7 +236,7 @@
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="txtJobAuthor" prefHeight="25.0" prefWidth="350.0">
+                        <TextField fx:id="txtJobComic" prefHeight="25.0" prefWidth="350.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
@@ -236,7 +253,7 @@
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextArea fx:id="txtSynopsisDetailsComics" prefHeight="160.0" prefWidth="350.0">
+                        <TextArea fx:id="txtSynopsisDetailsComics" prefHeight="122.0" prefWidth="350.0">
                            <FlowPane.margin>
                               <Insets top="10.0" />
                            </FlowPane.margin>
@@ -254,7 +271,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" prefHeight="71.0" prefWidth="908.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnSaveModificationsDetails" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnSaveModificationsDetails">
+            <Button fx:id="btnSaveModificationsDetails" mnemonicParsing="false" onMouseClicked="#saveAuthor" prefHeight="50.0" prefWidth="200.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnSaveModificationsDetails">
                <FlowPane.margin>
                   <Insets right="20.0" />
                </FlowPane.margin>
@@ -262,7 +279,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnCancelDetails" mnemonicParsing="false" prefHeight="50.0" prefWidth="122.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnCancelDetails">
+            <Button fx:id="btnCancelDetails" mnemonicParsing="false" onMouseClicked="#cancelButton" prefHeight="50.0" prefWidth="122.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnCancelDetails">
                <FlowPane.margin>
                   <Insets right="20.0" />
                </FlowPane.margin>

@@ -1,5 +1,6 @@
 package com.cifprodolfo.comic_store.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Author {
@@ -39,4 +40,9 @@ public class Author {
     public List<AuthorComic> getAuthorComicList() { return authorComicList; }
 
     public void setAuthorComicList(List<AuthorComic> authorComicList) { this.authorComicList = authorComicList; }
+
+    @Override
+    public String toString() {
+        return name + "---" + surname;
+    }
 }

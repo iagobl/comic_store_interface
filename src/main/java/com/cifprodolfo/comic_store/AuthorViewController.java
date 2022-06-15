@@ -1,8 +1,7 @@
 package com.cifprodolfo.comic_store;
 
-import com.cifprodolfo.comic_store.services.GetAuthorList;
+import com.cifprodolfo.comic_store.services.AuthorListServices;
 import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
-import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,7 +36,7 @@ public class AuthorViewController {
     public void initialize(){
 
         ObservableList<AuthorAdapter> data = FXCollections.observableArrayList();
-        data = GetAuthorList.getDataAuthors();
+        data = AuthorListServices.getDataAuthors();
 
         lblImageAuthor.setCellValueFactory(new PropertyValueFactory<AuthorAdapter, String>("image"));
         lblNameAuthor.setCellValueFactory(new PropertyValueFactory<AuthorAdapter, String>("name"));
