@@ -107,8 +107,8 @@ public class HomeController {
 
             switch(panelName){
                 case "Comics":
-                    //fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
-                    //stage.setResizable(true);
+                    fxmlLoader = new FXMLLoader(HomeController.class.getResource("newComic.fxml"), resourceBundle);
+                    stage.setResizable(true);
                     break;
                 case "Colecciones":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newCollection.fxml"), resourceBundle);
