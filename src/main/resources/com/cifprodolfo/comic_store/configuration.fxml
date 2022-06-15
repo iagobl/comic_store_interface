@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="PanelFrame" prefHeight="261.0" prefWidth="459.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.ConfigurationController">
+<VBox fx:id="PanelFrame" prefHeight="261.0" prefWidth="459.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.controller.ConfigurationController">
    <children>
       <AnchorPane prefHeight="322.0" prefWidth="429.0">
          <children>

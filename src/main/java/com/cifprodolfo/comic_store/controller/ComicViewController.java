@@ -1,5 +1,6 @@
-package com.cifprodolfo.comic_store;
+package com.cifprodolfo.comic_store.controller;
 
+import com.cifprodolfo.comic_store.HomeController;
 import com.cifprodolfo.comic_store.services.ComicListServices;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import javafx.collections.FXCollections;
@@ -68,7 +69,7 @@ public class ComicViewController {
 
         try {
             ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
-            FXMLLoader fxmlLoader = new FXMLLoader(ComicViewController.class.getResource("comicDetails.fxml"), resourceBundle);
+            FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicDetails.fxml"), resourceBundle);
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setScene(scene);

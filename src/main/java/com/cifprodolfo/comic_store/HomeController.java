@@ -1,5 +1,6 @@
 package com.cifprodolfo.comic_store;
 
+import com.cifprodolfo.comic_store.controller.ComicDetailsController;
 import com.cifprodolfo.comic_store.services.AuthorServices;
 import com.cifprodolfo.comic_store.services.CollectionServices;
 import com.cifprodolfo.comic_store.services.ComicServices;

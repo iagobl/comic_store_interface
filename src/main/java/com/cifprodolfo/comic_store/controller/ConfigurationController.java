@@ -1,4 +1,4 @@
-package com.cifprodolfo.comic_store;
+package com.cifprodolfo.comic_store.controller;
 
 
 import javafx.fxml.FXML;

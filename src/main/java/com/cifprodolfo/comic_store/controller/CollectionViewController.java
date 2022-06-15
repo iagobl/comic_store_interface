@@ -1,5 +1,6 @@
-package com.cifprodolfo.comic_store;
+package com.cifprodolfo.comic_store.controller;
 
+import com.cifprodolfo.comic_store.HomeController;
 import com.cifprodolfo.comic_store.services.CollectionListServices;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import javafx.collections.FXCollections;
@@ -62,7 +63,7 @@ public class CollectionViewController {
 
         try {
             ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
-            FXMLLoader fxmlLoader = new FXMLLoader(CollectionViewController.class.getResource("collectionDetails.fxml"), resourceBundle);
+            FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("collectionDetails.fxml"), resourceBundle);
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setScene(scene);

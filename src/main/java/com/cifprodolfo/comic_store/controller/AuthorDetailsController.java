@@ -1,4 +1,4 @@
-package com.cifprodolfo.comic_store;
+package com.cifprodolfo.comic_store.controller;
 
 import com.cifprodolfo.comic_store.model.Author;
 import com.cifprodolfo.comic_store.services.AuthorServices;

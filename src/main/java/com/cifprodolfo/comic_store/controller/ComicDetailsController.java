@@ -1,4 +1,4 @@
-package com.cifprodolfo.comic_store;
+package com.cifprodolfo.comic_store.controller;
 
 import com.cifprodolfo.comic_store.model.Author;
 import com.cifprodolfo.comic_store.model.Collection;
@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 
 public class ComicDetailsController {
 
@@ -146,8 +145,6 @@ public class ComicDetailsController {
                 return;
             }
 
-
-
             if(author == null || collection == null) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, "Selecciona un elemento en los combos", ButtonType.OK);
                 alert.showAndWait();
@@ -175,6 +172,12 @@ public class ComicDetailsController {
             } else {
                 ComicServices.uploadImage(comicAdapter, ComicDetailsController.class.getResource("/images/icon_photo.png").getPath());
             }
+
+            Long idAuthor = ((Author) cmbComboAutores.getSelectionModel().getSelectedItem()).getId();
+            Long idCollection = ((Collection) cmbComboColecciones.getSelectionModel().getSelectedItem()).getId();
+
+
+
 
             ComicListServices.updateDataComic();
             Stage stage = (Stage) this.txtDateDetailsComic.getScene().getWindow();
