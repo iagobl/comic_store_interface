@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ComicServices {
 
-    public static Comic saveComics(String name, String synopsis, String number, String page, String tape, String date, String anhoPublication, String state, String price) throws IOException, InterruptedException {
+    public static Comic saveComics(String name, String synopsis, String number, String page, String tape, String date, String anhoPublication, String state, String price, Long idCollection) throws IOException, InterruptedException {
 
         Comic comicNew;
         ObjectMapper objectMapper = new ObjectMapper();
@@ -40,13 +40,15 @@ public class ComicServices {
                 .append("\"dateAcquistion\":\"" + date + "\",")
                 .append("\"state\":\"" + state + "\",")
                 .append("\"price\":\"" + price + "\",")
-                .append("\"authorComic\":" + "["+"]" + "")
+                .append("\"authorComic\":" + "["+"]" + ",")
+                .append("\"collection\":" + "{\"id\":" + idCollection + "}" + "")
                 .append("}")
                 .toString();
 
         HttpRequest httpRequest = HttpRequest.newBuilder().POST(HttpRequest.BodyPublishers.ofString(json)).uri(URI.create(url)).header("Content-Type", "application/json").build();
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
+        System.out.println(response.body());
         comicNew = objectMapper.readValue(response.body(), new TypeReference<Comic>() {});
         return comicNew;
     }
@@ -79,4 +81,5 @@ public class ComicServices {
         ComicListServices.updateDataComic();
 
     }
+
 }

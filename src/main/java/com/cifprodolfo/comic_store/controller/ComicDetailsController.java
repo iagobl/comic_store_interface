@@ -3,10 +3,7 @@ package com.cifprodolfo.comic_store.controller;
 import com.cifprodolfo.comic_store.model.Author;
 import com.cifprodolfo.comic_store.model.Collection;
 import com.cifprodolfo.comic_store.model.Comic;
-import com.cifprodolfo.comic_store.services.AuthorListServices;
-import com.cifprodolfo.comic_store.services.CollectionListServices;
-import com.cifprodolfo.comic_store.services.ComicListServices;
-import com.cifprodolfo.comic_store.services.ComicServices;
+import com.cifprodolfo.comic_store.services.*;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -151,7 +148,10 @@ public class ComicDetailsController {
                 return;
             }
 
-            comic = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price);
+            Long idAuthor = author.getId();
+            Long idComic = collection.getId();
+
+            comic = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price, idComic);
             comicAdapter = new ComicAdapter(
                     comic.getId(),
                     comic.getName(),
@@ -173,11 +173,7 @@ public class ComicDetailsController {
                 ComicServices.uploadImage(comicAdapter, ComicDetailsController.class.getResource("/images/icon_photo.png").getPath());
             }
 
-            Long idAuthor = ((Author) cmbComboAutores.getSelectionModel().getSelectedItem()).getId();
-            Long idCollection = ((Collection) cmbComboColecciones.getSelectionModel().getSelectedItem()).getId();
-
-
-
+            AuthorComicServices.saveAuthorComic(job, idAuthor, idComic);
 
             ComicListServices.updateDataComic();
             Stage stage = (Stage) this.txtDateDetailsComic.getScene().getWindow();
