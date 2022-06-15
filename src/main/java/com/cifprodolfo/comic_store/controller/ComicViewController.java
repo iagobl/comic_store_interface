@@ -69,7 +69,7 @@ public class ComicViewController {
 
         try {
             ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
-            FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicDetails.fxml"), resourceBundle);
+            FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicDetails2.fxml"), resourceBundle);
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setScene(scene);

@@ -62,6 +62,7 @@ public class ComicDetailsController {
            txtPriceDetailsComic.setText(String.valueOf(comicAdapter.getPrice()));
            txtSynopsisDetailsComics.setText(comicAdapter.getSynopsis());
            imageViewComicDetails.setImage(comicAdapter.getImage().getImage());
+           txtTapeDetailsComic.setText(comicAdapter.getTapa());
     }
 
     public void initData2(){

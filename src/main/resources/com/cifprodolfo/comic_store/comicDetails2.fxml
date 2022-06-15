@@ -7,13 +7,14 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="908.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.controller.ComicDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1028.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.controller.ComicDetailsController">
    <top>
       <FlowPane alignment="CENTER" prefHeight="70.0" prefWidth="908.0" BorderPane.alignment="CENTER">
          <children>
@@ -29,23 +30,36 @@
       </FlowPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.5" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.3937621832358674" BorderPane.alignment="CENTER">
          <items>
-            <FlowPane alignment="CENTER" prefHeight="550.0" prefWidth="400.0">
+            <VBox prefHeight="841.0" prefWidth="491.0">
                <children>
-                  <Button fx:id="btnImageComicDetails" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="550.0" prefWidth="400.0" styleClass="transparent" stylesheets="@../../../style/style.css">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <FlowPane.margin>
-                        <Insets />
-                     </FlowPane.margin>
-                     <graphic>
-                        <ImageView fx:id="imageViewComicDetails" fitHeight="540.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent" />
-                     </graphic>
-                  </Button>
+                  <FlowPane alignment="CENTER" prefHeight="550.0" prefWidth="400.0">
+                     <children>
+                        <Button fx:id="btnImageComicDetails" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="550.0" prefWidth="400.0" styleClass="transparent" stylesheets="@../../../style/style.css">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                           <graphic>
+                              <ImageView fx:id="imageViewComicDetails" fitHeight="540.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                 <image>
+                                    <Image url="@../../../images/icon_photo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER" prefHeight="141.0" prefWidth="503.0">
+                     <children>
+                        <Button fx:id="btnChangeImage" mnemonicParsing="false" onMouseClicked="#changeImage" prefHeight="45.0" prefWidth="157.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnChangeImage" />
+                     </children>
+                  </FlowPane>
                </children>
-            </FlowPane>
+            </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
@@ -55,14 +69,14 @@
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="txtNameDetailsComic" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="350.0">
+                        <TextField fx:id="txtNameDetailsComic" prefHeight="25.0" prefWidth="250.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </FlowPane>
                   <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
@@ -72,14 +86,14 @@
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="txtNumberDetailsComic" prefHeight="25.0" prefWidth="350.0">
+                        <TextField fx:id="txtNumberDetailsComic" prefHeight="25.0" prefWidth="250.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </FlowPane>
                   <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
@@ -89,31 +103,31 @@
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="txtPageDetailsComic" prefHeight="25.0" prefWidth="350.0">
+                        <TextField fx:id="txtPageDetailsComic" prefHeight="25.0" prefWidth="250.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </FlowPane>
                   <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
                      <children>
-                        <Label fx:id="lblAnhoPublicationDetailsComic" prefHeight="17.0" prefWidth="150.0" text="%lblAnhoPublicationDetailsComic">
+                        <Label fx:id="lblTapeDetailsComic" prefHeight="17.0" prefWidth="150.0" text="%lblTapeDetailsComic">
                            <FlowPane.margin>
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="txtAnhoPublicationDetailsComic" prefHeight="25.0" prefWidth="350.0">
+                        <TextField fx:id="txtTapeDetailsComic" prefHeight="25.0" prefWidth="250.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </FlowPane>
                   <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
@@ -123,14 +137,31 @@
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="txtDateDetailsComic" prefHeight="25.0" prefWidth="350.0">
+                        <TextField fx:id="txtDateDetailsComic" prefHeight="25.0" prefWidth="250.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
+                     <children>
+                        <Label fx:id="lblAnhoPublicationDetailsComic" prefHeight="17.0" prefWidth="150.0" text="%lblAnhoPublicationDetailsComic">
+                           <FlowPane.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="txtAnhoPublicationDetailsComic" prefHeight="25.0" prefWidth="250.0">
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </FlowPane>
                   <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
@@ -140,14 +171,14 @@
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="txtStateDetailsComic" prefHeight="25.0" prefWidth="350.0">
+                        <TextField fx:id="txtStateDetailsComic" prefHeight="25.0" prefWidth="250.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </FlowPane>
                   <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
@@ -157,14 +188,57 @@
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextField fx:id="txtPriceDetailsComic" prefHeight="25.0" prefWidth="350.0">
+                        <TextField fx:id="txtPriceDetailsComic" prefHeight="25.0" prefWidth="250.0">
                            <FlowPane.margin>
                               <Insets />
                            </FlowPane.margin>
                         </TextField>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
+                     <children>
+                        <Label fx:id="lblComboColecciones" prefHeight="17.0" prefWidth="150.0" text="%lblComboColecciones">
+                           <FlowPane.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="txtCollectionComicDetails" prefHeight="25.0" prefWidth="250.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
+                     <children>
+                        <Label fx:id="lblComboActores" prefHeight="17.0" prefWidth="150.0" text="%lblComboActores">
+                           <FlowPane.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="txtAuthorComicDetails" prefHeight="25.0" prefWidth="250.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
+                     <children>
+                        <Label fx:id="lblJobAutor" prefHeight="17.0" prefWidth="150.0" text="%lblJobAutor">
+                           <FlowPane.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </FlowPane.margin>
+                        </Label>
+                        <TextField fx:id="txtJobComic" prefHeight="25.0" prefWidth="250.0">
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </FlowPane>
                   <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="553.0">
@@ -174,14 +248,14 @@
                               <Insets bottom="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextArea fx:id="txtSynopsisDetailsComics" prefHeight="171.0" prefWidth="350.0">
+                        <TextArea fx:id="txtSynopsisDetailsComics" prefHeight="122.0" prefWidth="303.0">
                            <FlowPane.margin>
                               <Insets top="10.0" />
                            </FlowPane.margin>
                         </TextArea>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="40.0" right="40.0" />
                      </VBox.margin>
                   </FlowPane>
                </children>
@@ -192,7 +266,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" prefHeight="71.0" prefWidth="908.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnSaveModificationsDetails" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnSaveModificationsDetails">
+            <Button fx:id="btnSaveModificationsDetails" mnemonicParsing="false" onMouseClicked="#saveAuthor" prefHeight="50.0" prefWidth="200.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnSaveModificationsDetails">
                <FlowPane.margin>
                   <Insets right="20.0" />
                </FlowPane.margin>
@@ -200,7 +274,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnCancelDetails" mnemonicParsing="false" prefHeight="50.0" prefWidth="122.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnCancelDetails">
+            <Button fx:id="btnCancelDetails" mnemonicParsing="false" onMouseClicked="#cancelButton" prefHeight="50.0" prefWidth="122.0" styleClass="button-details" stylesheets="@../../../style/style.css" text="%btnCancelDetails">
                <FlowPane.margin>
                   <Insets right="20.0" />
                </FlowPane.margin>
