@@ -4,6 +4,8 @@ import com.cifprodolfo.comic_store.model.Author;
 import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -41,6 +43,9 @@ public class AuthorServices {
         HttpRequest httpRequest = HttpRequest.newBuilder().POST(HttpRequest.BodyPublishers.ofString(json)).uri(URI.create(url)).header("Content-Type", "application/json").build();
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
+        if(response.statusCode() == 302){
+            return new Author();
+        }
         author = objectMapper.readValue(response.body(), new TypeReference<Author>() {});
         return author;
     }

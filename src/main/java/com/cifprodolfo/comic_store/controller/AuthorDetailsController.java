@@ -83,6 +83,13 @@ public class AuthorDetailsController {
             }
 
             newAuthor = AuthorServices.saveAuthors(nameAuthor, surnameAuthor);
+            if(newAuthor.getId() == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Ese autor ya existe");
+                alert.showAndWait();
+                return;
+            }
+
             authorAdapter = new AuthorAdapter(newAuthor.getId(), newAuthor.getName(), null, newAuthor.getSurname(), newAuthor.getAuthorComicList());
 
             if(newImage) {
