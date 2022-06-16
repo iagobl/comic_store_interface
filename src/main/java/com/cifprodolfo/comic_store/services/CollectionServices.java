@@ -48,18 +48,28 @@ public class CollectionServices {
         return collection;
     }
 
-    public static void putCollections(CollectionAdapter collectionAdapter) throws IOException, InterruptedException{
+    public static Collection putCollections(CollectionAdapter collectionAdapter) throws IOException, InterruptedException{
 
-        String url = "http://localhost:8080/api-spring/collection/"+collectionAdapter.getId()+"?name="+collectionAdapter.getName()+"&editorial="+collectionAdapter.getEditorial();
-        String json = new StringBuilder()
-                .append("{")
-                .append("\"nombre\":\"prueba\",")
-                .append("}")
-                .toString();
+        Collection collection;
+        ObjectMapper objectMapper = new ObjectMapper();
+        String url = "http://localhost:8080/api-spring/collection";
+        String json = "{\n" +
+                "    \"id\": "+collectionAdapter.getId()+",\n" +
+                "    \"name\": \""+collectionAdapter.getName()+"\",\n" +
+                "    \"editorial\": \""+collectionAdapter.getEditorial()+"\",\n" +
+                "    \"comicList\": []\n" +
+                "}";
 
         HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(5)).build();
-        HttpRequest request = HttpRequest.newBuilder().PUT(HttpRequest.BodyPublishers.ofString(json)).uri(URI.create(url)).build();
-        httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpRequest request = HttpRequest.newBuilder().PUT(HttpRequest.BodyPublishers.ofString(json)).header("Content-Type", "application/json").uri(URI.create(url)).build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if(response.statusCode() == 302 ){
+            return new Collection();
+        }
+
+        collection = objectMapper.readValue(response.body(), new TypeReference<Collection>() {});
+        return collection;
     }
 
     public static void uploadImage(CollectionAdapter collection, String pathImage) throws IOException, URISyntaxException, InterruptedException {

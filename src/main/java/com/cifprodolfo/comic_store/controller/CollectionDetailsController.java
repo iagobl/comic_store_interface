@@ -123,7 +123,13 @@ public class CollectionDetailsController {
             collection.setName(nameUpdate);
             collection.setEditorial(editorialUpdate);
 
-            CollectionServices.putCollections(collection);
+            Collection newCollection = CollectionServices.putCollections(collection);
+            if(newCollection.getId() == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Ese nombre ya existe en una colección");
+                alert.showAndWait();
+                return;
+            }
 
             CollectionListServices.updateDataCollections();
             Stage stage = (Stage) this.txtNameDetailsCollection.getScene().getWindow();
@@ -133,6 +139,7 @@ public class CollectionDetailsController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Error al modificar la coleción");
             alert.showAndWait();
+            e.printStackTrace();
         }
     }
 
