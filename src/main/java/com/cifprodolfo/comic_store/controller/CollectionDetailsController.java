@@ -80,6 +80,13 @@ public class CollectionDetailsController {
             }
 
             newCollection = CollectionServices.saveCollections(nameUpdate, editorialUpdate);
+            if(newCollection.getId() == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Esa colección ya existe");
+                alert.showAndWait();
+                return;
+            }
+
             collection = new CollectionAdapter(newCollection.getId(), newCollection.getName(), null, newCollection.getEditorial(), newCollection.getComicList());
 
             if(newImage){

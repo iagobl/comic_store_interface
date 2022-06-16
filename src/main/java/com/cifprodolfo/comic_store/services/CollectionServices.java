@@ -40,6 +40,10 @@ public class CollectionServices {
         HttpRequest httpRequest = HttpRequest.newBuilder().POST(HttpRequest.BodyPublishers.ofString(json)).uri(URI.create(url)).header("Content-Type", "application/json").build();
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
+        if(response.statusCode() == 302) {
+            return new Collection();
+        }
+
         collection = objectMapper.readValue(response.body(), new TypeReference<Collection>() {});
         return collection;
     }
