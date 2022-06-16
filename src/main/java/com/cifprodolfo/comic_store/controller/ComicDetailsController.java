@@ -153,6 +153,13 @@ public class ComicDetailsController {
             Long idComic = collection.getId();
 
             comic = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price, idComic);
+            if(comic.getId() == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Ese comic ya existe");
+                alert.showAndWait();
+                return;
+            }
+
             comicAdapter = new ComicAdapter(
                     comic.getId(),
                     comic.getName(),

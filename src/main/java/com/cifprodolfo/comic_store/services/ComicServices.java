@@ -48,7 +48,9 @@ public class ComicServices {
         HttpRequest httpRequest = HttpRequest.newBuilder().POST(HttpRequest.BodyPublishers.ofString(json)).uri(URI.create(url)).header("Content-Type", "application/json").build();
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
-        System.out.println(response.body());
+        if(response.statusCode() == 302){
+            return new Comic();
+        }
         comicNew = objectMapper.readValue(response.body(), new TypeReference<Comic>() {});
         return comicNew;
     }
