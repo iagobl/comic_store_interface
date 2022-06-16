@@ -1,12 +1,15 @@
 package com.cifprodolfo.comic_store;
 
 import com.cifprodolfo.comic_store.controller.ComicDetailsController;
+import com.cifprodolfo.comic_store.controller.ComicViewController;
 import com.cifprodolfo.comic_store.services.AuthorServices;
 import com.cifprodolfo.comic_store.services.CollectionServices;
 import com.cifprodolfo.comic_store.services.ComicServices;
 import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +20,8 @@ import javafx.stage.Stage;
 
 import javax.help.HelpBroker;
 import javafx.event.ActionEvent;
+import org.w3c.dom.Text;
+
 import javax.help.HelpSet;
 import javax.swing.*;
 import java.io.IOException;
@@ -30,11 +35,14 @@ public class HomeController {
     private BorderPane PanelHome;
     @FXML
     private Label lblTitle;
+    @FXML
+    private TextField txtSearch;
     private JButton help = new JButton();
     TableView table = new TableView<>();
 
 
     public void initialize(){
+
     }
 
     public HomeController(){

@@ -3,23 +3,31 @@ package com.cifprodolfo.comic_store.controller;
 import com.cifprodolfo.comic_store.HomeController;
 import com.cifprodolfo.comic_store.services.ComicListServices;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.beans.EventHandler;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 
 public class ComicViewController {
 
+    @FXML
+    private StackPane stackPaneComics;
     @FXML
     private TableView tableComics;
     @FXML
@@ -32,14 +40,27 @@ public class ComicViewController {
     private TableColumn<ComicAdapter, Integer> lblPagesComic;
     @FXML
     private TableColumn<ComicAdapter, Integer> lblPublicationComic;
+    private TextField txtSearch = new TextField();
+    static ObservableList<ComicAdapter> data = FXCollections.observableArrayList();
+    static FilteredList<ComicAdapter> searchData = new FilteredList<>(FXCollections.observableList(data));
 
     public ComicViewController(){
 
     }
 
+    private static Predicate<ComicAdapter> searchComics (String searchText){
+        return order -> {
+            if (searchText == null || searchText.isEmpty()) return true;
+            return searchComic(order, searchText);
+        };
+    }
+
+    private static boolean searchComic(ComicAdapter comic, String searchText) {
+        return (comic.getName().startsWith(searchText));
+    }
+
     public void initialize(){
 
-        ObservableList<ComicAdapter> data = FXCollections.observableArrayList();
         data = ComicListServices.getDataComic();
 
         lblImageComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, String>("image"));
@@ -50,6 +71,16 @@ public class ComicViewController {
 
         tableComics.setItems(data);
         tableComics.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        /*txtSearch = (TextField) stackPaneComics.getParent().getScene().lookup("#txtSearch");
+        txtSearch.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldProperty, Boolean newProperty) {
+                if(newProperty){
+                    searchData.setPredicate(searchComics(txtSearch.getText()));
+                }
+            }
+        });*/
     }
 
     public void doubleClickButton(){

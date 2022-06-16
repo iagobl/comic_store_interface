@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.controller.ComicViewController">
+<StackPane fx:id="stackPaneComics" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.controller.ComicViewController">
    <children>
       <TableView fx:id="tableComics" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#doubleClickButton" prefHeight="286.0" prefWidth="538.0" styleClass="table-view-center" stylesheets="@../../../style/style.css">
          <columnResizePolicy>
