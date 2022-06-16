@@ -71,14 +71,15 @@ public class AuthorServices {
 
     public static void putAuthors(AuthorAdapter authorAdapter) throws IOException, InterruptedException {
 
-        String url = "http://localhost:8080/api-spring/author/"+authorAdapter.getId()+"?name="+authorAdapter.getName()+"&surname="+authorAdapter.getSurname();
-        String json = new StringBuilder()
-                .append("{")
-                .append("\"nombre\":\"prueba\",")
-                .append("}")
-                .toString();
+        String url = "http://localhost:8080/api-spring/author";
+        String json = "{\n" +
+                "        \"id\": "+authorAdapter.getId()+",\n" +
+                "        \"name\": \""+authorAdapter.getName()+"\",\n" +
+                "        \"surname\": \""+authorAdapter.getSurname()+"\",\n" +
+                "        \"authorComicList\": []\n" +
+                "}";
         HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(5)).build();
-        HttpRequest request = HttpRequest.newBuilder().PUT(HttpRequest.BodyPublishers.ofString(json)).uri(URI.create(url)).build();
+        HttpRequest request = HttpRequest.newBuilder().PUT(HttpRequest.BodyPublishers.ofString(json)).uri(URI.create(url)).header("Content-Type", "application/json").build();
         httpClient.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
