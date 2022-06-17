@@ -35,6 +35,8 @@ public class CollectionViewController {
     private TableColumn<CollectionAdapter, String> lblEditorialCollection;
     private TextField txtSearch = new TextField();
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
+
     public CollectionViewController(TextField text) { this.txtSearch = text; }
 
     public void initialize(){
@@ -69,7 +71,6 @@ public class CollectionViewController {
     public void getPanelDetailsShow(CollectionAdapter CollectionAdapter){
 
         try {
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
             FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("collectionDetails.fxml"), resourceBundle);
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage(StageStyle.DECORATED);
@@ -84,7 +85,7 @@ public class CollectionViewController {
             stage.showAndWait();
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al mostrar el comic");
+            alert.setContentText(resourceBundle.getString("textErrorShowCollection"));
             alert.showAndWait();
         }
 

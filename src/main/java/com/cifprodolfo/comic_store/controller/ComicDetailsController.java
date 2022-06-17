@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class ComicDetailsController {
 
@@ -44,17 +45,15 @@ public class ComicDetailsController {
     private ComboBox cmbComboAutores;
     @FXML
     private ComboBox cmbComboColecciones;
-    @FXML
-    private SplitPane SplitPaneComics;
     private boolean newImage = false;
     private String pathImage;
     private ComicAdapter comicAdapter;
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
+
     public ComicDetailsController() {}
 
-    public void initialize() {
-        SplitPaneComics.setDividerPositions(40);
-    }
+    public void initialize() {}
 
     public void initData(ComicAdapter comicAdapter) {
            txtNameDetailsComic.setText(comicAdapter.getName());
@@ -90,7 +89,7 @@ public class ComicDetailsController {
 
         try {
             newImage = true;
-            stage.setTitle("Seleccione la foto");
+            stage.setTitle(resourceBundle.getString("textTitleLabelChangeImage"));
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png"));
             File selectFile = fileChooser.showOpenDialog(stage);
 
@@ -103,11 +102,11 @@ public class ComicDetailsController {
             imageViewComicDetails.setImage(new Image(pathImage));
             imageViewComicDetails.setFitWidth(450);
             imageViewComicDetails.setFitHeight(430);
-
+            System.out.println(resourceBundle.getString("textErrorChangeImage"));
             pathImage = selectFile.getAbsolutePath();
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al cambiar la imagén");
+            alert.setContentText(resourceBundle.getString("textErrorChangeImage"));
             alert.showAndWait();
         }
     }
@@ -126,7 +125,7 @@ public class ComicDetailsController {
             String anho = txtAnhoPublicationDetailsComic.getText();
             String state = txtStateDetailsComic.getText();
             String price = txtPriceDetailsComic.getText();
-            String job = txtJobComic.getText();
+            String timeDedicated = txtJobComic.getText();
 
             Author author = (Author) cmbComboAutores.getSelectionModel().getSelectedItem();
             Collection collection = (Collection) cmbComboColecciones.getSelectionModel().getSelectedItem();
@@ -140,15 +139,15 @@ public class ComicDetailsController {
                     (anho.isBlank() || anho.isEmpty()) ||
                     (state.isBlank() || state.isEmpty()) ||
                     (price.isBlank() || price.isEmpty()) ||
-                    (job.isBlank() || job.isEmpty())) {
+                    (timeDedicated.isBlank() || timeDedicated.isEmpty())) {
 
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Cubre todos los campos", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("textErrorCubrirCampos"), ButtonType.OK);
                 alert.showAndWait();
                 return;
             }
 
             if(author == null || collection == null) {
-                Alert alert = new Alert(Alert.AlertType.WARNING, "Selecciona un elemento en los combos", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("textErrorSelectElementCombo"), ButtonType.OK);
                 alert.showAndWait();
                 return;
             }
@@ -159,7 +158,7 @@ public class ComicDetailsController {
             comic = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price, idComic);
             if(comic.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText("Ese comic ya existe");
+                alert.setContentText(resourceBundle.getString("textExistComic"));
                 alert.showAndWait();
                 return;
             }
@@ -185,7 +184,7 @@ public class ComicDetailsController {
                 ComicServices.uploadImage(comicAdapter, ComicDetailsController.class.getResource("/images/icon_photo.png").getPath());
             }
 
-            AuthorComicServices.saveAuthorComic(job, idAuthor, idComic);
+            AuthorComicServices.saveAuthorComic(Integer.parseInt(timeDedicated), idAuthor, idComic);
 
             ComicListServices.updateDataComic();
             Stage stage = (Stage) this.txtDateDetailsComic.getScene().getWindow();
@@ -193,7 +192,7 @@ public class ComicDetailsController {
 
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al guardar comic");
+            alert.setContentText(resourceBundle.getString("textErrorSaveComic"));
             alert.showAndWait();
             e.printStackTrace();
         }
@@ -205,7 +204,7 @@ public class ComicDetailsController {
             stage.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al cerrar la pestaña");
+            alert.setContentText(resourceBundle.getString("textErrorCloseWindow"));
             alert.showAndWait();
         }
     }

@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.ResourceBundle;
 
 public class AuthorDetailsController {
 
@@ -27,6 +28,7 @@ public class AuthorDetailsController {
     private String pathImage;
     private AuthorAdapter authorAdapter;
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
     public AuthorDetailsController() {}
 
     public void initialize() {}
@@ -45,7 +47,7 @@ public class AuthorDetailsController {
 
         try {
             newImage = true;
-            stage.setTitle("Seleccione la foto");
+            stage.setTitle(resourceBundle.getString("textTitleLabelChangeImage"));
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png"));
             File selectedFile = fileChooser.showOpenDialog(stage);
 
@@ -63,7 +65,7 @@ public class AuthorDetailsController {
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al seleccionar la foto");
+            alert.setContentText(resourceBundle.getString("textErrorChangeImage"));
             alert.showAndWait();
         }
     }
@@ -77,7 +79,7 @@ public class AuthorDetailsController {
             String surnameAuthor = txtSurname.getText();
 
             if((nameAuthor.isBlank() || nameAuthor.isEmpty()) || (surnameAuthor.isBlank() || surnameAuthor.isEmpty())){
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Los campos no estan completos", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.ERROR, resourceBundle.getString("textErrorCubrirCampos"), ButtonType.OK);
                 alert.showAndWait();
                 return;
             }
@@ -85,7 +87,7 @@ public class AuthorDetailsController {
             newAuthor = AuthorServices.saveAuthors(nameAuthor, surnameAuthor);
             if(newAuthor.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText("Ese autor ya existe");
+                alert.setContentText(resourceBundle.getString("textExistAuthor"));
                 alert.showAndWait();
                 return;
             }
@@ -104,7 +106,7 @@ public class AuthorDetailsController {
 
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al guardar el comic");
+            alert.setContentText(resourceBundle.getString("textErrorSaveAuthor"));
             alert.showAndWait();
         }
 
@@ -118,7 +120,7 @@ public class AuthorDetailsController {
             String surnameUpdate = txtSurname.getText();
 
             if((nameUpdate.isBlank() || nameUpdate.isEmpty()) || (surnameUpdate.isBlank() || surnameUpdate.isEmpty())){
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Los campos no estan completos", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.ERROR, resourceBundle.getString("textErrorCubrirCampos"), ButtonType.OK);
                 alert.showAndWait();
                 return;
             }
@@ -138,7 +140,7 @@ public class AuthorDetailsController {
 
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al modificar el autor");
+            alert.setContentText(resourceBundle.getString("textErrorUpdateAuthor"));
             alert.showAndWait();
         }
     }
@@ -149,7 +151,7 @@ public class AuthorDetailsController {
             stage.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al cerrar la pestaña");
+            alert.setContentText(resourceBundle.getString("textErrorCloseWindow"));
             alert.showAndWait();
         }
     }

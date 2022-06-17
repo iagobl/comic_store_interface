@@ -10,8 +10,6 @@ import com.cifprodolfo.comic_store.services.ComicServices;
 import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,8 +20,6 @@ import javafx.stage.Stage;
 
 import javax.help.HelpBroker;
 import javafx.event.ActionEvent;
-import javafx.stage.StageStyle;
-import org.w3c.dom.Text;
 
 import javax.help.HelpSet;
 import javax.swing.*;
@@ -44,16 +40,17 @@ public class HomeController {
     TableView table = new TableView<>();
 
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
+
     public void initialize(){
         try {
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
             FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
             ComicViewController comicController = new ComicViewController(txtSearch);
             fxmlLoader.setController(comicController);
             PanelHome.setCenter(fxmlLoader.load());
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al mostrar los comics");
+            alert.setContentText(resourceBundle.getString("textErrorShowComics"));
             alert.showAndWait();
             e.printStackTrace();
         }
@@ -61,6 +58,7 @@ public class HomeController {
 
     public HomeController(){
         try {
+
             URL helpURL = this.getClass().getResource("/helpES/help.hs");
             HelpSet helpSet = new HelpSet(null, helpURL);
             HelpBroker browser = helpSet.createHelpBroker();
@@ -69,7 +67,7 @@ public class HomeController {
         } catch(Exception e){
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al abrir el javahelp");
+            alert.setContentText(resourceBundle.getString("textErrorJavaHelp"));
             alert.showAndWait();
         }
     }
@@ -82,7 +80,6 @@ public class HomeController {
 
         try {
             Button button = (Button) actionEvent.getSource();
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
             FXMLLoader fxmlLoader = new FXMLLoader();
             String namePanel = button.getId();
 
@@ -91,23 +88,23 @@ public class HomeController {
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
                     ComicViewController comicController = new ComicViewController(txtSearch);
                     fxmlLoader.setController(comicController);
-                    lblTitle.setText("Comics");
+                    lblTitle.setText(resourceBundle.getString("btnComics"));
                     break;
                 case "btnCollection":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("collectionView.fxml"), resourceBundle);
                     CollectionViewController collectionController = new CollectionViewController(txtSearch);
                     fxmlLoader.setController(collectionController);
-                    lblTitle.setText("Colecciones");
+                    lblTitle.setText(resourceBundle.getString("btnCollection"));
                     break;
                 case "btnAuthor":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("authorView.fxml"), resourceBundle);
                     AuthorViewController authorController = new AuthorViewController(txtSearch);
                     fxmlLoader.setController(authorController);
-                    lblTitle.setText("Actores");
+                    lblTitle.setText(resourceBundle.getString("btnAuthor"));
                     break;
                 case "btnReports":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("reports.fxml"), resourceBundle);
-                    lblTitle.setText("Informes");
+                    lblTitle.setText(resourceBundle.getString("btnReports"));
                     break;
                 default:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
@@ -116,7 +113,7 @@ public class HomeController {
             PanelHome.setCenter(fxmlLoader.load());
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al abrir la pestaña");
+            alert.setContentText(resourceBundle.getString("textErrorShowPanelHome"));
             alert.showAndWait();
             e.printStackTrace();
         }
@@ -126,7 +123,6 @@ public class HomeController {
     public void getPanelAdd(){
 
         try {
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Stage stage = new Stage();
             String panelName = lblTitle.getText();
@@ -135,12 +131,14 @@ public class HomeController {
                 case "Comics":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newComic.fxml"), resourceBundle);
                     stage.setResizable(true);
+                    stage.setMinWidth(1130);
+                    stage.setMinHeight(900);
                     break;
                 case "Colecciones":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newCollection.fxml"), resourceBundle);
                     stage.setResizable(true);
                     break;
-                case "Actores":
+                case "Autores":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newAuthor.fxml"), resourceBundle);
                     stage.setResizable(false);
                     break;
@@ -162,7 +160,7 @@ public class HomeController {
 
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al abrir la pestaña de añadir");
+            alert.setContentText(resourceBundle.getString("textErrorShowPanelAdd"));
             alert.showAndWait();
             e.printStackTrace();
         }
@@ -187,7 +185,7 @@ public class HomeController {
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al abrir la configuración");
+            alert.setContentText(resourceBundle.getString("textErrorShowPanelConfiguration"));
             alert.showAndWait();
         }
     }
@@ -203,7 +201,7 @@ public class HomeController {
             case "Colecciones":
                 getCollection();
                 break;
-            case "Actores":
+            case "Autores":
                 getAuthors();
                 break;
             default: {}
@@ -220,7 +218,7 @@ public class HomeController {
             CollectionServices.deleteCollection(item);
         } catch(IOException | InterruptedException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al borrar la colección");
+            alert.setContentText(resourceBundle.getString("textErrorDeleteCollection"));
             alert.showAndWait();
         }
     }
@@ -235,7 +233,7 @@ public class HomeController {
             AuthorServices.deleteAuthor(item);
         } catch(IOException | InterruptedException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al borrar el autor");
+            alert.setContentText(resourceBundle.getString("textErrorDeleteAuthor"));
             alert.showAndWait();
         }
     }
@@ -250,7 +248,7 @@ public class HomeController {
             ComicServices.deleteComic(item);
         } catch(IOException | InterruptedException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al borrar el comic");
+            alert.setContentText(resourceBundle.getString("textErrorDeleteComic"));
             alert.showAndWait();
         }
     }

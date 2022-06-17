@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.ResourceBundle;
 
 public class CollectionDetailsController {
 
@@ -28,6 +29,8 @@ public class CollectionDetailsController {
     private CollectionAdapter collection;
     private boolean newImage = false;
     private String pathImage;
+
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
     public CollectionDetailsController() {}
 
     public void initialize() {}
@@ -46,7 +49,7 @@ public class CollectionDetailsController {
 
         try {
             newImage = true;
-            stage.setTitle("Seleccione la foto");
+            stage.setTitle(resourceBundle.getString("textTitleLabelChangeImage"));
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png"));
             File selectFile = fileChooser.showOpenDialog(stage);
 
@@ -74,7 +77,7 @@ public class CollectionDetailsController {
             String editorialUpdate = txtEditorialDetailsCollections.getText();
 
             if((nameUpdate.isBlank() || nameUpdate.isEmpty()) || (editorialUpdate.isBlank() || editorialUpdate.isEmpty())){
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Los campos no estan completos",ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.ERROR, resourceBundle.getString("textErrorCubrirCampos"),ButtonType.OK);
                 alert.showAndWait();
                 return;
             }
@@ -82,7 +85,7 @@ public class CollectionDetailsController {
             newCollection = CollectionServices.saveCollections(nameUpdate, editorialUpdate);
             if(newCollection.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText("Esa colección ya existe");
+                alert.setContentText(resourceBundle.getString("textExistCollection"));
                 alert.showAndWait();
                 return;
             }
@@ -100,7 +103,9 @@ public class CollectionDetailsController {
             stage.close();
 
         } catch(Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(resourceBundle.getString("textErrorSaveCollection"));
+            alert.showAndWait();
         }
     }
 
@@ -111,7 +116,7 @@ public class CollectionDetailsController {
             String editorialUpdate = txtEditorialDetailsCollections.getText();
 
             if((nameUpdate.isBlank() || nameUpdate.isEmpty()) || (editorialUpdate.isBlank() || editorialUpdate.isEmpty())){
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Los campos no estan completos",ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.ERROR, resourceBundle.getString("textErrorCubrirCampos"),ButtonType.OK);
                 alert.showAndWait();
                 return;
             }
@@ -126,7 +131,7 @@ public class CollectionDetailsController {
             Collection newCollection = CollectionServices.putCollections(collection);
             if(newCollection.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText("Ese nombre ya existe en una colección");
+                alert.setContentText(resourceBundle.getString("textExistNameCollection"));
                 alert.showAndWait();
                 return;
             }
@@ -137,7 +142,7 @@ public class CollectionDetailsController {
 
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al modificar la coleción");
+            alert.setContentText(resourceBundle.getString("textErrorUpdateCollection"));
             alert.showAndWait();
             e.printStackTrace();
         }
@@ -149,7 +154,7 @@ public class CollectionDetailsController {
             stage.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al cerrar la pestaña");
+            alert.setContentText(resourceBundle.getString("textErrorCloseWindow"));
             alert.showAndWait();
         }
     }

@@ -46,6 +46,7 @@ public class ComicViewController {
     private TableColumn<ComicAdapter, Integer> lblPublicationComic;
     private TextField txtSearch = new TextField();
 
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
 
     public ComicViewController(TextField text){
         this.txtSearch = text;
@@ -85,12 +86,12 @@ public class ComicViewController {
     public void getPanelDetailsShow(ComicAdapter comicAdapter){
 
         try {
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
-            FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicDetails2.fxml"), resourceBundle);
+            FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicDetails.fxml"), resourceBundle);
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setScene(scene);
-
+            stage.setMinWidth(1130);
+            stage.setMinHeight(900);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(tableComics.getScene().getWindow());
 
@@ -100,7 +101,7 @@ public class ComicViewController {
             stage.showAndWait();
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al mostrar el comic");
+            alert.setContentText(resourceBundle.getString("textErrorShowComic"));
             alert.showAndWait();
         }
 

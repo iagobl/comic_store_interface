@@ -10,13 +10,13 @@ import java.net.http.HttpResponse;
 
 public class AuthorComicServices {
 
-    public static void saveAuthorComic(String job, Long idAuthor, Long idComic) throws IOException, InterruptedException {
+    public static void saveAuthorComic(int timeDedicated, Long idAuthor, Long idComic) throws IOException, InterruptedException {
 
         String url = "http://localhost:8080/api-spring/authorcomic";
 
         HttpClient httpClient = HttpClient.newHttpClient();
         String json = "{\n" +
-                "        \"job\": \""+ job + "\",\n" +
+                "        \"timeDedicated\": "+ timeDedicated + ",\n" +
                 "        \"comic\": {\n" +
                 "            \"id\": "+ idComic + "\n" +
                 "        },\n" +

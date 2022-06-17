@@ -5,15 +5,15 @@ public class AuthorComic {
     private Long id;
     private Comic comic;
     private Author author;
-    private String job;
+    private int timeDedicated;
 
     public AuthorComic(){}
 
-    public AuthorComic(Long id, Comic comic, Author author, String job){
+    public AuthorComic(Long id, Comic comic, Author author, int timeDedicated){
         this.id = id;
         this.comic = comic;
         this.author = author;
-        this.job = job;
+        this.timeDedicated = timeDedicated;
     }
 
     public Long getId() { return id; }
@@ -28,7 +28,7 @@ public class AuthorComic {
 
     public void setAuthor(Author author) { this.author = author; }
 
-    public String getJob() { return job; }
+    public int gettimeDedicated() { return timeDedicated; }
 
-    public void setJob(String job) { this.job = job; }
+    public void settimeDedicated(String job) { this.timeDedicated = timeDedicated; }
 }

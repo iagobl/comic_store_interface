@@ -80,11 +80,12 @@ public class AuthorViewController {
         });
     }
 
-    public void getPanelDetailsShow(AuthorAdapter authorAdapter){
+    public void getPanelDetailsShow(AuthorAdapter authorAdapter) {
 
+        ResourceBundle resourceBundle = null;
         try {
 
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
+            resourceBundle = ResourceBundle.getBundle("language/language");
             FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("authorDetails.fxml"), resourceBundle);
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage(StageStyle.DECORATED);
@@ -98,9 +99,9 @@ public class AuthorViewController {
             detailsController.initData(authorAdapter);
 
             stage.showAndWait();
-        } catch(Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al mostrar el comic");
+            alert.setContentText(resourceBundle.getString("textErrorShowAuthor"));
             alert.showAndWait();
         }
     }

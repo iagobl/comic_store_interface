@@ -7,11 +7,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ConfigurationController {
 
     @FXML
     private VBox PanelFrame;
+
+    ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
 
     public void initialize(){
 
@@ -39,7 +42,7 @@ public class ConfigurationController {
 
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Hubo un error al cambiar el idioma");
+            alert.setContentText(resourceBundle.getString("textErrorChangeIdiom"));
             alert.showAndWait();
             e.printStackTrace();
         }
