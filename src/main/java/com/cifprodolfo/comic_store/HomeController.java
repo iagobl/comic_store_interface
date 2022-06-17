@@ -171,7 +171,7 @@ public class HomeController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(PanelHome.getScene().getWindow());
 
-            if(lblTitle.getText().equals("Comics")){
+            if(IdPanel == 0){
                 ComicDetailsController detailsController = fxmlLoader.<ComicDetailsController>getController();
                 detailsController.initData2();
             }
