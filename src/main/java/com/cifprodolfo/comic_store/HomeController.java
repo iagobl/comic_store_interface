@@ -1,6 +1,7 @@
 package com.cifprodolfo.comic_store;
 
 import com.cifprodolfo.comic_store.controller.AuthorViewController;
+import com.cifprodolfo.comic_store.controller.CollectionViewController;
 import com.cifprodolfo.comic_store.controller.ComicDetailsController;
 import com.cifprodolfo.comic_store.controller.ComicViewController;
 import com.cifprodolfo.comic_store.services.AuthorServices;
@@ -84,13 +85,6 @@ public class HomeController {
             ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
             FXMLLoader fxmlLoader = new FXMLLoader();
             String namePanel = button.getId();
-            /*
-            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
-            FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
-            ComicViewController comicController = new ComicViewController(txtSearch);
-            fxmlLoader.setController(comicController);;
-            PanelHome.setCenter(fxmlLoader.load());
-             */
 
             switch(namePanel){
                 case "btnComics":
@@ -101,6 +95,8 @@ public class HomeController {
                     break;
                 case "btnCollection":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("collectionView.fxml"), resourceBundle);
+                    CollectionViewController collectionController = new CollectionViewController(txtSearch);
+                    fxmlLoader.setController(collectionController);
                     lblTitle.setText("Colecciones");
                     break;
                 case "btnAuthor":

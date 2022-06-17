@@ -5,6 +5,8 @@ import com.cifprodolfo.comic_store.services.CollectionListServices;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class CollectionViewController {
 
@@ -30,20 +33,24 @@ public class CollectionViewController {
     private TableColumn<CollectionAdapter, String> lblNameCollection;
     @FXML
     private TableColumn<CollectionAdapter, String> lblEditorialCollection;
+    private TextField txtSearch = new TextField();
 
-    public CollectionViewController() {}
+    public CollectionViewController(TextField text) { this.txtSearch = text; }
 
     public void initialize(){
 
-        ObservableList<CollectionAdapter> data = FXCollections.observableArrayList();
-        data = CollectionListServices.getDataCollections();
+        ObservableList<CollectionAdapter> data = CollectionListServices.getDataCollections();
+        FilteredList<CollectionAdapter> searchData = new FilteredList<>(FXCollections.observableList(data));
 
         lblImageCollection.setCellValueFactory(new PropertyValueFactory<CollectionAdapter, String>("image"));
         lblNameCollection.setCellValueFactory(new PropertyValueFactory<CollectionAdapter, String>("name"));
         lblEditorialCollection.setCellValueFactory(new PropertyValueFactory<CollectionAdapter, String>("editorial"));
 
-        tableCollection.setItems(data);
         tableCollection.setColumnResizePolicy(javafx.scene.control.TableView.CONSTRAINED_RESIZE_POLICY);
+        txtSearch.textProperty().addListener(((observableValue, oldValue, newValue) -> {searchData.setPredicate(searchCollections());}));
+        SortedList<CollectionAdapter> sortedData = new SortedList<>(searchData);
+        tableCollection.setItems(sortedData);
+        sortedData.comparatorProperty().bind(tableCollection.comparatorProperty());
     }
 
     public void doubleClickButton(){
@@ -81,5 +88,16 @@ public class CollectionViewController {
             alert.showAndWait();
         }
 
+    }
+
+    private Predicate<CollectionAdapter> searchCollections(){
+        return order -> {
+          if(txtSearch.getText() == null || txtSearch.getText().isEmpty()) return true;
+          return searchCollection(order, txtSearch.getText());
+        };
+    }
+
+    private static boolean searchCollection(CollectionAdapter collection, String searchText){
+        return (collection.getName().startsWith(searchText));
     }
 }
