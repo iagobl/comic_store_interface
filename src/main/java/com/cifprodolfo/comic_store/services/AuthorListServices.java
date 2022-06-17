@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,6 +19,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.List;
+import java.util.logging.Filter;
 
 public class AuthorListServices {
 
@@ -61,10 +63,11 @@ public class AuthorListServices {
         return authorAdaptersList;
     }
 
-    public static ObservableList<AuthorAdapter> updateDataAuthor() {
+    public static FilteredList<AuthorAdapter> updateDataAuthor() {
 
         authorAdaptersList.clear();
         ObjectMapper objectMapper = new ObjectMapper();
+        FilteredList<AuthorAdapter> searchData = new FilteredList<>(FXCollections.observableList(authorAdaptersList));
 
         try {
 
@@ -95,7 +98,7 @@ public class AuthorListServices {
             alert.showAndWait();
         }
 
-        return authorAdaptersList;
+        return searchData;
     }
 
     public static ObservableList<Author> getAuthorfromCombo() throws IOException, InterruptedException {

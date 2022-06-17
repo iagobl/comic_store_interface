@@ -52,7 +52,7 @@ public class AuthorViewController {
     public void initialize(){
 
         ObservableList<AuthorAdapter> data = AuthorListServices.getDataAuthors();;
-        FilteredList<AuthorAdapter> searchData = new FilteredList<>(FXCollections.observableList(data));
+        FilteredList<AuthorAdapter> searchData = new FilteredList<>(data);
 
 
         lblImageAuthor.setCellValueFactory(new PropertyValueFactory<AuthorAdapter, String>("image"));

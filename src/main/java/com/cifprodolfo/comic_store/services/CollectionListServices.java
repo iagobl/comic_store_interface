@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -59,10 +60,11 @@ public class CollectionListServices {
         return collectionAdaptersList;
     }
 
-    public static ObservableList<CollectionAdapter> updateDataCollections(){
+    public static FilteredList<CollectionAdapter> updateDataCollections(){
 
         collectionAdaptersList.clear();
         ObjectMapper objectMapper = new ObjectMapper();
+        FilteredList<CollectionAdapter> searchData = new FilteredList<>(FXCollections.observableList(collectionAdaptersList));
 
         try {
 
@@ -92,7 +94,7 @@ public class CollectionListServices {
             alert.showAndWait();
         }
 
-        return collectionAdaptersList;
+        return searchData;
     }
 
     public static ObservableList <Collection> getCollectionfromCombo() throws IOException, InterruptedException {

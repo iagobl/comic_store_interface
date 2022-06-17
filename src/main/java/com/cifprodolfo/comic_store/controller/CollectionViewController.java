@@ -40,7 +40,7 @@ public class CollectionViewController {
     public void initialize(){
 
         ObservableList<CollectionAdapter> data = CollectionListServices.getDataCollections();
-        FilteredList<CollectionAdapter> searchData = new FilteredList<>(FXCollections.observableList(data));
+        FilteredList<CollectionAdapter> searchData = new FilteredList<>(data);
 
         lblImageCollection.setCellValueFactory(new PropertyValueFactory<CollectionAdapter, String>("image"));
         lblNameCollection.setCellValueFactory(new PropertyValueFactory<CollectionAdapter, String>("name"));

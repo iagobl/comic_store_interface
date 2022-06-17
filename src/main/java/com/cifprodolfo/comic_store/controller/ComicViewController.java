@@ -51,20 +51,9 @@ public class ComicViewController {
         this.txtSearch = text;
     }
 
-    private Predicate<ComicAdapter> searchComics (){
-        return order -> {
-            if (txtSearch.getText() == null || txtSearch.getText().isEmpty()) return true;
-            return searchComic(order, txtSearch.getText());
-        };
-    }
-
-    private static boolean searchComic(ComicAdapter comic, String searchText) {
-        return (comic.getName().startsWith(searchText));
-    }
-
     public void initialize(){
         ObservableList<ComicAdapter> data = ComicListServices.getDataComic();
-        FilteredList<ComicAdapter> searchData = new FilteredList<>(FXCollections.observableList(data));
+        FilteredList<ComicAdapter> searchData = new FilteredList<>(data);
 
         lblImageComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, String>("image"));
         lblNameComic.setCellValueFactory(new PropertyValueFactory<ComicAdapter, String>("name"));
@@ -115,6 +104,17 @@ public class ComicViewController {
             alert.showAndWait();
         }
 
+    }
+
+    private Predicate<ComicAdapter> searchComics (){
+        return order -> {
+            if (txtSearch.getText() == null || txtSearch.getText().isEmpty()) return true;
+            return searchComic(order, txtSearch.getText());
+        };
+    }
+
+    private static boolean searchComic(ComicAdapter comic, String searchText) {
+        return (comic.getName().startsWith(searchText));
     }
 
 

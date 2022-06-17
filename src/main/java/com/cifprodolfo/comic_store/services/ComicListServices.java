@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -67,10 +68,11 @@ public class ComicListServices {
         return comicAdaptersList;
     }
 
-    public static ObservableList<ComicAdapter> updateDataComic(){
+    public static FilteredList<ComicAdapter> updateDataComic(){
 
         comicAdaptersList.clear();
         ObjectMapper objectMapper = new ObjectMapper();
+        FilteredList<ComicAdapter> searchData = new FilteredList<>(FXCollections.observableList(comicAdaptersList));
 
         try {
 
@@ -108,7 +110,7 @@ public class ComicListServices {
             alert.showAndWait();
         }
 
-        return comicAdaptersList;
+        return searchData;
     }
 
 }
