@@ -36,8 +36,13 @@ public class HomeController {
     private Label lblTitle;
     @FXML
     private TextField txtSearch;
+    @FXML
+    private Button btnAddElement;
+    @FXML
+    private Button btnDeleteElement;
     private JButton help = new JButton();
     TableView table = new TableView<>();
+    private int IdPanel = 0;
 
 
     ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
@@ -48,6 +53,9 @@ public class HomeController {
             ComicViewController comicController = new ComicViewController(txtSearch);
             fxmlLoader.setController(comicController);
             PanelHome.setCenter(fxmlLoader.load());
+            lblTitle.setText(resourceBundle.getString("btnComics"));
+            btnAddElement.setVisible(true);
+            btnDeleteElement.setVisible(true);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorShowComics"));
@@ -88,23 +96,34 @@ public class HomeController {
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
                     ComicViewController comicController = new ComicViewController(txtSearch);
                     fxmlLoader.setController(comicController);
+                    IdPanel = 0;
                     lblTitle.setText(resourceBundle.getString("btnComics"));
+                    btnAddElement.setVisible(true);
+                    btnDeleteElement.setVisible(true);
                     break;
                 case "btnCollection":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("collectionView.fxml"), resourceBundle);
                     CollectionViewController collectionController = new CollectionViewController(txtSearch);
                     fxmlLoader.setController(collectionController);
+                    IdPanel = 1;
                     lblTitle.setText(resourceBundle.getString("btnCollection"));
+                    btnAddElement.setVisible(true);
+                    btnDeleteElement.setVisible(true);
                     break;
                 case "btnAuthor":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("authorView.fxml"), resourceBundle);
                     AuthorViewController authorController = new AuthorViewController(txtSearch);
                     fxmlLoader.setController(authorController);
+                    IdPanel = 2;
                     lblTitle.setText(resourceBundle.getString("btnAuthor"));
+                    btnAddElement.setVisible(true);
+                    btnDeleteElement.setVisible(true);
                     break;
                 case "btnReports":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("reports.fxml"), resourceBundle);
                     lblTitle.setText(resourceBundle.getString("btnReports"));
+                    btnAddElement.setVisible(false);
+                    btnDeleteElement.setVisible(false);
                     break;
                 default:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
@@ -125,20 +144,19 @@ public class HomeController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Stage stage = new Stage();
-            String panelName = lblTitle.getText();
 
-            switch(panelName){
-                case "Comics":
+            switch(IdPanel){
+                case 0:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newComic.fxml"), resourceBundle);
                     stage.setResizable(true);
                     stage.setMinWidth(1130);
                     stage.setMinHeight(900);
                     break;
-                case "Colecciones":
+                case 1:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newCollection.fxml"), resourceBundle);
                     stage.setResizable(true);
                     break;
-                case "Autores":
+                case 2:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newAuthor.fxml"), resourceBundle);
                     stage.setResizable(false);
                     break;

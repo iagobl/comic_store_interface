@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.File;
 import java.util.ResourceBundle;
@@ -43,11 +44,11 @@ public class AuthorDetailsController {
     public void changeImage() {
 
         FileChooser fileChooser = new FileChooser();
-        Stage stage = new Stage();
 
         try {
             newImage = true;
-            stage.setTitle(resourceBundle.getString("textTitleLabelChangeImage"));
+            Window stage = imageViewAuthor.getScene().getWindow();
+            fileChooser.setTitle(resourceBundle.getString("textTitleLabelChangeImage"));
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png"));
             File selectedFile = fileChooser.showOpenDialog(stage);
 

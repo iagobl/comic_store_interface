@@ -121,7 +121,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="970.0" style="-fx-background-color: #FDF3A1;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblTitle" text="Comics">
+            <Label fx:id="lblTitle">
                <font>
                   <Font name="Gentium Book Basic" size="25.0" />
                </font>
