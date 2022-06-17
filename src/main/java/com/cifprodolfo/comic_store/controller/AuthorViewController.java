@@ -91,7 +91,7 @@ public class AuthorViewController {
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setScene(scene);
             stage.setResizable(false);
-            stage.setTitle("Autor");
+            stage.setTitle(resourceBundle.getString("lblDetailsAuthor"));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(tableAuthor.getScene().getWindow());
 

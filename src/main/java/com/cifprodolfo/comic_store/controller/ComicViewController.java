@@ -93,6 +93,7 @@ public class ComicViewController {
             stage.setMinWidth(1130);
             stage.setMinHeight(900);
             stage.initModality(Modality.WINDOW_MODAL);
+            stage.setTitle(resourceBundle.getString("lblDetailsComic"));
             stage.initOwner(tableComics.getScene().getWindow());
 
             ComicDetailsController detailsController = fxmlLoader.<ComicDetailsController>getController();

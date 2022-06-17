@@ -151,20 +151,22 @@ public class HomeController {
                     stage.setResizable(true);
                     stage.setMinWidth(1130);
                     stage.setMinHeight(900);
+                    stage.setTitle(resourceBundle.getString("titleAddComic"));
                     break;
                 case 1:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newCollection.fxml"), resourceBundle);
                     stage.setResizable(true);
+                    stage.setTitle(resourceBundle.getString("titleAddCollection"));
                     break;
                 case 2:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newAuthor.fxml"), resourceBundle);
                     stage.setResizable(false);
+                    stage.setTitle(resourceBundle.getString("titleAddAuthor"));
                     break;
                 default:{}
             }
 
             Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Añadir " + lblTitle.getText());
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(PanelHome.getScene().getWindow());
@@ -210,16 +212,14 @@ public class HomeController {
 
     public void getDeleteSelectedMethod() {
 
-        String namePanel = lblTitle.getText();
-
-        switch(namePanel){
-            case "Comics":
+        switch(IdPanel){
+            case 0:
                 getComic();
                 break;
-            case "Colecciones":
+            case 1:
                 getCollection();
                 break;
-            case "Autores":
+            case 2:
                 getAuthors();
                 break;
             default: {}
@@ -270,8 +270,4 @@ public class HomeController {
             alert.showAndWait();
         }
     }
-
-
-
-
 }

@@ -75,7 +75,7 @@ public class CollectionViewController {
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setScene(scene);
-            stage.setTitle("Colecciones");
+            stage.setTitle(resourceBundle.getString("lblDetailsCollections"));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(tableCollection.getScene().getWindow());
 
