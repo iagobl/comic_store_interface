@@ -44,13 +44,17 @@ public class ComicDetailsController {
     private ComboBox cmbComboAutores;
     @FXML
     private ComboBox cmbComboColecciones;
+    @FXML
+    private SplitPane SplitPaneComics;
     private boolean newImage = false;
     private String pathImage;
     private ComicAdapter comicAdapter;
 
     public ComicDetailsController() {}
 
-    public void initialize() {}
+    public void initialize() {
+        SplitPaneComics.setDividerPositions(40);
+    }
 
     public void initData(ComicAdapter comicAdapter) {
            txtNameDetailsComic.setText(comicAdapter.getName());

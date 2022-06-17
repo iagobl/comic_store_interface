@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1028.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.controller.ComicDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1028.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.controller.ComicDetailsController">
    <top>
       <FlowPane alignment="CENTER" prefHeight="70.0" prefWidth="908.0" BorderPane.alignment="CENTER">
          <children>
@@ -30,7 +30,7 @@
       </FlowPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.3937621832358674" BorderPane.alignment="CENTER">
+      <SplitPane fx:id="SplitPaneComics" dividerPositions="0.4" BorderPane.alignment="CENTER">
          <items>
             <VBox prefHeight="841.0" prefWidth="491.0">
                <children>
