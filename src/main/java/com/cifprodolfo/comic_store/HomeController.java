@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import javax.help.HelpBroker;
 import javafx.event.ActionEvent;
+import javafx.stage.StageStyle;
 import org.w3c.dom.Text;
 
 import javax.help.HelpSet;
@@ -42,7 +43,18 @@ public class HomeController {
 
 
     public void initialize(){
-
+        try {
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
+            FXMLLoader fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
+            ComicViewController comicController = new ComicViewController(txtSearch);
+            fxmlLoader.setController(comicController);
+            PanelHome.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al mostrar los comics");
+            alert.showAndWait();
+            e.printStackTrace();
+        }
     }
 
     public HomeController(){

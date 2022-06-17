@@ -15,8 +15,10 @@ public class HomeApplication extends Application {
         Locale.setDefault(new Locale("es"));
         ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
         FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource("home.fxml"), resourceBundle);
-        Scene scene = new Scene(fxmlLoader.load(), 1200, 900);
+        Scene scene = new Scene(fxmlLoader.load(), 1100, 750);
         stage.setTitle("Tienda de comics");
+        stage.setMinHeight(710);
+        stage.setMinWidth(980);
         stage.setScene(scene);
         stage.show();
     }
