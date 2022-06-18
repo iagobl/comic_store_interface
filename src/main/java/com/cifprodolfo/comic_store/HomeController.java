@@ -156,6 +156,8 @@ public class HomeController {
                 case 1:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("newCollection.fxml"), resourceBundle);
                     stage.setResizable(true);
+                    stage.setMinHeight(600);
+                    stage.setMinWidth(800);
                     stage.setTitle(resourceBundle.getString("titleAddCollection"));
                     break;
                 case 2:

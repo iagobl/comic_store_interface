@@ -78,6 +78,8 @@ public class CollectionViewController {
             stage.setTitle(resourceBundle.getString("lblDetailsCollections"));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(tableCollection.getScene().getWindow());
+            stage.setMinHeight(600);
+            stage.setMinWidth(800);
 
             CollectionDetailsController detailsController = fxmlLoader.<CollectionDetailsController>getController();
             detailsController.initData(CollectionAdapter);
