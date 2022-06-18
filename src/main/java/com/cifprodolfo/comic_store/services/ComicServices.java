@@ -22,11 +22,11 @@ import java.nio.charset.StandardCharsets;
 
 public class ComicServices {
 
-    public static Comic saveComics(String name, String synopsis, String number, String page, String tape, String date, String anhoPublication, String state, String price, Long idCollection) throws IOException, InterruptedException {
+    public static Comic saveComics(String name, String synopsis, String number, String page, String tape, String date, String anhoPublication, String state, String price, Long idCollection, String timeDedicated, Long idAuthor) throws IOException, InterruptedException {
 
         Comic comicNew;
         ObjectMapper objectMapper = new ObjectMapper();
-        String url = "http://localhost:8080/api-spring/comic";
+        String url = "http://localhost:8080/api-spring/comic/" + idAuthor;
 
         HttpClient httpClient = HttpClient.newHttpClient();
         String json = new StringBuffer()
@@ -40,7 +40,7 @@ public class ComicServices {
                 .append("\"dateAcquistion\":\"" + date + "\",")
                 .append("\"state\":\"" + state + "\",")
                 .append("\"price\":\"" + price + "\",")
-                .append("\"authorComic\":" + "["+"]" + ",")
+                .append("\"authorComic\":" + "{\"timeDedicated\":" + timeDedicated + "}" + ",")
                 .append("\"collection\":" + "{\"id\":" + idCollection + "}" + "")
                 .append("}")
                 .toString();

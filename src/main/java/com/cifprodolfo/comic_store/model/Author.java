@@ -9,16 +9,16 @@ public class Author {
     private String name;
     private byte[] image;
     private String surname;
-    private List<AuthorComic> authorComicList;
+    private AuthorComic authorComic;
 
     public Author() {}
 
-    public Author(Long id, String name, byte[] image, String surname, List<AuthorComic> authorComicList) {
+    public Author(Long id, String name, byte[] image, String surname, AuthorComic authorComic) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.surname = surname;
-        this.authorComicList = authorComicList;
+        this.authorComic = authorComic;
     }
 
     public Long getId() { return id; }
@@ -37,9 +37,9 @@ public class Author {
 
     public void setSurname(String surname) { this.surname = surname;}
 
-    public List<AuthorComic> getAuthorComicList() { return authorComicList; }
+    public AuthorComic getAuthorComicList() { return authorComic; }
 
-    public void setAuthorComicList(List<AuthorComic> authorComicList) { this.authorComicList = authorComicList; }
+    public void setAuthorComic(AuthorComic authorComicList) { this.authorComic = authorComic; }
 
     @Override
     public String toString() {

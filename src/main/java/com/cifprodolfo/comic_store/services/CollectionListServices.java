@@ -102,7 +102,7 @@ public class CollectionListServices {
         collectionList.clear();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
+        HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(5)).build();
         HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/collection")).build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -112,5 +112,19 @@ public class CollectionListServices {
         }
 
         return collectionList;
+    }
+
+    public static Collection getCollectionById(int id) throws IOException, InterruptedException {
+
+        Collection collection;
+        ObjectMapper objectMapper = new ObjectMapper();
+        String url = "http://localhost:8080/api-spring/collection/" + id;
+
+        HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(5)).build();
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        collection = objectMapper.readValue(response.body(), new TypeReference<Collection>() {});
+        return collection;
     }
 }

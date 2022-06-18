@@ -96,6 +96,7 @@ public class AuthorListServices {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Error al mostrar los autores");
             alert.showAndWait();
+            e.printStackTrace();
         }
 
         return searchData;

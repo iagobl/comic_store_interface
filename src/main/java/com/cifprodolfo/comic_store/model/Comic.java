@@ -22,14 +22,14 @@ public class Comic {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate dateAcquistion;
+    private LocalDate dataAcquisition;
     private String state;
     private double price;
-    private List<AuthorComic> authorComic;
+    private String authorName;
+    private Long collection_id;
 
     public Comic(){}
-
-    public Comic(Long id, String name, byte[] image, String synopsis, int number, int page, String tapa, int anhoPublication, LocalDate dateAcquistion, String state, double price, List<AuthorComic> authorComic){
+    public Comic(Long id, String name, byte[] image, String synopsis, int number, int page, String tapa, int anhoPublication, LocalDate dataAcquisition, String state, double price, String authorName, Long collection_id) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -38,13 +38,16 @@ public class Comic {
         this.page = page;
         this.tapa = tapa;
         this.anhoPublication = anhoPublication;
-        this.dateAcquistion = dateAcquistion;
+        this.dataAcquisition = dataAcquisition;
         this.state = state;
         this.price = price;
-        this.authorComic = authorComic;
+        this.authorName = authorName;
+        this.collection_id = collection_id;
     }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -62,13 +65,17 @@ public class Comic {
         return image;
     }
 
-    public void setImage(byte[] image) { this.image = image; }
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     public String getSynopsis() {
         return synopsis;
     }
 
-    public void setSynopsis(String synopsis) { this.synopsis = synopsis; }
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
 
     public int getNumber() {
         return number;
@@ -78,31 +85,67 @@ public class Comic {
         this.number = number;
     }
 
-    public int getPage() { return page; }
+    public int getPage() {
+        return page;
+    }
 
-    public void setPage(int page) { this.page = page; }
+    public void setPage(int page) {
+        this.page = page;
+    }
 
-    public String getTapa() { return tapa; }
+    public String getTapa() {
+        return tapa;
+    }
 
-    public void setTapa(String tapa) { this.tapa = tapa; }
+    public void setTapa(String tapa) {
+        this.tapa = tapa;
+    }
 
-    public int getAnhoPublication() {return anhoPublication; }
+    public int getAnhoPublication() {
+        return anhoPublication;
+    }
 
-    public void setAnhoPublication(int anhoPublication) { this.anhoPublication = anhoPublication; }
+    public void setAnhoPublication(int anhoPublication) {
+        this.anhoPublication = anhoPublication;
+    }
 
-    public LocalDate getDateAcquistion() { return dateAcquistion; }
+    public LocalDate getDataAcquisition() {
+        return dataAcquisition;
+    }
 
-    public void setDateAcquistion(LocalDate dateAcquistion) { this.dateAcquistion = dateAcquistion; }
+    public void setDataAcquisition(LocalDate dataAcquisition) {
+        this.dataAcquisition = dataAcquisition;
+    }
 
-    public String getState() { return state; }
+    public String getState() {
+        return state;
+    }
 
-    public void setState(String state) { this.state = state; }
+    public void setState(String state) {
+        this.state = state;
+    }
 
-    public double getPrice() { return price; }
+    public double getPrice() {
+        return price;
+    }
 
-    public void setPrice(double price) { this.price = price; }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-    public List<AuthorComic> getAuthorComic() { return authorComic; }
+    public String getAuthorName() {
+        return authorName;
+    }
 
-    public void setAuthorComic(List<AuthorComic> authorComic) { this.authorComic = authorComic; }
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public Long getCollection_id(){
+        return collection_id;
+    }
+
+    public void setCollection_id(Long collection_id){
+        this.collection_id = collection_id;
+    }
 }

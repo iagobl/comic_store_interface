@@ -1,6 +1,9 @@
 package com.cifprodolfo.comic_store.services;
 
+import com.cifprodolfo.comic_store.model.Author;
 import com.cifprodolfo.comic_store.model.AuthorComic;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.URI;
@@ -26,7 +29,21 @@ public class AuthorComicServices {
                 "}";
 
         HttpRequest httpRequest = HttpRequest.newBuilder().POST(HttpRequest.BodyPublishers.ofString(json)).uri(URI.create(url)).header("Content-Type", "application/json").build();
-        HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
+        httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public static AuthorComic getAuthorComicById(Long idComic) throws IOException, InterruptedException {
+
+        AuthorComic authorComic = new AuthorComic();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String url = "http://localhost:8080/api-spring/authorcomic/findByIdComic/" + idComic;
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest httpRequest = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
+        HttpResponse <String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+        authorComic = objectMapper.readValue(response.body(), new TypeReference<AuthorComic>() {});
+        return authorComic;
+
     }
 }

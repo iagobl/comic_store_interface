@@ -20,13 +20,10 @@ public class ComicAdapter {
     private LocalDate  dateAcquistion;
     private final StringProperty state;
     private final DoubleProperty price;
-    private  List<AuthorComic> authorComic;
+    private  String authorName;
+    private Long collection_id;
 
-    public ComicAdapter(){
-        this(null, null, null, null, 0, 0, null, 0, null, null, 0.0, null);
-    }
-
-    public ComicAdapter(Long id, String name, ImageView image, String synopsis, int number, int page, String tapa, int anhoPublication, LocalDate dateAcquistion, String state, double price, List<AuthorComic> authorComic){
+    public ComicAdapter(Long id, String name, ImageView image, String synopsis, Integer number, Integer page, String tapa, Integer anhoPublication, LocalDate dateAcquistion, String state, Double price, String authorName, Long collection_id) {
         this.id = new SimpleLongProperty(id);
         this.name = new SimpleStringProperty(name);
         this.image = image;
@@ -38,19 +35,48 @@ public class ComicAdapter {
         this.dateAcquistion = dateAcquistion;
         this.state = new SimpleStringProperty(state);
         this.price = new SimpleDoubleProperty(price);
-        this.authorComic = authorComic;
+        this.authorName = authorName;
+        this.collection_id = collection_id;
+    }
+
+    public long getId() {
+        return id.get();
+    }
+
+    public LongProperty idProperty() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id.set(id);
     }
 
     public String getName() {
         return name.get();
     }
 
+    public StringProperty nameProperty() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name.set(name);
     }
 
+    public ImageView getImage() {
+        return image;
+    }
+
+    public void setImage(ImageView image) {
+        this.image = image;
+    }
+
     public String getSynopsis() {
         return synopsis.get();
+    }
+
+    public StringProperty synopsisProperty() {
+        return synopsis;
     }
 
     public void setSynopsis(String synopsis) {
@@ -61,6 +87,10 @@ public class ComicAdapter {
         return number.get();
     }
 
+    public IntegerProperty numberProperty() {
+        return number;
+    }
+
     public void setNumber(int number) {
         this.number.set(number);
     }
@@ -69,47 +99,83 @@ public class ComicAdapter {
         return page.get();
     }
 
+    public IntegerProperty pageProperty() {
+        return page;
+    }
+
     public void setPage(int page) {
         this.page.set(page);
     }
 
-    public String getTapa() {return tapa.get(); }
+    public String getTapa() {
+        return tapa.get();
+    }
 
-    public void setTapa(String tapa) { this.tapa.set(tapa); }
+    public StringProperty tapaProperty() {
+        return tapa;
+    }
+
+    public void setTapa(String tapa) {
+        this.tapa.set(tapa);
+    }
 
     public int getAnhoPublication() {
         return anhoPublication.get();
+    }
+
+    public IntegerProperty anhoPublicationProperty() {
+        return anhoPublication;
     }
 
     public void setAnhoPublication(int anhoPublication) {
         this.anhoPublication.set(anhoPublication);
     }
 
-    public long getId() {
-        return id.get();
+    public LocalDate getDateAcquistion() {
+        return dateAcquistion;
     }
 
-    public void setId(long id) {
-        this.id.set(id);
+    public void setDateAcquistion(LocalDate dateAcquistion) {
+        this.dateAcquistion = dateAcquistion;
     }
 
-    public ImageView getImage() { return image; }
+    public String getState() {
+        return state.get();
+    }
 
-    public void setImage(ImageView image){ this.image = image; }
+    public StringProperty stateProperty() {
+        return state;
+    }
 
-    public LocalDate getDateAcquistion() { return dateAcquistion; }
+    public void setState(String state) {
+        this.state.set(state);
+    }
 
-    public void setDateAcquistion(LocalDate dateAcquistion) { this.dateAcquistion = dateAcquistion; }
+    public double getPrice() {
+        return price.get();
+    }
 
-    public String getState() { return state.get(); }
+    public DoubleProperty priceProperty() {
+        return price;
+    }
 
-    public void setState(String state) { this.state.set(state); }
+    public void setPrice(double price) {
+        this.price.set(price);
+    }
 
-    public double getPrice() { return price.get(); }
+    public String getAuthorName() {
+        return authorName;
+    }
 
-    public void setPrice(double price) { this.price.set(price); }
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
 
-    public List<AuthorComic> getAuthorComic() { return authorComic; }
+    public Long getCollection_id() {
+        return collection_id;
+    }
 
-    public void setAuthorComic(List<AuthorComic> authorComic) { this.authorComic = authorComic; }
+    public void setCollection_id(Long collection_id){
+        this.collection_id = collection_id;
+    }
 }

@@ -52,10 +52,11 @@ public class ComicListServices {
                                 comic.getPage(),
                                 comic.getTapa(),
                                 comic.getAnhoPublication(),
-                                comic.getDateAcquistion(),
+                                comic.getDataAcquisition(),
                                 comic.getState(),
                                 comic.getPrice(),
-                                comic.getAuthorComic())
+                                comic.getAuthorName(),
+                                comic.getCollection_id())
                 );
             }
 
@@ -63,6 +64,7 @@ public class ComicListServices {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Error al mostrar los comics");
             alert.showAndWait();
+            e.printStackTrace();
         }
 
         return comicAdaptersList;
@@ -97,10 +99,11 @@ public class ComicListServices {
                                 comic.getPage(),
                                 comic.getTapa(),
                                 comic.getAnhoPublication(),
-                                comic.getDateAcquistion(),
+                                comic.getDataAcquisition(),
                                 comic.getState(),
                                 comic.getPrice(),
-                                comic.getAuthorComic())
+                                comic.getAuthorName(),
+                                comic.getCollection_id())
                 );
             }
 

@@ -57,16 +57,19 @@ public class ComicDetailsController {
     public void initialize() {}
 
     public void initData(ComicAdapter comicAdapter) {
-           txtNameDetailsComic.setText(comicAdapter.getName());
-           txtNumberDetailsComic.setText(String.valueOf(comicAdapter.getNumber()));
-           txtPageDetailsComic.setText(String.valueOf(comicAdapter.getPage()));
-           txtAnhoPublicationDetailsComic.setText(String.valueOf(comicAdapter.getAnhoPublication()));
-           txtDateDetailsComic.setText(String.valueOf(comicAdapter.getDateAcquistion()));
-           txtStateDetailsComic.setText(comicAdapter.getState());
-           txtPriceDetailsComic.setText(String.valueOf(comicAdapter.getPrice()));
-           txtSynopsisDetailsComics.setText(comicAdapter.getSynopsis());
-           imageViewComicDetails.setImage(comicAdapter.getImage().getImage());
-           txtTapeDetailsComic.setText(comicAdapter.getTapa());
+
+        //Collection collectionShow = CollectionListServices.getCollectionById(comicAdapter.)
+
+        txtNameDetailsComic.setText(comicAdapter.getName());
+        txtNumberDetailsComic.setText(String.valueOf(comicAdapter.getNumber()));
+        txtPageDetailsComic.setText(String.valueOf(comicAdapter.getPage()));
+        txtAnhoPublicationDetailsComic.setText(String.valueOf(comicAdapter.getAnhoPublication()));
+        txtDateDetailsComic.setText(String.valueOf(comicAdapter.getDateAcquistion()));
+        txtStateDetailsComic.setText(comicAdapter.getState());
+        txtPriceDetailsComic.setText(String.valueOf(comicAdapter.getPrice()));
+        txtSynopsisDetailsComics.setText(comicAdapter.getSynopsis());
+        imageViewComicDetails.setImage(comicAdapter.getImage().getImage());
+        txtTapeDetailsComic.setText(comicAdapter.getTapa());
     }
 
     public void initData2(){
@@ -156,7 +159,7 @@ public class ComicDetailsController {
             Long idAuthor = author.getId();
             Long idComic = collection.getId();
 
-            comic = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price, idComic);
+            comic = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price, idComic, timeDedicated, idAuthor);
             if(comic.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText(resourceBundle.getString("textExistComic"));
@@ -173,10 +176,11 @@ public class ComicDetailsController {
                     comic.getPage(),
                     comic.getTapa(),
                     comic.getAnhoPublication(),
-                    comic.getDateAcquistion(),
+                    comic.getDataAcquisition(),
                     comic.getState(),
                     comic.getPrice(),
-                    comic.getAuthorComic()
+                    comic.getAuthorName(),
+                    comic.getCollection_id()
             );
 
             if(newImage){
@@ -185,7 +189,7 @@ public class ComicDetailsController {
                 ComicServices.uploadImage(comicAdapter, ComicDetailsController.class.getResource("/images/icon_photo.png").getPath());
             }
 
-            AuthorComicServices.saveAuthorComic(Integer.parseInt(timeDedicated), idAuthor, idComic);
+            //AuthorComicServices.saveAuthorComic(Integer.parseInt(timeDedicated), idAuthor, idComic);
 
             ComicListServices.updateDataComic();
             Stage stage = (Stage) this.txtDateDetailsComic.getScene().getWindow();
