@@ -1,6 +1,7 @@
 package com.cifprodolfo.comic_store.services;
 
 import com.cifprodolfo.comic_store.model.Comic;
+import com.cifprodolfo.comic_store.model.adapter.NewComicAdapter;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,9 +23,9 @@ import java.nio.charset.StandardCharsets;
 
 public class ComicServices {
 
-    public static Comic saveComics(String name, String synopsis, String number, String page, String tape, String date, String anhoPublication, String state, String price, Long idCollection, String timeDedicated, Long idAuthor) throws IOException, InterruptedException {
+    public static NewComicAdapter saveComics(String name, String synopsis, String number, String page, String tape, String date, String anhoPublication, String state, String price, Long idCollection, String timeDedicated, Long idAuthor) throws IOException, InterruptedException {
 
-        Comic comicNew;
+        NewComicAdapter comicNew;
         ObjectMapper objectMapper = new ObjectMapper();
         String url = "http://localhost:8080/api-spring/comic/" + idAuthor;
 
@@ -49,15 +50,15 @@ public class ComicServices {
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
         if(response.statusCode() == 302){
-            return new Comic();
+            return new NewComicAdapter();
         }
-        comicNew = objectMapper.readValue(response.body(), new TypeReference<Comic>() {});
+        comicNew = objectMapper.readValue(response.body(), new TypeReference<NewComicAdapter>() {});
         return comicNew;
     }
 
-    public static void uploadImage(ComicAdapter comic, String pathImage) throws IOException, InterruptedException, URISyntaxException {
+    public static void uploadImage(Long id, String pathImage) throws IOException, InterruptedException, URISyntaxException {
 
-        String url = "http://localhost:8080/api-spring/comic/image/" + comic.getId();
+        String url = "http://localhost:8080/api-spring/comic/image/" + id;
         HttpEntity httpEntity = MultipartEntityBuilder.create().addBinaryBody("imageComic", new File(pathImage), ContentType.IMAGE_PNG, "unknown.png").build();
         Pipe pipe = Pipe.open();
 

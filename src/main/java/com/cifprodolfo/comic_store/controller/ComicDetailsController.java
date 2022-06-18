@@ -3,6 +3,7 @@ package com.cifprodolfo.comic_store.controller;
 import com.cifprodolfo.comic_store.model.Author;
 import com.cifprodolfo.comic_store.model.Collection;
 import com.cifprodolfo.comic_store.model.Comic;
+import com.cifprodolfo.comic_store.model.adapter.NewComicAdapter;
 import com.cifprodolfo.comic_store.services.*;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import javafx.collections.ObservableList;
@@ -127,7 +128,7 @@ public class ComicDetailsController {
 
         try {
 
-            Comic comic;
+            NewComicAdapter newComicAdapter;
             String name = txtNameDetailsComic.getText();
             String synopsis = txtSynopsisDetailsComics.getText();
             String number = txtNumberDetailsComic.getText();
@@ -158,6 +159,24 @@ public class ComicDetailsController {
                 return;
             }
 
+            if(Integer.parseInt(number) < 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+
+            if(Integer.parseInt(page) < 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+
+            if(Double.valueOf(price) < 0.0){
+                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+
             if(author == null || collection == null) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("textErrorSelectElementCombo"), ButtonType.OK);
                 alert.showAndWait();
@@ -167,35 +186,18 @@ public class ComicDetailsController {
             Long idAuthor = author.getId();
             Long idComic = collection.getId();
 
-            comic = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price, idComic, timeDedicated, idAuthor);
-            if(comic.getId() == null){
+            newComicAdapter = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price, idComic, timeDedicated, idAuthor);
+            if(newComicAdapter.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText(resourceBundle.getString("textExistComic"));
                 alert.showAndWait();
                 return;
             }
 
-            comicAdapter = new ComicAdapter(
-                    comic.getId(),
-                    comic.getName(),
-                    null,
-                    comic.getSynopsis(),
-                    comic.getNumber(),
-                    comic.getPage(),
-                    comic.getTapa(),
-                    comic.getAnhoPublication(),
-                    comic.getDataAcquisition(),
-                    comic.getState(),
-                    comic.getPrice(),
-                    comic.getAuthorName(),
-                    comic.getCollection_id(),
-                    comic.getTimeDedicated()
-            );
-
             if(newImage){
-                ComicServices.uploadImage(comicAdapter, pathImage);
+                ComicServices.uploadImage(newComicAdapter.getId(), pathImage);
             } else {
-                ComicServices.uploadImage(comicAdapter, ComicDetailsController.class.getResource("/images/icon_photo.png").getPath());
+                ComicServices.uploadImage(newComicAdapter.getId(), ComicDetailsController.class.getResource("/images/icon_photo.png").getPath());
             }
 
             //AuthorComicServices.saveAuthorComic(Integer.parseInt(timeDedicated), idAuthor, idComic);
