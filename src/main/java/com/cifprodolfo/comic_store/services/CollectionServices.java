@@ -1,6 +1,7 @@
 package com.cifprodolfo.comic_store.services;
 
 import com.cifprodolfo.comic_store.model.Collection;
+import com.cifprodolfo.comic_store.model.adapter.NewCollectionAdapater;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,9 +24,9 @@ import java.time.Duration;
 
 public class CollectionServices {
 
-    public static Collection saveCollections(String nameCollection, String editorialCollection) throws IOException, InterruptedException {
+    public static NewCollectionAdapater saveCollections(String nameCollection, String editorialCollection) throws IOException, InterruptedException {
 
-        Collection collection;
+        NewCollectionAdapater newCollectionAdapater;
         ObjectMapper objectMapper = new ObjectMapper();
         String url = "http://localhost:8080/api-spring/collection";
 
@@ -41,16 +42,16 @@ public class CollectionServices {
         HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
         if(response.statusCode() == 302) {
-            return new Collection();
+            return new NewCollectionAdapater();
         }
 
-        collection = objectMapper.readValue(response.body(), new TypeReference<Collection>() {});
-        return collection;
+        newCollectionAdapater = objectMapper.readValue(response.body(), new TypeReference<>() {});
+        return newCollectionAdapater;
     }
 
-    public static Collection putCollections(CollectionAdapter collectionAdapter) throws IOException, InterruptedException{
+    public static NewCollectionAdapater putCollections(CollectionAdapter collectionAdapter) throws IOException, InterruptedException{
 
-        Collection collection;
+        NewCollectionAdapater newCollectionAdapater;
         ObjectMapper objectMapper = new ObjectMapper();
         String url = "http://localhost:8080/api-spring/collection";
         String json = "{\n" +
@@ -65,11 +66,11 @@ public class CollectionServices {
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         if(response.statusCode() == 302 ){
-            return new Collection();
+            return new NewCollectionAdapater();
         }
 
-        collection = objectMapper.readValue(response.body(), new TypeReference<Collection>() {});
-        return collection;
+        newCollectionAdapater = objectMapper.readValue(response.body(), new TypeReference<>() {});
+        return newCollectionAdapater;
     }
 
     public static void uploadImage(CollectionAdapter collection, String pathImage) throws IOException, URISyntaxException, InterruptedException {

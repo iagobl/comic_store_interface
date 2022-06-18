@@ -1,6 +1,7 @@
 package com.cifprodolfo.comic_store.controller;
 
 import com.cifprodolfo.comic_store.model.Collection;
+import com.cifprodolfo.comic_store.model.adapter.NewCollectionAdapater;
 import com.cifprodolfo.comic_store.services.CollectionServices;
 import com.cifprodolfo.comic_store.services.CollectionListServices;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
@@ -73,7 +74,7 @@ public class CollectionDetailsController {
     public void saveCollection(){
 
         try {
-            Collection newCollection;
+            NewCollectionAdapater newCollection;
             String nameUpdate = txtNameDetailsCollection.getText();
             String editorialUpdate = txtEditorialDetailsCollections.getText();
 
@@ -129,8 +130,8 @@ public class CollectionDetailsController {
             collection.setName(nameUpdate);
             collection.setEditorial(editorialUpdate);
 
-            Collection newCollection = CollectionServices.putCollections(collection);
-            if(newCollection.getId() == null){
+            NewCollectionAdapater newCollectionAdapater = CollectionServices.putCollections(collection);
+            if(newCollectionAdapater.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText(resourceBundle.getString("textExistNameCollection"));
                 alert.showAndWait();
@@ -145,7 +146,6 @@ public class CollectionDetailsController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorUpdateCollection"));
             alert.showAndWait();
-            e.printStackTrace();
         }
     }
 
