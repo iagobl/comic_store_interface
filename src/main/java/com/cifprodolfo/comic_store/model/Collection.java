@@ -8,16 +8,14 @@ public class Collection {
     private String name;
     private byte[] image;
     private String editorial;
-    private List<Comic> comicList;
 
     public Collection() {}
 
-    public Collection(Long id, String name, byte[] image, String editorial, List<Comic> comicList) {
+    public Collection(Long id, String name, byte[] image, String editorial) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.editorial = editorial;
-        this.comicList = comicList;
     }
 
     public Long getId() { return id; }
@@ -35,10 +33,6 @@ public class Collection {
     public String getEditorial() { return editorial; }
 
     public void setEditorial(String editorial) { this.editorial = editorial; }
-
-    public List<Comic> getComicList() { return comicList; }
-
-    public void setComicList(List<Comic> comicList) { this.comicList = comicList; }
 
     @Override
     public String toString() {

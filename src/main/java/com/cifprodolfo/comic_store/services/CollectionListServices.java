@@ -47,8 +47,7 @@ public class CollectionListServices {
                                 collection.getId(),
                                 collection.getName(),
                                 photo,
-                                collection.getEditorial(),
-                                collection.getComicList()));
+                                collection.getEditorial()));
             }
 
         } catch (IOException | InterruptedException e) {
@@ -84,14 +83,14 @@ public class CollectionListServices {
                                 collection.getId(),
                                 collection.getName(),
                                 photo,
-                                collection.getEditorial(),
-                                collection.getComicList()));
+                                collection.getEditorial()));
             }
 
         } catch (IOException | InterruptedException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Error al mostrar los comics");
             alert.showAndWait();
+            e.printStackTrace();
         }
 
         return searchData;

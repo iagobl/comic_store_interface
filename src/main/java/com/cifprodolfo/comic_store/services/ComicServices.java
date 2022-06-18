@@ -37,7 +37,7 @@ public class ComicServices {
                 .append("\"page\":\"" + page + "\",")
                 .append("\"tapa\":\"" + tape + "\",")
                 .append("\"anhoPublication\":\"" + anhoPublication + "\",")
-                .append("\"dateAcquistion\":\"" + date + "\",")
+                .append("\"dataAcquisition\":\"" + date + "\",")
                 .append("\"state\":\"" + state + "\",")
                 .append("\"price\":\"" + price + "\",")
                 .append("\"authorComic\":" + "{\"timeDedicated\":" + timeDedicated + "}" + ",")

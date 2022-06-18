@@ -91,7 +91,7 @@ public class CollectionDetailsController {
                 return;
             }
 
-            collection = new CollectionAdapter(newCollection.getId(), newCollection.getName(), null, newCollection.getEditorial(), newCollection.getComicList());
+            collection = new CollectionAdapter(newCollection.getId(), newCollection.getName(), null, newCollection.getEditorial());
 
             if(newImage){
                 CollectionServices.uploadImage(collection, pathImage);

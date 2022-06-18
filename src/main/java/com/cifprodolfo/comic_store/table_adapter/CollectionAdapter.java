@@ -12,16 +12,14 @@ public class CollectionAdapter {
     private final StringProperty name;
     private ImageView image;
     private final StringProperty editorial;
-    private List<Comic> comicList;
 
-    public CollectionAdapter() { this(null, null, null, null,null); }
+    public CollectionAdapter() { this(null, null, null, null); }
 
-    public CollectionAdapter(Long id, String name, ImageView image, String editorial, List<Comic> comicList){
+    public CollectionAdapter(Long id, String name, ImageView image, String editorial){
         this.id = new SimpleLongProperty(id);
         this.name = new SimpleStringProperty(name);
         this.image = image;
         this.editorial = new SimpleStringProperty(editorial);
-        this.comicList = comicList;
     }
 
     public long getId() { return id.get(); }
@@ -40,7 +38,4 @@ public class CollectionAdapter {
 
     public void setEditorial(String editorial) { this.editorial.set(editorial); }
 
-    public List<Comic> getComicList() { return comicList; }
-
-    public void setComicList(List<Comic> comicList) { this.comicList = comicList; }
 }
