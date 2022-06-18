@@ -16,11 +16,11 @@ public class AuthorAdapter {
     private final StringProperty name;
     private ImageView image;
     private final StringProperty surname;
-    private AuthorComic authorComic;
+    private List<AuthorComic> authorComic;
 
     public AuthorAdapter() { this(null, null, null, null, null); }
 
-    public AuthorAdapter(Long id, String name, ImageView image, String surname, AuthorComic authorComic){
+    public AuthorAdapter(Long id, String name, ImageView image, String surname, List<AuthorComic> authorComic){
         this.id = new SimpleLongProperty(id);
         this.name = new SimpleStringProperty(name);
         this.image = image;
@@ -44,7 +44,7 @@ public class AuthorAdapter {
 
     public void setSurname(String surname) { this.surname.set(surname); }
 
-    public AuthorComic getAuthorComicList() { return authorComic; }
+    public List<AuthorComic> getAuthorComicList() { return authorComic; }
 
-    public void setAuthorComicList(AuthorComic authorComic) { this.authorComic = authorComic; }
+    public void setAuthorComicList(List<AuthorComic> authorComic) { this.authorComic = authorComic; }
 }

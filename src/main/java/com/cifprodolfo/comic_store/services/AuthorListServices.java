@@ -37,6 +37,7 @@ public class AuthorListServices {
             HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/author")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
+            System.out.println(response.body());
             List<Author> data = objectMapper.readValue(response.body(), new TypeReference<>() {});
             for(Author author : data){
                 final byte[] ImageBytes = author.getImage();
