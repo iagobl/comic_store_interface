@@ -17,6 +17,7 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ComicDetailsController {
@@ -53,7 +54,7 @@ public class ComicDetailsController {
     private ComboBox cmbComboColecciones;
     private boolean newImage = false;
     private String pathImage;
-    private ComicAdapter comicAdapter;
+    private ComicAdapter comic;
 
     ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
 
@@ -78,6 +79,8 @@ public class ComicDetailsController {
         txtAuthorName.setText(comicAdapter.getAuthorName());
         txtJobComic.setText(String.valueOf(comicAdapter.getTimeDedicated()));
         txtCollectionName.setText(collection.getName());
+
+        comic = comicAdapter;
 
     }
 
@@ -211,6 +214,72 @@ public class ComicDetailsController {
             alert.setContentText(resourceBundle.getString("textErrorSaveComic"));
             alert.showAndWait();
             e.printStackTrace();
+        }
+    }
+
+    public void updateComic(){
+
+        try {
+
+            String name = txtNameDetailsComic.getText();
+            String synopsis = txtSynopsisDetailsComics.getText();
+            String number = txtNumberDetailsComic.getText();
+            String page = txtPageDetailsComic.getText();
+            String tape = txtTapeDetailsComic.getText();
+            String date = txtDateDetailsComic.getText();
+            String anho = txtAnhoPublicationDetailsComic.getText();
+            String state = txtStateDetailsComic.getText();
+            String price = txtPriceDetailsComic.getText();
+            String timeDedicated = txtJobComic.getText();
+
+            if((name.isBlank() || name.isEmpty()) ||
+                    (synopsis.isBlank() || synopsis.isEmpty()) ||
+                    (number.isBlank() || number.isEmpty()) ||
+                    (page.isBlank() || page.isEmpty()) ||
+                    (tape.isBlank() || tape.isEmpty()) ||
+                    (date.isBlank() || date.isEmpty()) ||
+                    (anho.isBlank() || anho.isEmpty()) ||
+                    (state.isBlank() || state.isEmpty()) ||
+                    (price.isBlank() || price.isEmpty()) ||
+                    (timeDedicated.isBlank() || timeDedicated.isEmpty())) {
+
+                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("textErrorCubrirCampos"), ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+
+            if(newImage) {
+                ComicServices.uploadImage(comic.getId(), pathImage);
+            }
+
+            comic.setName(name);
+            comic.setSynopsis(synopsis);
+            comic.setNumber(Integer.parseInt(number));
+            comic.setPage(Integer.parseInt(page));
+            comic.setTapa(tape);
+            comic.setDateAcquistion(LocalDate.parse(date));
+            comic.setAnhoPublication(Integer.parseInt(anho));
+            comic.setState(state);
+            comic.setPrice(Double.parseDouble(price));
+            comic.setTimeDedicated(Integer.parseInt(timeDedicated));
+
+            NewComicAdapter newComicAdapter = ComicServices.putComics(comic);
+            if(newComicAdapter == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText(resourceBundle.getString("textNameDuplicateComic"));
+                alert.showAndWait();
+                return;
+            }
+
+            ComicListServices.updateDataComic();
+            Stage stage = (Stage) this.txtDateDetailsComic.getScene().getWindow();
+            stage.close();
+
+
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(resourceBundle.getString("textErrorUpdateComic"));
+            alert.showAndWait();
         }
     }
 

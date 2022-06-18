@@ -1,7 +1,9 @@
 package com.cifprodolfo.comic_store.services;
 
 import com.cifprodolfo.comic_store.model.Comic;
+import com.cifprodolfo.comic_store.model.adapter.NewCollectionAdapater;
 import com.cifprodolfo.comic_store.model.adapter.NewComicAdapter;
+import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,6 +22,7 @@ import java.net.http.HttpResponse;
 import java.nio.channels.Channels;
 import java.nio.channels.Pipe;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 
 public class ComicServices {
 
@@ -54,6 +57,39 @@ public class ComicServices {
         }
         comicNew = objectMapper.readValue(response.body(), new TypeReference<NewComicAdapter>() {});
         return comicNew;
+    }
+
+    public static NewComicAdapter putComics(ComicAdapter comicAdapter) throws IOException, InterruptedException {
+
+        NewComicAdapter newComicAdapter;
+        ObjectMapper objectMapper = new ObjectMapper();
+        String url = "http://localhost:8080/api-spring/comic";
+        String json = "{\n" +
+                "    \"id\": " + comicAdapter.getId() + ",\n" +
+                "    \"name\": \"" + comicAdapter.getName() + "\",\n" +
+                "    \"synopsis\": \"" + comicAdapter.getSynopsis() + "\",\n" +
+                "    \"number\": " + comicAdapter.getNumber() + ",\n" +
+                "    \"page\": " + comicAdapter.getPage() + ",\n" +
+                "    \"tapa\": \"" + comicAdapter.getTapa() + "\",\n" +
+                "    \"dateAcquistion\": \"" + comicAdapter.getDateAcquistion() + "\",\n" +
+                "    \"anhoPublication\": " + comicAdapter.getAnhoPublication() + ",\n" +
+                "    \"state\": \"" + comicAdapter.getState() + "\",\n" +
+                "    \"price\": " + comicAdapter.getPrice() + ",\n" +
+                "    \"authorComic\": {\n" +
+                "        \"timeDedicated\" : " + comicAdapter.getTimeDedicated() + "\n" +
+                "    }\n" +
+                "}";
+
+        HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(5)).build();
+        HttpRequest request = HttpRequest.newBuilder().PUT(HttpRequest.BodyPublishers.ofString(json)).header("Content-Type", "application/json").uri(URI.create(url)).build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if(response.statusCode() == 302) {
+            return new NewComicAdapter();
+        }
+
+        newComicAdapter = objectMapper.readValue(response.body(), new TypeReference<NewComicAdapter>() {});
+        return newComicAdapter;
     }
 
     public static void uploadImage(Long id, String pathImage) throws IOException, InterruptedException, URISyntaxException {
