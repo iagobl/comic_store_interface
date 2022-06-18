@@ -1,6 +1,7 @@
 package com.cifprodolfo.comic_store.services;
 
 import com.cifprodolfo.comic_store.model.Collection;
+import com.cifprodolfo.comic_store.model.report_model.CollectionReport;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,12 +19,14 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CollectionListServices {
 
     static ObservableList <CollectionAdapter> collectionAdaptersList = FXCollections.observableArrayList();
     static ObservableList <Collection> collectionList = FXCollections.observableArrayList();
+    static List<Collection> collectionListReport = FXCollections.observableArrayList();
     public static ObservableList<CollectionAdapter> getDataCollections(){
 
         collectionAdaptersList.clear();
@@ -57,6 +60,38 @@ public class CollectionListServices {
         }
 
         return collectionAdaptersList;
+    }
+
+    public static List<CollectionReport> collectionList(){
+
+        collectionListReport.clear();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<CollectionReport> listCollection = new ArrayList<>();
+
+        try {
+            HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/collection")).build();
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            collectionListReport =  objectMapper.readValue(response.body(), new TypeReference<>() {});
+            for(Collection collection: collectionListReport) {
+                CollectionReport collectionReport = new CollectionReport();
+                collectionReport.setId(collection.getId());
+                collectionReport.setName(collection.getName());
+                collectionReport.setEditorial(collection.getEditorial());
+                collectionReport.setImage(collection.getImage());
+
+                listCollection.add(collectionReport);
+            }
+
+
+        } catch (IOException | InterruptedException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error al mostrar los comics");
+            alert.showAndWait();
+        }
+
+        return listCollection;
     }
 
     public static FilteredList<CollectionAdapter> updateDataCollections(){

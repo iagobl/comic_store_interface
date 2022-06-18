@@ -2,26 +2,24 @@ package com.cifprodolfo.comic_store.model.report_model;
 
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 public class CollectionReport {
 
     private Long id;
     private String name;
-    private byte[] image;
+    private InputStream image;
     private String editorial;
-    private List<ComicReport> comicList;
-    private JRBeanCollectionDataSource comicdataSource;
 
     public CollectionReport() {}
 
-    public CollectionReport(Long id, String name, byte[] image, String editorial, List<ComicReport> comicList, JRBeanCollectionDataSource comicdataSource) {
+    public CollectionReport(Long id, String name, InputStream image, String editorial) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.editorial = editorial;
-        this.comicList = comicList;
-        this.comicdataSource = comicdataSource;
     }
 
     public Long getId() {
@@ -40,12 +38,12 @@ public class CollectionReport {
         this.name = name;
     }
 
-    public byte[] getImage() {
+    public InputStream getImage() {
         return image;
     }
 
     public void setImage(byte[] image) {
-        this.image = image;
+        this.image = new ByteArrayInputStream(image);
     }
 
     public String getEditorial() {
@@ -54,21 +52,5 @@ public class CollectionReport {
 
     public void setEditorial(String editorial) {
         this.editorial = editorial;
-    }
-
-    public List<ComicReport> getComicList() {
-        return comicList;
-    }
-
-    public void setComicList(List<ComicReport> comicList) {
-        this.comicList = comicList;
-    }
-
-    public JRBeanCollectionDataSource getComicdataSource() {
-        return new JRBeanCollectionDataSource(comicList, false);
-    }
-
-    public void setComicdataSource(JRBeanCollectionDataSource comicdataSource) {
-        this.comicdataSource = comicdataSource;
     }
 }

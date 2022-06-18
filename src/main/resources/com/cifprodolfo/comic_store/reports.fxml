@@ -9,14 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cifprodolfo.comic_store.controller.ReportController">
    <center>
       <VBox prefHeight="474.0" prefWidth="750.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="lblReportComic" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportComic">
+                  <Label fx:id="lblReportCollectionName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportCollectionName">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
@@ -24,7 +23,7 @@
                         <Insets left="100.0" top="40.0" />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="btnReportComics" mnemonicParsing="false" text="%btnReportComics">
+                  <Button fx:id="btnReportCollectionName" mnemonicParsing="false" text="%btnReportComics">
                      <HBox.margin>
                         <Insets left="60.0" top="40.0" />
                      </HBox.margin>
@@ -39,7 +38,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="lblReportAuthor" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportAuthor">
+                  <Label fx:id="lblReportComic" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportComic">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
@@ -47,7 +46,7 @@
                         <Insets left="100.0" top="40.0" />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="btnReportAuthor" mnemonicParsing="false" text="%btnReportAuthor">
+                  <Button fx:id="btnReportComics" mnemonicParsing="false" text="%btnReportAuthor">
                      <HBox.margin>
                         <Insets left="60.0" top="40.0" />
                      </HBox.margin>
@@ -59,7 +58,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="lblReportCollectionName" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportCollectionName">
+                  <Label fx:id="lblReportAuthor" alignment="CENTER_RIGHT" prefHeight="22.0" prefWidth="175.0" text="%lblReportAuthor">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
@@ -72,7 +71,7 @@
                         <Insets left="60.0" top="40.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="btnReportCollectionName" mnemonicParsing="false" text="%btnReportCollectionName">
+                  <Button fx:id="btnReportAuthor" mnemonicParsing="false" text="%btnReportCollectionName">
                      <font>
                         <Font name="Calibri Light" size="16.0" />
                      </font>
