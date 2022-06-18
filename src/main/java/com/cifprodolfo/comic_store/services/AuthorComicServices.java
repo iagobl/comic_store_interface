@@ -32,7 +32,7 @@ public class AuthorComicServices {
         httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
     }
 
-    public static AuthorComic getAuthorComicById(Long idComic) throws IOException, InterruptedException {
+    /*public static AuthorComic getAuthorComicById(Long idComic) throws IOException, InterruptedException {
 
         AuthorComic authorComic = new AuthorComic();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -45,5 +45,5 @@ public class AuthorComicServices {
         authorComic = objectMapper.readValue(response.body(), new TypeReference<AuthorComic>() {});
         return authorComic;
 
-    }
+    }*/
 }

@@ -27,9 +27,10 @@ public class Comic {
     private double price;
     private String authorName;
     private Long collection_id;
+    private Integer timeDedicated;
 
     public Comic(){}
-    public Comic(Long id, String name, byte[] image, String synopsis, int number, int page, String tapa, int anhoPublication, LocalDate dataAcquisition, String state, double price, String authorName, Long collection_id) {
+    public Comic(Long id, String name, byte[] image, String synopsis, int number, int page, String tapa, int anhoPublication, LocalDate dataAcquisition, String state, double price, String authorName, Long collection_id, Integer timeDedicated) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -43,6 +44,7 @@ public class Comic {
         this.price = price;
         this.authorName = authorName;
         this.collection_id = collection_id;
+        this.timeDedicated = timeDedicated;
     }
 
     public Long getId() {
@@ -148,4 +150,8 @@ public class Comic {
     public void setCollection_id(Long collection_id){
         this.collection_id = collection_id;
     }
+
+    public Integer getTimeDedicated() { return timeDedicated; }
+
+    public void setTimeDedicated(Integer timeDedicated) { this.timeDedicated = timeDedicated; }
 }

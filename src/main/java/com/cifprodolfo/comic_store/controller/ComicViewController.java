@@ -1,9 +1,12 @@
 package com.cifprodolfo.comic_store.controller;
 
 import com.cifprodolfo.comic_store.HomeController;
+import com.cifprodolfo.comic_store.model.Collection;
 import com.cifprodolfo.comic_store.model.Comic;
+import com.cifprodolfo.comic_store.services.CollectionListServices;
 import com.cifprodolfo.comic_store.services.ComicListServices;
 import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
+import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
 import com.cifprodolfo.comic_store.table_adapter.ComicAdapter;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
@@ -96,8 +99,10 @@ public class ComicViewController {
             stage.setTitle(resourceBundle.getString("lblDetailsComic"));
             stage.initOwner(tableComics.getScene().getWindow());
 
+            Collection collection = CollectionListServices.getCollectionById(comicAdapter.getCollection_id());
+
             ComicDetailsController detailsController = fxmlLoader.<ComicDetailsController>getController();
-            detailsController.initData(comicAdapter);
+            detailsController.initData(comicAdapter, collection);
 
             stage.showAndWait();
         } catch(Exception e) {

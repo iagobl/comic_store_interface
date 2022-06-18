@@ -56,7 +56,8 @@ public class ComicListServices {
                                 comic.getState(),
                                 comic.getPrice(),
                                 comic.getAuthorName(),
-                                comic.getCollection_id())
+                                comic.getCollection_id(),
+                                comic.getTimeDedicated())
                 );
             }
 
@@ -103,7 +104,8 @@ public class ComicListServices {
                                 comic.getState(),
                                 comic.getPrice(),
                                 comic.getAuthorName(),
-                                comic.getCollection_id())
+                                comic.getCollection_id(),
+                                comic.getTimeDedicated())
                 );
             }
 

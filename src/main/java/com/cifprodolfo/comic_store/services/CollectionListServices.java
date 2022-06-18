@@ -113,7 +113,7 @@ public class CollectionListServices {
         return collectionList;
     }
 
-    public static Collection getCollectionById(int id) throws IOException, InterruptedException {
+    public static Collection getCollectionById(Long id) throws IOException, InterruptedException {
 
         Collection collection;
         ObjectMapper objectMapper = new ObjectMapper();
@@ -123,7 +123,7 @@ public class CollectionListServices {
         HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
-        collection = objectMapper.readValue(response.body(), new TypeReference<Collection>() {});
+        collection = objectMapper.readValue(response.body(), new TypeReference<>() {});
         return collection;
     }
 }

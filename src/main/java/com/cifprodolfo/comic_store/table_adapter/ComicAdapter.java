@@ -22,8 +22,9 @@ public class ComicAdapter {
     private final DoubleProperty price;
     private  String authorName;
     private Long collection_id;
+    private IntegerProperty timeDedicated;
 
-    public ComicAdapter(Long id, String name, ImageView image, String synopsis, Integer number, Integer page, String tapa, Integer anhoPublication, LocalDate dateAcquistion, String state, Double price, String authorName, Long collection_id) {
+    public ComicAdapter(Long id, String name, ImageView image, String synopsis, Integer number, Integer page, String tapa, Integer anhoPublication, LocalDate dateAcquistion, String state, Double price, String authorName, Long collection_id, Integer timeDedicated) {
         this.id = new SimpleLongProperty(id);
         this.name = new SimpleStringProperty(name);
         this.image = image;
@@ -37,6 +38,7 @@ public class ComicAdapter {
         this.price = new SimpleDoubleProperty(price);
         this.authorName = authorName;
         this.collection_id = collection_id;
+        this.timeDedicated = new SimpleIntegerProperty(timeDedicated);
     }
 
     public long getId() {
@@ -178,4 +180,8 @@ public class ComicAdapter {
     public void setCollection_id(Long collection_id){
         this.collection_id = collection_id;
     }
+
+    public int getTimeDedicated() { return timeDedicated.get(); }
+
+    public void setTimeDedicated(int timeDedicated) { this.timeDedicated.set(timeDedicated); }
 }

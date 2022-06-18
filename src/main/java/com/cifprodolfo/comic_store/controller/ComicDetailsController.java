@@ -39,6 +39,10 @@ public class ComicDetailsController {
     @FXML
     private TextField txtJobComic;
     @FXML
+    private TextField txtCollectionName;
+    @FXML
+    private TextField txtAuthorName;
+    @FXML
     private TextArea txtSynopsisDetailsComics;
     @FXML
     private ImageView imageViewComicDetails;
@@ -56,7 +60,7 @@ public class ComicDetailsController {
 
     public void initialize() {}
 
-    public void initData(ComicAdapter comicAdapter) {
+    public void initData(ComicAdapter comicAdapter, Collection collection) {
 
         //Collection collectionShow = CollectionListServices.getCollectionById(comicAdapter.)
 
@@ -70,6 +74,10 @@ public class ComicDetailsController {
         txtSynopsisDetailsComics.setText(comicAdapter.getSynopsis());
         imageViewComicDetails.setImage(comicAdapter.getImage().getImage());
         txtTapeDetailsComic.setText(comicAdapter.getTapa());
+        txtAuthorName.setText(comicAdapter.getAuthorName());
+        txtJobComic.setText(String.valueOf(comicAdapter.getTimeDedicated()));
+        txtCollectionName.setText(collection.getName());
+
     }
 
     public void initData2(){
@@ -180,7 +188,8 @@ public class ComicDetailsController {
                     comic.getState(),
                     comic.getPrice(),
                     comic.getAuthorName(),
-                    comic.getCollection_id()
+                    comic.getCollection_id(),
+                    comic.getTimeDedicated()
             );
 
             if(newImage){
