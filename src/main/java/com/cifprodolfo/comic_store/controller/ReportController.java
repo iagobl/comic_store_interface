@@ -35,6 +35,7 @@ public class ReportController{
         try {
 
             Map<String, Object> params = new HashMap<String, Object>();
+            params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
             JasperReport jasperReport = JasperCompileManager.compileReport(in);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JRBeanCollectionDataSource(CollectionListServices.collectionList()));
 
@@ -42,7 +43,7 @@ public class ReportController{
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 }

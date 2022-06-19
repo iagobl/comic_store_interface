@@ -2,19 +2,24 @@
 <!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prueba" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38f911cf-aebd-4d18-a1ee-62900895fc06">
 	<subDataset name="dataset1" uuid="73c5ad74-3780-4503-a930-dd9641f444b3"/>
+	<parameter name="logo" class="java.io.InputStream"/>
 	<field name="id" class="java.lang.Long"/>
 	<field name="name" class="java.lang.String"/>
 	<field name="editorial" class="java.lang.String"/>
 	<field name="image" class="java.io.InputStream"/>
 	<title>
-		<band height="81" splitType="Stretch">
+		<band height="140" splitType="Stretch">
 			<staticText>
-				<reportElement x="140" y="60" width="258" height="20" uuid="63a8384f-1eaa-4cc9-9ed9-1e7ea7af2fb2"/>
+				<reportElement x="140" y="100" width="258" height="30" uuid="63a8384f-1eaa-4cc9-9ed9-1e7ea7af2fb2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true" isItalic="true"/>
+					<font isBold="true" isItalic="true" size="16"/>
 				</textElement>
 				<text><![CDATA[Colecciones]]></text>
 			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="100" height="100" backcolor="#333333" uuid="80bcba32-4e50-4a3a-949c-39e7c22ddff4"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>
@@ -22,95 +27,99 @@
 			<staticText>
 				<reportElement x="63" y="40" width="100" height="20" uuid="7cbc4e86-0600-436d-b847-bd5ba1c03197"/>
 				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true" isItalic="true" isUnderline="false"/>
+					<font isBold="true" isItalic="true" isUnderline="false" size="13"/>
 				</textElement>
 				<text><![CDATA[Id]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="163" y="40" width="117" height="20" uuid="f5d6c92d-a58c-4272-a236-897558b60194"/>
 				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true" isItalic="true" isUnderline="false"/>
+					<font isBold="true" isItalic="true" isUnderline="false"  size="13"/>
 				</textElement>
 				<text><![CDATA[Nombre colección]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="40" width="100" height="20" uuid="a2bcf4a7-0516-4aba-81cc-23af986ba498"/>
 				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isUnderline="false" size="13"/>
+				</textElement>
 				<text><![CDATA[Editorial colección]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="380" y="40" width="100" height="20" uuid="a2bcf4a7-0516-4aba-81cc-23af986ba498"/>
 				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" />
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isUnderline="false" size="13"/>
+				</textElement>
+				<text><![CDATA[Imagen]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="63" y="0" width="100" height="100" uuid="83bcb574-bcc3-4246-b834-98b4e6ad88d3"/>
+				<box topPadding="10">
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="163" y="0" width="117" height="100" uuid="994a3878-7cca-4db5-b925-7d8294d0600a"/>
+				<box topPadding="10">
 					<topPen lineWidth="1.0" lineStyle="Solid"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Imagen]]></text>
-			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="50" splitType="Stretch">
-			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="63" y="0" width="100" height="40" uuid="83bcb574-bcc3-4246-b834-98b4e6ad88d3"/>
-				<box leftPadding="10">
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="163" y="0" width="117" height="40" uuid="994a3878-7cca-4db5-b925-7d8294d0600a"/>
-				<box leftPadding="10">
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="280" y="0" width="100" height="40" uuid="015d7dd2-f772-4e28-a583-a16196719724"/>
-				<box leftPadding="10">
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0"/>
+				<reportElement stretchType="RelativeToTallestObject" x="280" y="0" width="100" height="100" uuid="015d7dd2-f772-4e28-a583-a16196719724"/>
+				<box topPadding="10">
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{editorial}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement stretchType="RelativeToTallestObject" x="380" y="0" width="100" height="50" backcolor="#333333" uuid="80bcba32-4e50-4a3a-949c-39e7c22ddff4"/>
-				<box>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0"/>
+				<reportElement stretchType="RelativeToTallestObject" x="380" y="0" width="100" height="100" backcolor="#333333" uuid="80bcba32-4e50-4a3a-949c-39e7c22ddff4"/>
+				<box topPadding="10" leftPadding="10" bottomPadding="10">
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
 				</box>
 				<imageExpression><![CDATA[$F{image}]]></imageExpression>
 			</image>
