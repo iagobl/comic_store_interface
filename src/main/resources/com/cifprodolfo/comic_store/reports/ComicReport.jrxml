@@ -300,13 +300,15 @@
 			</staticText>
 			<textField>
 				<reportElement stretchType="RelativeToTallestObject" x="90" y="340" width="290" height="70" uuid="5a7aa787-a6f4-41ea-b1e8-649906defd9a"/>
-				<box topPadding="10">
+				<box topPadding="5" leftPadding="5">
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"  isUnderline="false"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{synopsis}]]></textFieldExpression>
 			</textField>
 		</band>
