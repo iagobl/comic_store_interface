@@ -63,8 +63,14 @@ public class HomeController {
 
     public HomeController(){
         try {
+            URL helpURL;
 
-            URL helpURL = this.getClass().getResource("/helpES/help.hs");
+            if(Locale.getDefault().getLanguage().equals("es")){
+                helpURL = this.getClass().getResource("/helpES/help.hs");
+            } else {
+                helpURL = this.getClass().getResource("/helpGL/help.hs");
+            }
+
             HelpSet helpSet = new HelpSet(null, helpURL);
             HelpBroker browser = helpSet.createHelpBroker();
             browser.enableHelpOnButton(help, "info", helpSet);

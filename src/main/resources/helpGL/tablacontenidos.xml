@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toc version="1.0"> 
+	<!--  categoryclosedimage="FolderClosed" categoryopenimage="FolderOpened" topicimage="ItemIco"-->
+	<tocitem text="Información" target="info"/>
+	<tocitem text="Pantalla Principal" target="main">
+		<tocitem text="Comic" target="comic">
+			<tocitem text="Añadir Comic" target="addComic"/>
+			<tocitem text="Modificar Comic" target="putComic"/>
+		</tocitem>
+		<tocitem text="Colección" target="collection">
+			<tocitem text="Añadir Colección" target="addCollection"/>
+			<tocitem text="Modificar Colección" target="putCollection"/>
+		</tocitem>
+		<tocitem text="Autores" target="author">
+			<tocitem text="Añadir Autor" target="addAuthor"/>
+			<tocitem text="Modificar Autor" target="putAuthor"/>
+		</tocitem>
+		<tocitem text="Informes" target="report"/>
+		<tocitem text="Configuración" target="configuration"/>
+	</tocitem>
+</toc>
+
