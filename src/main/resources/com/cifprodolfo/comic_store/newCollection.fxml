@@ -17,7 +17,7 @@
    <top>
       <FlowPane alignment="CENTER" prefHeight="70.0" prefWidth="908.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="lblDetailsCollections" text="%lblDetailsCollections">
+            <Label fx:id="lblNewCollection" text="%lblNewCollection">
                <font>
                   <Font name="Calibri Light" size="34.0" />
                </font>

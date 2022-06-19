@@ -67,7 +67,7 @@ public class HomeController {
             URL helpURL = this.getClass().getResource("/helpES/help.hs");
             HelpSet helpSet = new HelpSet(null, helpURL);
             HelpBroker browser = helpSet.createHelpBroker();
-            browser.enableHelpOnButton(help, "manual", helpSet);
+            browser.enableHelpOnButton(help, "info", helpSet);
 
         } catch(Exception e){
             e.printStackTrace();
