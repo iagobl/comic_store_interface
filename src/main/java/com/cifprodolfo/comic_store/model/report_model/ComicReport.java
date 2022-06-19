@@ -6,31 +6,29 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class ComicReport {
 
     private Long id;
     private String name;
-    private byte[] image;
+    private InputStream image;
     private String synopsis;
     private int number;
     private int page;
     private String tapa;
     private int anhoPublication;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate dataAcquisition;
+    private String dataAcquisition;
     private String state;
     private double price;
     private String authorName;
-    private Long collection_id;
-    private Integer timeDedicated;
 
     public ComicReport() {}
 
-    public ComicReport(Long id, String name, byte[] image, String synopsis, int number, int page, String tapa, int anhoPublication, LocalDate dataAcquisition, String state, double price, String authorName, Long collection_id, Integer timeDedicated) {
+    public ComicReport(Long id, String name, InputStream image, String synopsis, int number, int page, String tapa, int anhoPublication, String dataAcquisition, String state, double price, String authorName) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -43,8 +41,6 @@ public class ComicReport {
         this.state = state;
         this.price = price;
         this.authorName = authorName;
-        this.collection_id = collection_id;
-        this.timeDedicated = timeDedicated;
     }
 
     public Long getId() {
@@ -63,12 +59,12 @@ public class ComicReport {
         this.name = name;
     }
 
-    public byte[] getImage() {
+    public InputStream getImage() {
         return image;
     }
 
     public void setImage(byte[] image) {
-        this.image = image;
+        this.image = new ByteArrayInputStream(image);
     }
 
     public String getSynopsis() {
@@ -111,12 +107,13 @@ public class ComicReport {
         this.anhoPublication = anhoPublication;
     }
 
-    public LocalDate getDataAcquisition() {
+    public String getDataAcquisition() {
         return dataAcquisition;
     }
 
     public void setDataAcquisition(LocalDate dataAcquisition) {
-        this.dataAcquisition = dataAcquisition;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        this.dataAcquisition = dataAcquisition.format(formatter);
     }
 
     public String getState() {
@@ -141,21 +138,5 @@ public class ComicReport {
 
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
-    }
-
-    public Long getCollection_id() {
-        return collection_id;
-    }
-
-    public void setCollection_id(Long collection_id) {
-        this.collection_id = collection_id;
-    }
-
-    public Integer getTimeDedicated() {
-        return timeDedicated;
-    }
-
-    public void setTimeDedicated(Integer timeDedicated) {
-        this.timeDedicated = timeDedicated;
     }
 }
