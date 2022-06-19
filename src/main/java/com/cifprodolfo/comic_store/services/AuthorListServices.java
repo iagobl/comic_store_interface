@@ -1,6 +1,7 @@
 package com.cifprodolfo.comic_store.services;
 
 import com.cifprodolfo.comic_store.model.Author;
+import com.cifprodolfo.comic_store.model.report_model.AutorReport;
 import com.cifprodolfo.comic_store.table_adapter.AuthorAdapter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,12 +19,14 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AuthorListServices {
 
     static ObservableList<AuthorAdapter> authorAdaptersList = FXCollections.observableArrayList();
     static ObservableList<Author> authorList = FXCollections.observableArrayList();
+    static List<Author> authorListReport = FXCollections.observableArrayList();
 
     public static ObservableList<AuthorAdapter> getDataAuthors() {
 
@@ -60,6 +63,34 @@ public class AuthorListServices {
         }
 
         return authorAdaptersList;
+    }
+
+    public static List<AutorReport> authorList(String name){
+
+        authorListReport.clear();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<AutorReport> listAuthor = new ArrayList<>();
+
+        try {
+            HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/author/findByName/"+name)).build();
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            Author author = objectMapper.readValue(response.body(), new TypeReference<>() {});
+
+            AutorReport autorReport = new AutorReport();
+            autorReport.setId(author.getId());
+            autorReport.setName(author.getName());
+            autorReport.setImage(author.getImage());
+            autorReport.setSurname(author.getSurname());
+
+            listAuthor.add(autorReport);
+
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listAuthor;
     }
 
     public static FilteredList<AuthorAdapter> updateDataAuthor() {
