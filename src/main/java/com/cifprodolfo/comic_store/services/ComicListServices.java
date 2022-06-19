@@ -76,6 +76,43 @@ public class ComicListServices {
         return comicAdaptersList;
     }
 
+    public static List<ComicReport> comicReportListName(String name) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<ComicReport> listComic = new ArrayList<>();
+        String newName = name.replaceAll(" ", "+");
+
+        try {
+            HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/comic/findComicReport/"+newName)).build();
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            Comic comic =  objectMapper.readValue(response.body(), new TypeReference<>() {});
+
+            ComicReport comicReport = new ComicReport();
+            comicReport.setId(comic.getId());
+            comicReport.setName(comic.getName());
+            comicReport.setImage(comic.getImage());
+            comicReport.setSynopsis(comic.getSynopsis());
+            comicReport.setNumber(comic.getNumber());
+            comicReport.setPage(comic.getPage());
+            comicReport.setTapa(comic.getTapa());
+            comicReport.setAnhoPublication(comic.getAnhoPublication());
+            comicReport.setDataAcquisition(comic.getDataAcquisition());
+            comicReport.setState(comic.getState());
+            comicReport.setPrice(comic.getPrice());
+            comicReport.setAuthorName(comic.getAuthorName());
+
+            listComic.add(comicReport);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listComic;
+    }
+
     public static List<ComicReport> comicList(){
 
         comicListReport.clear();

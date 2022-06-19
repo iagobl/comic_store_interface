@@ -31,7 +31,11 @@ public class ReportController{
     @FXML
     private Button btnReportAuthor;
     @FXML
+    private Button btnReportComicsName;
+    @FXML
     private TextField txtReportAuthorName;
+    @FXML
+    private TextField txtReportComicsName;
 
     ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
     public void initialize(){
@@ -55,6 +59,18 @@ public class ReportController{
             txtReportAuthorName.setText("");
 
         });
+
+        btnReportComicsName.setOnMouseClicked(mouseEvent -> {
+            if(txtReportComicsName.getText().isEmpty() || txtReportComicsName.getText().isBlank()){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText(resourceBundle.getString("textReportNameAuthor"));
+                alert.showAndWait();
+                return;
+            }
+
+            reportComicName(txtReportComicsName.getText());
+            txtReportComicsName.setText("");
+        });
     }
 
     public void reportCollections() {
@@ -71,9 +87,7 @@ public class ReportController{
             JasperViewer.viewReport(jasperPrint, false);
 
 
-        } catch (Exception e) {
-
-        }
+        } catch (Exception e) {}
     }
 
     public void reportComic() {
@@ -89,10 +103,7 @@ public class ReportController{
             JasperViewer.viewReport(jasperPrint, false);
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
+        } catch (Exception e) {}
     }
 
     public void reportAuthorName(String name) {
@@ -108,10 +119,22 @@ public class ReportController{
             JasperViewer.viewReport(jasperPrint, false);
 
 
-        } catch (Exception e) {
+        } catch (Exception e) {}
+    }
+
+    public void reportComicName(String name) {
+        InputStream in = HomeController.class.getResourceAsStream("reports/ComicReport.jrxml");
+
+        try {
+
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
+            JasperReport jasperReport = JasperCompileManager.compileReport(in);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JRBeanCollectionDataSource(ComicListServices.comicReportListName(name)));
+
+            JasperViewer.viewReport(jasperPrint, false);
 
 
-        }
-
+        } catch (Exception e) {}
     }
 }

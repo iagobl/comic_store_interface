@@ -67,7 +67,6 @@ public class AuthorListServices {
 
     public static List<AutorReport> authorList(String name){
 
-        authorListReport.clear();
         ObjectMapper objectMapper = new ObjectMapper();
         List<AutorReport> listAuthor = new ArrayList<>();
 
