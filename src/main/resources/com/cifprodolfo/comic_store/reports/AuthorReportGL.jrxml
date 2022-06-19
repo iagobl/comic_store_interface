@@ -48,7 +48,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true" isItalic="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[Nombre autor]]></text>
+				<text><![CDATA[Nome autor]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="40" width="100" height="20" uuid="a2bcf4a7-0516-4aba-81cc-23af986ba498"/>
@@ -61,7 +61,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true" isItalic="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[Apellido Autor]]></text>
+				<text><![CDATA[Apelido Autor]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="380" y="40" width="100" height="20" uuid="a2bcf4a7-0516-4aba-81cc-23af986ba498"/>
@@ -74,7 +74,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="13" isBold="true" isItalic="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[Imagen]]></text>
+				<text><![CDATA[Imaxen]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

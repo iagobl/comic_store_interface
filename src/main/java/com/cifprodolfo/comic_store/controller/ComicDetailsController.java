@@ -79,6 +79,8 @@ public class ComicDetailsController {
         txtAuthorName.setText(comicAdapter.getAuthorName());
         txtJobComic.setText(String.valueOf(comicAdapter.getTimeDedicated()));
         txtCollectionName.setText(collection.getName());
+        txtAuthorName.setDisable(true);
+        txtCollectionName.setDisable(true);
 
         comic = comicAdapter;
 
@@ -142,6 +144,11 @@ public class ComicDetailsController {
             String state = txtStateDetailsComic.getText();
             String price = txtPriceDetailsComic.getText();
             String timeDedicated = txtJobComic.getText();
+            int numberCast;
+            int pageCast;
+            int anhoCast;
+            double priceCast;
+            int timeDedicatedCast;
 
             Author author = (Author) cmbComboAutores.getSelectionModel().getSelectedItem();
             Collection collection = (Collection) cmbComboColecciones.getSelectionModel().getSelectedItem();
@@ -161,20 +168,45 @@ public class ComicDetailsController {
                 alert.showAndWait();
                 return;
             }
+            try {
+                numberCast = Integer.valueOf(number);
+                pageCast = Integer.valueOf(page);
+                priceCast = Double.valueOf(price);
+                anhoCast = Integer.valueOf(anho);
+                timeDedicatedCast = Integer.valueOf(timeDedicated);
 
-            if(Integer.parseInt(number) < 0) {
+            } catch (NumberFormatException e2) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(resourceBundle.getString("textCastNumber"));
+                alert.showAndWait();
+                return;
+            }
+
+            if(numberCast < 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
                 alert.showAndWait();
                 return;
             }
 
-            if(Integer.parseInt(page) < 0) {
+            if(pageCast < 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
                 alert.showAndWait();
                 return;
             }
 
-            if(Double.valueOf(price) < 0.0){
+            if(priceCast < 0.0){
+                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+
+            if(anhoCast < 1000 || anhoCast > 2022){
+                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("textErrorAnhoPublication"), ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
+
+            if(timeDedicatedCast < 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
                 alert.showAndWait();
                 return;

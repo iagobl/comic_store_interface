@@ -5,16 +5,16 @@
 	<parameter name="logo" class="java.io.InputStream"/>
 	<field name="id" class="java.lang.Long"/>
 	<field name="name" class="java.lang.String"/>
-	<field name="surname" class="java.lang.String"/>
+	<field name="editorial" class="java.lang.String"/>
 	<field name="image" class="java.io.InputStream"/>
 	<title>
 		<band height="140" splitType="Stretch">
 			<staticText>
 				<reportElement x="140" y="100" width="258" height="30" uuid="63a8384f-1eaa-4cc9-9ed9-1e7ea7af2fb2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="16" isBold="true" isItalic="true"/>
+					<font isBold="true" isItalic="true" size="16"/>
 				</textElement>
-				<text><![CDATA[Autores]]></text>
+				<text><![CDATA[Coleccións]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="100" height="100" backcolor="#333333" uuid="80bcba32-4e50-4a3a-949c-39e7c22ddff4"/>
@@ -33,7 +33,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" isBold="true" isItalic="true" isUnderline="false"/>
+					<font isBold="true" isItalic="true" isUnderline="false" size="13"/>
 				</textElement>
 				<text><![CDATA[Id]]></text>
 			</staticText>
@@ -46,9 +46,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" isBold="true" isItalic="true" isUnderline="false"/>
+					<font isBold="true" isItalic="true" isUnderline="false"  size="13"/>
 				</textElement>
-				<text><![CDATA[Nombre autor]]></text>
+				<text><![CDATA[Nome colección]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="280" y="40" width="100" height="20" uuid="a2bcf4a7-0516-4aba-81cc-23af986ba498"/>
@@ -59,9 +59,9 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" isBold="true" isItalic="true" isUnderline="false"/>
+					<font isBold="true" isItalic="true" isUnderline="false" size="13"/>
 				</textElement>
-				<text><![CDATA[Apellido Autor]]></text>
+				<text><![CDATA[Editorial colección]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="380" y="40" width="100" height="20" uuid="a2bcf4a7-0516-4aba-81cc-23af986ba498"/>
@@ -69,12 +69,12 @@
 					<topPen lineWidth="0.0" lineStyle="Solid"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid"/>
 					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0" />
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" isBold="true" isItalic="true" isUnderline="false"/>
+					<font isBold="true" isItalic="true" isUnderline="false" size="13"/>
 				</textElement>
-				<text><![CDATA[Imagen]]></text>
+				<text><![CDATA[Imaxen]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -111,7 +111,7 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{surname}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{editorial}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement stretchType="RelativeToTallestObject" x="380" y="0" width="100" height="100" backcolor="#333333" uuid="80bcba32-4e50-4a3a-949c-39e7c22ddff4"/>
