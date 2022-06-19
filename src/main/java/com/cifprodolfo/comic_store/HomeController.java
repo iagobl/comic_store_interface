@@ -253,9 +253,19 @@ public class HomeController {
 
         try {
             table = (TableView) lblTitle.getScene().lookup("#tableCollection");
+
+            if(table.getSelectionModel().getSelectedItem() == null){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText(resourceBundle.getString("txtSelectItemDelete"));
+                alert.showAndWait();
+                return;
+            }
+
             TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
             int row = tablePosition.getRow();
             CollectionAdapter item = (CollectionAdapter) table.getItems().get(row);
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText(null);
             alert.setTitle("Confirmación");
@@ -265,7 +275,7 @@ public class HomeController {
                 CollectionServices.deleteCollection(item);
             }
 
-        } catch(IOException | InterruptedException e){
+        } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorDeleteCollection"));
             alert.showAndWait();
@@ -276,9 +286,19 @@ public class HomeController {
 
         try {
             table = (TableView) lblTitle.getScene().lookup("#tableAuthor");
+
+            if(table.getSelectionModel().getSelectedItem() == null){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText(resourceBundle.getString("txtSelectItemDelete"));
+                alert.showAndWait();
+                return;
+            }
+
             TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
             int row = tablePosition.getRow();
             AuthorAdapter item = (AuthorAdapter) table.getItems().get(row);
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText(null);
             alert.setTitle("Confirmación");
@@ -288,7 +308,7 @@ public class HomeController {
                 AuthorServices.deleteAuthor(item);
             }
 
-        } catch(IOException | InterruptedException e){
+        } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorDeleteAuthor"));
             alert.showAndWait();
@@ -299,9 +319,19 @@ public class HomeController {
 
         try {
             table = (TableView) lblTitle.getScene().lookup("#tableComics");
+
+            if(table.getSelectionModel().getSelectedItem() == null){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText(resourceBundle.getString("txtSelectItemDelete"));
+                alert.showAndWait();
+                return;
+            }
+
             TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
             int row = tablePosition.getRow();
             ComicAdapter item = (ComicAdapter) table.getItems().get(row);
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText(null);
             alert.setTitle("Confirmación");
@@ -311,7 +341,7 @@ public class HomeController {
                 ComicServices.deleteComic(item);
             }
 
-        } catch(/*IOException | InterruptedException e*/Exception e){
+        } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorDeleteComic"));
             alert.showAndWait();
