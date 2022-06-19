@@ -52,6 +52,8 @@ public class ComicDetailsController {
     private ComboBox cmbComboAutores;
     @FXML
     private ComboBox cmbComboColecciones;
+    @FXML
+    private DatePicker datePicker;
     private boolean newImage = false;
     private String pathImage;
     private ComicAdapter comic;
@@ -70,7 +72,7 @@ public class ComicDetailsController {
         txtNumberDetailsComic.setText(String.valueOf(comicAdapter.getNumber()));
         txtPageDetailsComic.setText(String.valueOf(comicAdapter.getPage()));
         txtAnhoPublicationDetailsComic.setText(String.valueOf(comicAdapter.getAnhoPublication()));
-        txtDateDetailsComic.setText(String.valueOf(comicAdapter.getDateAcquistion()));
+        //txtDateDetailsComic.setText(String.valueOf(comicAdapter.getDateAcquistion()));
         txtStateDetailsComic.setText(comicAdapter.getState());
         txtPriceDetailsComic.setText(String.valueOf(comicAdapter.getPrice()));
         txtSynopsisDetailsComics.setText(comicAdapter.getSynopsis());
@@ -81,6 +83,7 @@ public class ComicDetailsController {
         txtCollectionName.setText(collection.getName());
         txtAuthorName.setDisable(true);
         txtCollectionName.setDisable(true);
+        datePicker.setPromptText(String.valueOf(comicAdapter.getDateAcquistion()));
 
         comic = comicAdapter;
 
@@ -139,7 +142,7 @@ public class ComicDetailsController {
             String number = txtNumberDetailsComic.getText();
             String page = txtPageDetailsComic.getText();
             String tape = txtTapeDetailsComic.getText();
-            String date = txtDateDetailsComic.getText();
+            LocalDate date = datePicker.getValue();
             String anho = txtAnhoPublicationDetailsComic.getText();
             String state = txtStateDetailsComic.getText();
             String price = txtPriceDetailsComic.getText();
@@ -158,7 +161,7 @@ public class ComicDetailsController {
                     (number.isBlank() || number.isEmpty()) ||
                     (page.isBlank() || page.isEmpty()) ||
                     (tape.isBlank() || tape.isEmpty()) ||
-                    (date.isBlank() || date.isEmpty()) ||
+                    (date == null) ||
                     (anho.isBlank() || anho.isEmpty()) ||
                     (state.isBlank() || state.isEmpty()) ||
                     (price.isBlank() || price.isEmpty()) ||
@@ -238,7 +241,7 @@ public class ComicDetailsController {
             //AuthorComicServices.saveAuthorComic(Integer.parseInt(timeDedicated), idAuthor, idComic);
 
             ComicListServices.updateDataComic();
-            Stage stage = (Stage) this.txtDateDetailsComic.getScene().getWindow();
+            Stage stage = (Stage) this.txtNumberDetailsComic.getScene().getWindow();
             stage.close();
 
         } catch(Exception e) {
@@ -258,7 +261,7 @@ public class ComicDetailsController {
             String number = txtNumberDetailsComic.getText();
             String page = txtPageDetailsComic.getText();
             String tape = txtTapeDetailsComic.getText();
-            String date = txtDateDetailsComic.getText();
+            LocalDate date = datePicker.getValue();
             String anho = txtAnhoPublicationDetailsComic.getText();
             String state = txtStateDetailsComic.getText();
             String price = txtPriceDetailsComic.getText();
@@ -269,7 +272,6 @@ public class ComicDetailsController {
                     (number.isBlank() || number.isEmpty()) ||
                     (page.isBlank() || page.isEmpty()) ||
                     (tape.isBlank() || tape.isEmpty()) ||
-                    (date.isBlank() || date.isEmpty()) ||
                     (anho.isBlank() || anho.isEmpty()) ||
                     (state.isBlank() || state.isEmpty()) ||
                     (price.isBlank() || price.isEmpty()) ||
@@ -278,6 +280,10 @@ public class ComicDetailsController {
                 Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("textErrorCubrirCampos"), ButtonType.OK);
                 alert.showAndWait();
                 return;
+            }
+
+            if(date == null){
+                date = comic.getDateAcquistion();
             }
 
             if(newImage) {
@@ -289,7 +295,7 @@ public class ComicDetailsController {
             comic.setNumber(Integer.parseInt(number));
             comic.setPage(Integer.parseInt(page));
             comic.setTapa(tape);
-            comic.setDateAcquistion(LocalDate.parse(date));
+            comic.setDateAcquistion(date);
             comic.setAnhoPublication(Integer.parseInt(anho));
             comic.setState(state);
             comic.setPrice(Double.parseDouble(price));
@@ -304,7 +310,7 @@ public class ComicDetailsController {
             }
 
             ComicListServices.updateDataComic();
-            Stage stage = (Stage) this.txtDateDetailsComic.getScene().getWindow();
+            Stage stage = (Stage) this.txtPageDetailsComic.getScene().getWindow();
             stage.close();
 
 
@@ -317,7 +323,7 @@ public class ComicDetailsController {
 
     public void cancelButton() {
         try {
-            Stage stage = (Stage) this.txtDateDetailsComic.getScene().getWindow();
+            Stage stage = (Stage) this.txtNameDetailsComic.getScene().getWindow();
             stage.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);

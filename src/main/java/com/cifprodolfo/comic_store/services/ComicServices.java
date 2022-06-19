@@ -23,10 +23,11 @@ import java.nio.channels.Channels;
 import java.nio.channels.Pipe;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.time.LocalDate;
 
 public class ComicServices {
 
-    public static NewComicAdapter saveComics(String name, String synopsis, String number, String page, String tape, String date, String anhoPublication, String state, String price, Long idCollection, String timeDedicated, Long idAuthor) throws IOException, InterruptedException {
+    public static NewComicAdapter saveComics(String name, String synopsis, String number, String page, String tape, LocalDate date, String anhoPublication, String state, String price, Long idCollection, String timeDedicated, Long idAuthor) throws IOException, InterruptedException {
 
         NewComicAdapter comicNew;
         ObjectMapper objectMapper = new ObjectMapper();
@@ -71,7 +72,7 @@ public class ComicServices {
                 "    \"number\": " + comicAdapter.getNumber() + ",\n" +
                 "    \"page\": " + comicAdapter.getPage() + ",\n" +
                 "    \"tapa\": \"" + comicAdapter.getTapa() + "\",\n" +
-                "    \"dateAcquistion\": \"" + comicAdapter.getDateAcquistion() + "\",\n" +
+                "    \"dataAcquisition\": \"" + comicAdapter.getDateAcquistion() + "\",\n" +
                 "    \"anhoPublication\": " + comicAdapter.getAnhoPublication() + ",\n" +
                 "    \"state\": \"" + comicAdapter.getState() + "\",\n" +
                 "    \"price\": " + comicAdapter.getPrice() + ",\n" +
