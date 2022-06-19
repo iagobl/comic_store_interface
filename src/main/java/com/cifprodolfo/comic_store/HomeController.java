@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -37,6 +38,8 @@ public class HomeController {
     private Button btnAddElement;
     @FXML
     private Button btnDeleteElement;
+    @FXML
+    private Button btnSearch;
     private JButton help = new JButton();
     TableView table = new TableView<>();
     private int IdPanel = 0;
@@ -57,7 +60,6 @@ public class HomeController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorShowComics"));
             alert.showAndWait();
-            e.printStackTrace();
         }
     }
 
@@ -76,7 +78,6 @@ public class HomeController {
             browser.enableHelpOnButton(help, "info", helpSet);
 
         } catch(Exception e){
-            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorJavaHelp"));
             alert.showAndWait();
@@ -101,8 +102,11 @@ public class HomeController {
                     fxmlLoader.setController(comicController);
                     IdPanel = 0;
                     lblTitle.setText(resourceBundle.getString("btnComics"));
+                    txtSearch.setText("");
                     btnAddElement.setVisible(true);
                     btnDeleteElement.setVisible(true);
+                    txtSearch.setVisible(true);
+                    btnSearch.setVisible(true);
                     break;
                 case "btnCollection":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("collectionView.fxml"), resourceBundle);
@@ -110,8 +114,11 @@ public class HomeController {
                     fxmlLoader.setController(collectionController);
                     IdPanel = 1;
                     lblTitle.setText(resourceBundle.getString("btnCollection"));
+                    txtSearch.setText("");
                     btnAddElement.setVisible(true);
                     btnDeleteElement.setVisible(true);
+                    txtSearch.setVisible(true);
+                    btnSearch.setVisible(true);
                     break;
                 case "btnAuthor":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("authorView.fxml"), resourceBundle);
@@ -119,14 +126,19 @@ public class HomeController {
                     fxmlLoader.setController(authorController);
                     IdPanel = 2;
                     lblTitle.setText(resourceBundle.getString("btnAuthor"));
+                    txtSearch.setText("");
                     btnAddElement.setVisible(true);
                     btnDeleteElement.setVisible(true);
+                    txtSearch.setVisible(true);
+                    btnSearch.setVisible(true);
                     break;
                 case "btnReports":
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("reports.fxml"), resourceBundle);
                     lblTitle.setText(resourceBundle.getString("btnReports"));
                     btnAddElement.setVisible(false);
                     btnDeleteElement.setVisible(false);
+                    txtSearch.setVisible(false);
+                    btnSearch.setVisible(false);
                     break;
                 default:
                     fxmlLoader = new FXMLLoader(HomeController.class.getResource("comicView.fxml"), resourceBundle);
@@ -137,7 +149,6 @@ public class HomeController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorShowPanelHome"));
             alert.showAndWait();
-            e.printStackTrace();
         }
 
     }
@@ -173,6 +184,7 @@ public class HomeController {
 
             Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
+            stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream("/images/icon_photo.png")));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(PanelHome.getScene().getWindow());
 
@@ -200,6 +212,7 @@ public class HomeController {
             Stage stage = new Stage();
             stage.setTitle("Configuración");
             stage.setResizable(false);
+            stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream("/images/icon_photo.png")));
             stage.setScene(scene);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(PanelHome.getScene().getWindow());

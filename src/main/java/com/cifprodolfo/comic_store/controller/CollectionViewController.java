@@ -1,5 +1,6 @@
 package com.cifprodolfo.comic_store.controller;
 
+import com.cifprodolfo.comic_store.HomeApplication;
 import com.cifprodolfo.comic_store.HomeController;
 import com.cifprodolfo.comic_store.services.CollectionListServices;
 import com.cifprodolfo.comic_store.table_adapter.CollectionAdapter;
@@ -12,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
@@ -78,6 +80,7 @@ public class CollectionViewController {
             stage.setTitle(resourceBundle.getString("lblDetailsCollections"));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(tableCollection.getScene().getWindow());
+            stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream("/images/icon_photo.png")));
             stage.setMinHeight(600);
             stage.setMinWidth(800);
 
