@@ -19,6 +19,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -75,9 +76,16 @@ public class ReportController{
 
     public void reportCollections() {
 
-        InputStream in = HomeController.class.getResourceAsStream("reports/CollectionReport.jrxml");
+        InputStream in;
 
         try {
+            System.out.println(Locale.getDefault());
+
+            if(Locale.getDefault().getLanguage().equals("es")){
+                in = HomeController.class.getResourceAsStream("reports/CollectionReport.jrxml");
+            } else {
+                in = HomeController.class.getResourceAsStream("reports/CollectionReportGL.jrxml");
+            }
 
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
@@ -91,9 +99,15 @@ public class ReportController{
     }
 
     public void reportComic() {
-        InputStream in = HomeController.class.getResourceAsStream("reports/ComicReport.jrxml");
+        InputStream in;
 
         try {
+
+            if(Locale.getDefault().getLanguage().equals("es")){
+                in = HomeController.class.getResourceAsStream("reports/ComicReport.jrxml");
+            } else {
+                in = HomeController.class.getResourceAsStream("reports/ComicReportGL.jrxml");
+            }
 
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
@@ -107,9 +121,15 @@ public class ReportController{
     }
 
     public void reportAuthorName(String name) {
-        InputStream in = HomeController.class.getResourceAsStream("reports/AuthorReport.jrxml");
+        InputStream in;
 
         try {
+
+            if(Locale.getDefault().getLanguage().equals("es")){
+                in = HomeController.class.getResourceAsStream("reports/AuthorReport.jrxml");
+            } else {
+                in = HomeController.class.getResourceAsStream("reports/AuthorReportGL.jrxml");
+            }
 
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
@@ -123,9 +143,15 @@ public class ReportController{
     }
 
     public void reportComicName(String name) {
-        InputStream in = HomeController.class.getResourceAsStream("reports/ComicReport.jrxml");
+        InputStream in;
 
         try {
+
+            if(Locale.getDefault().getLanguage().equals("es")){
+                in = HomeController.class.getResourceAsStream("reports/ComicReport.jrxml");
+            } else{
+                in = HomeController.class.getResourceAsStream("reports/ComicReportGL.jrxml");
+            }
 
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
