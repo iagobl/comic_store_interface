@@ -23,11 +23,13 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class ComicListServices {
 
     static ObservableList<ComicAdapter> comicAdaptersList = FXCollections.observableArrayList();
     static List<Comic> comicListReport = FXCollections.observableArrayList();
+    static ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
 
     public static ObservableList<ComicAdapter> getDataComic(){
 
@@ -68,9 +70,8 @@ public class ComicListServices {
 
         } catch (IOException | InterruptedException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al mostrar los comics");
+            alert.setContentText(resourceBundle.getString("txtErrorShowComic"));
             alert.showAndWait();
-            e.printStackTrace();
         }
 
         return comicAdaptersList;
@@ -107,7 +108,6 @@ public class ComicListServices {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return listComic;
@@ -190,7 +190,7 @@ public class ComicListServices {
 
         } catch (IOException | InterruptedException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al mostrar los comics");
+            alert.setContentText(resourceBundle.getString("txtErrorShowComic"));
             alert.showAndWait();
         }
 

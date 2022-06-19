@@ -1,6 +1,8 @@
 package com.cifprodolfo.comic_store.controller;
 
 import com.cifprodolfo.comic_store.HomeController;
+import com.cifprodolfo.comic_store.model.report_model.AutorReport;
+import com.cifprodolfo.comic_store.model.report_model.ComicReport;
 import com.cifprodolfo.comic_store.services.AuthorListServices;
 import com.cifprodolfo.comic_store.services.CollectionListServices;
 import com.cifprodolfo.comic_store.services.CollectionServices;
@@ -18,10 +20,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ReportController{
 
@@ -131,10 +130,18 @@ public class ReportController{
                 in = HomeController.class.getResourceAsStream("reports/AuthorReportGL.jrxml");
             }
 
+            List<AutorReport> listReport = AuthorListServices.authorList(name);
+            if(listReport.size() == 0){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText(resourceBundle.getString("txtErrorNotFoundAuthor"));
+                alert.showAndWait();
+                return;
+            }
+
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
             JasperReport jasperReport = JasperCompileManager.compileReport(in);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JRBeanCollectionDataSource(AuthorListServices.authorList(name)));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JRBeanCollectionDataSource(listReport));
 
             JasperViewer.viewReport(jasperPrint, false);
 
@@ -153,10 +160,18 @@ public class ReportController{
                 in = HomeController.class.getResourceAsStream("reports/ComicReportGL.jrxml");
             }
 
+            List<ComicReport> listReport = ComicListServices.comicReportListName(name);
+            if(listReport.size() == 0){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText(resourceBundle.getString("txtErrotNotFoundComic"));
+                alert.showAndWait();
+                return;
+            }
+
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
             JasperReport jasperReport = JasperCompileManager.compileReport(in);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JRBeanCollectionDataSource(ComicListServices.comicReportListName(name)));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JRBeanCollectionDataSource(listReport));
 
             JasperViewer.viewReport(jasperPrint, false);
 

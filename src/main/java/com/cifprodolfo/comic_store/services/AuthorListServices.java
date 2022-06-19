@@ -21,12 +21,14 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class AuthorListServices {
 
     static ObservableList<AuthorAdapter> authorAdaptersList = FXCollections.observableArrayList();
     static ObservableList<Author> authorList = FXCollections.observableArrayList();
     static List<Author> authorListReport = FXCollections.observableArrayList();
+    static ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
 
     public static ObservableList<AuthorAdapter> getDataAuthors() {
 
@@ -58,7 +60,7 @@ public class AuthorListServices {
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al mostrar los autores");
+            alert.setContentText(resourceBundle.getString("txtErrorShowAuthors"));
             alert.showAndWait();
         }
 
@@ -86,7 +88,6 @@ public class AuthorListServices {
             listAuthor.add(autorReport);
 
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
         }
 
         return listAuthor;
@@ -123,9 +124,8 @@ public class AuthorListServices {
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al mostrar los autores");
+            alert.setContentText(resourceBundle.getString("txtErrorShowAuthors"));
             alert.showAndWait();
-            e.printStackTrace();
         }
 
         return searchData;

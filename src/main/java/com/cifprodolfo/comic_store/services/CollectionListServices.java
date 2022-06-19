@@ -21,12 +21,14 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class CollectionListServices {
 
     static ObservableList <CollectionAdapter> collectionAdaptersList = FXCollections.observableArrayList();
     static ObservableList <Collection> collectionList = FXCollections.observableArrayList();
     static List<Collection> collectionListReport = FXCollections.observableArrayList();
+    static ResourceBundle resourceBundle = ResourceBundle.getBundle("language/language");
     public static ObservableList<CollectionAdapter> getDataCollections(){
 
         collectionAdaptersList.clear();
@@ -55,7 +57,7 @@ public class CollectionListServices {
 
         } catch (IOException | InterruptedException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al mostrar los comics");
+            alert.setContentText(resourceBundle.getString("txtErrorShowCollection"));
             alert.showAndWait();
         }
 
@@ -87,7 +89,7 @@ public class CollectionListServices {
 
         } catch (IOException | InterruptedException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al mostrar los comics");
+            alert.setContentText(resourceBundle.getString("txtErrorShowCollection"));
             alert.showAndWait();
         }
 
@@ -123,9 +125,8 @@ public class CollectionListServices {
 
         } catch (IOException | InterruptedException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Error al mostrar los comics");
+            alert.setContentText(resourceBundle.getString("txtErrorShowCollection"));
             alert.showAndWait();
-            e.printStackTrace();
         }
 
         return searchData;
