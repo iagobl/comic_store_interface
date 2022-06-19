@@ -90,6 +90,7 @@ public class CollectionViewController {
             stage.showAndWait();
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorShowCollection"));
             alert.showAndWait();
         }

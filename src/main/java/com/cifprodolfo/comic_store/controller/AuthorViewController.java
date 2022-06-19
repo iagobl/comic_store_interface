@@ -104,6 +104,7 @@ public class AuthorViewController {
             stage.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorShowAuthor"));
             alert.showAndWait();
         }

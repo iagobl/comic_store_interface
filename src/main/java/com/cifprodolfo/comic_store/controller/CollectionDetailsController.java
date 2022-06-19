@@ -67,7 +67,10 @@ public class CollectionDetailsController {
 
             pathImage = selectFile.getAbsolutePath();
         } catch(Exception e) {
-            throw new RuntimeException(e);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText(resourceBundle.getString("textErrorChangeImage"));
+            alert.showAndWait();
         }
     }
 
@@ -106,6 +109,7 @@ public class CollectionDetailsController {
 
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorSaveCollection"));
             alert.showAndWait();
         }
@@ -144,6 +148,7 @@ public class CollectionDetailsController {
 
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorUpdateCollection"));
             alert.showAndWait();
         }
@@ -155,6 +160,7 @@ public class CollectionDetailsController {
             stage.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorCloseWindow"));
             alert.showAndWait();
         }

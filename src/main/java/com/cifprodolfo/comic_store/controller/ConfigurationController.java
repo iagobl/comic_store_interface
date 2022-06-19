@@ -42,9 +42,9 @@ public class ConfigurationController {
 
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorChangeIdiom"));
             alert.showAndWait();
-            e.printStackTrace();
         }
     }
 

@@ -66,6 +66,7 @@ public class AuthorDetailsController {
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorChangeImage"));
             alert.showAndWait();
         }
@@ -107,6 +108,7 @@ public class AuthorDetailsController {
 
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorSaveAuthor"));
             alert.showAndWait();
         }
@@ -141,6 +143,7 @@ public class AuthorDetailsController {
 
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorUpdateAuthor"));
             alert.showAndWait();
         }
@@ -152,6 +155,7 @@ public class AuthorDetailsController {
             stage.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorCloseWindow"));
             alert.showAndWait();
         }

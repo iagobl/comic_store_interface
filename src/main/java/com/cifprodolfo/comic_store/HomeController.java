@@ -24,6 +24,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class HomeController {
@@ -58,6 +59,7 @@ public class HomeController {
             btnDeleteElement.setVisible(true);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorShowComics"));
             alert.showAndWait();
         }
@@ -79,6 +81,7 @@ public class HomeController {
 
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorJavaHelp"));
             alert.showAndWait();
         }
@@ -147,6 +150,7 @@ public class HomeController {
             PanelHome.setCenter(fxmlLoader.load());
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorShowPanelHome"));
             alert.showAndWait();
         }
@@ -197,9 +201,9 @@ public class HomeController {
 
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorShowPanelAdd"));
             alert.showAndWait();
-            e.printStackTrace();
         }
     }
 
@@ -223,6 +227,7 @@ public class HomeController {
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorShowPanelConfiguration"));
             alert.showAndWait();
         }
@@ -251,7 +256,15 @@ public class HomeController {
             TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
             int row = tablePosition.getRow();
             CollectionAdapter item = (CollectionAdapter) table.getItems().get(row);
-            CollectionServices.deleteCollection(item);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmación");
+            alert.setContentText(resourceBundle.getString("txtConfirmation"));
+            Optional<ButtonType> action = alert.showAndWait();
+            if(action.get() == ButtonType.OK) {
+                CollectionServices.deleteCollection(item);
+            }
+
         } catch(IOException | InterruptedException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorDeleteCollection"));
@@ -266,7 +279,15 @@ public class HomeController {
             TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
             int row = tablePosition.getRow();
             AuthorAdapter item = (AuthorAdapter) table.getItems().get(row);
-            AuthorServices.deleteAuthor(item);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmación");
+            alert.setContentText(resourceBundle.getString("txtConfirmation"));
+            Optional<ButtonType> action = alert.showAndWait();
+            if(action.get() == ButtonType.OK){
+                AuthorServices.deleteAuthor(item);
+            }
+
         } catch(IOException | InterruptedException e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorDeleteAuthor"));
@@ -281,8 +302,16 @@ public class HomeController {
             TablePosition tablePosition = (TablePosition) table.getSelectionModel().getSelectedCells().get(0);
             int row = tablePosition.getRow();
             ComicAdapter item = (ComicAdapter) table.getItems().get(row);
-            ComicServices.deleteComic(item);
-        } catch(IOException | InterruptedException e){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmación");
+            alert.setContentText(resourceBundle.getString("txtConfirmation"));
+            Optional<ButtonType> action = alert.showAndWait();
+            if(action.get() == ButtonType.OK){
+                ComicServices.deleteComic(item);
+            }
+
+        } catch(/*IOException | InterruptedException e*/Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(resourceBundle.getString("textErrorDeleteComic"));
             alert.showAndWait();

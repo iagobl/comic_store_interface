@@ -50,6 +50,7 @@ public class ReportController{
         btnReportAuthor.setOnMouseClicked(mouseEvent -> {
             if(txtReportAuthorName.getText().isEmpty() || txtReportAuthorName.getText().isBlank()){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
                 alert.setContentText(resourceBundle.getString("textReportNameAuthor"));
                 alert.showAndWait();
                 return;
@@ -63,6 +64,7 @@ public class ReportController{
         btnReportComicsName.setOnMouseClicked(mouseEvent -> {
             if(txtReportComicsName.getText().isEmpty() || txtReportComicsName.getText().isBlank()){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
                 alert.setContentText(resourceBundle.getString("textReportNameAuthor"));
                 alert.showAndWait();
                 return;
@@ -94,7 +96,12 @@ public class ReportController{
             JasperViewer.viewReport(jasperPrint, false);
 
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText(resourceBundle.getString("txtErrorShowReport"));
+            alert.showAndWait();
+        }
     }
 
     public void reportComic() {
@@ -116,7 +123,12 @@ public class ReportController{
             JasperViewer.viewReport(jasperPrint, false);
 
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText(resourceBundle.getString("txtErrorShowReport"));
+            alert.showAndWait();
+        }
     }
 
     public void reportAuthorName(String name) {
@@ -146,7 +158,12 @@ public class ReportController{
             JasperViewer.viewReport(jasperPrint, false);
 
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText(resourceBundle.getString("txtErrorShowReport"));
+            alert.showAndWait();
+        }
     }
 
     public void reportComicName(String name) {
@@ -176,6 +193,11 @@ public class ReportController{
             JasperViewer.viewReport(jasperPrint, false);
 
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText(resourceBundle.getString("txtErrorShowReport"));
+            alert.showAndWait();
+        }
     }
 }

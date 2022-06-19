@@ -66,13 +66,10 @@ public class ComicDetailsController {
 
     public void initData(ComicAdapter comicAdapter, Collection collection) {
 
-        //Collection collectionShow = CollectionListServices.getCollectionById(comicAdapter.)
-
         txtNameDetailsComic.setText(comicAdapter.getName());
         txtNumberDetailsComic.setText(String.valueOf(comicAdapter.getNumber()));
         txtPageDetailsComic.setText(String.valueOf(comicAdapter.getPage()));
         txtAnhoPublicationDetailsComic.setText(String.valueOf(comicAdapter.getAnhoPublication()));
-        //txtDateDetailsComic.setText(String.valueOf(comicAdapter.getDateAcquistion()));
         txtStateDetailsComic.setText(comicAdapter.getState());
         txtPriceDetailsComic.setText(String.valueOf(comicAdapter.getPrice()));
         txtSynopsisDetailsComics.setText(comicAdapter.getSynopsis());
@@ -127,6 +124,7 @@ public class ComicDetailsController {
             pathImage = selectFile.getAbsolutePath();
         } catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorChangeImage"));
             alert.showAndWait();
         }
@@ -227,6 +225,7 @@ public class ComicDetailsController {
             newComicAdapter = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price, idComic, timeDedicated, idAuthor);
             if(newComicAdapter.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
                 alert.setContentText(resourceBundle.getString("textExistComic"));
                 alert.showAndWait();
                 return;
@@ -246,9 +245,9 @@ public class ComicDetailsController {
 
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorSaveComic"));
             alert.showAndWait();
-            e.printStackTrace();
         }
     }
 
@@ -278,6 +277,7 @@ public class ComicDetailsController {
                     (timeDedicated.isBlank() || timeDedicated.isEmpty())) {
 
                 Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("textErrorCubrirCampos"), ButtonType.OK);
+                alert.setHeaderText(null);
                 alert.showAndWait();
                 return;
             }
@@ -316,6 +316,7 @@ public class ComicDetailsController {
 
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorUpdateComic"));
             alert.showAndWait();
         }
@@ -327,6 +328,7 @@ public class ComicDetailsController {
             stage.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
             alert.setContentText(resourceBundle.getString("textErrorCloseWindow"));
             alert.showAndWait();
         }
