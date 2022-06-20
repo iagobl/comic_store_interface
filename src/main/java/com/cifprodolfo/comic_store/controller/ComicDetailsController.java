@@ -222,6 +222,14 @@ public class ComicDetailsController {
             Long idAuthor = author.getId();
             Long idComic = collection.getId();
 
+            if(pathImage == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText(resourceBundle.getString("textErrorNoImage"));
+                alert.showAndWait();
+                return;
+            }
+
             newComicAdapter = ComicServices.saveComics(name, synopsis, number, page, tape, date, anho, state, price, idComic, timeDedicated, idAuthor);
             if(newComicAdapter.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -231,11 +239,13 @@ public class ComicDetailsController {
                 return;
             }
 
-            if(newImage || pathImage != null){
+            ComicServices.uploadImage(newComicAdapter.getId(), pathImage);
+
+            /*if(newImage || pathImage != null){
                 ComicServices.uploadImage(newComicAdapter.getId(), pathImage);
             } else {
                 ComicServices.uploadImage(newComicAdapter.getId(), ComicDetailsController.class.getResource("/images/icon_photo.png").getPath());
-            }
+            }*/
 
             //AuthorComicServices.saveAuthorComic(Integer.parseInt(timeDedicated), idAuthor, idComic);
 

@@ -87,6 +87,14 @@ public class CollectionDetailsController {
                 return;
             }
 
+            if(pathImage == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText(resourceBundle.getString("textErrorNoImage"));
+                alert.showAndWait();
+                return;
+            }
+
             newCollection = CollectionServices.saveCollections(nameUpdate, editorialUpdate);
             if(newCollection.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -96,13 +104,14 @@ public class CollectionDetailsController {
             }
 
             collection = new CollectionAdapter(newCollection.getId(), newCollection.getName(), null, newCollection.getEditorial());
+            CollectionServices.uploadImage(collection, pathImage);
 
-            System.out.println(pathImage);
+            /*System.out.println(pathImage);
             if(newImage || pathImage != null){
                 CollectionServices.uploadImage(collection, pathImage);
             } else {
                 CollectionServices.uploadImage(collection, CollectionServices.class.getResource("/images/icon_photo.png").getPath());
-            }
+            }*/
 
             CollectionListServices.updateDataCollections();
             Stage stage = (Stage) this.txtNameDetailsCollection.getScene().getWindow();

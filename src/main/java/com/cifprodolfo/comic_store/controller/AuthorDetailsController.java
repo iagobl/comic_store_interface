@@ -86,6 +86,14 @@ public class AuthorDetailsController {
                 return;
             }
 
+            if(pathImage == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText(resourceBundle.getString("textErrorNoImage"));
+                alert.showAndWait();
+                return;
+            }
+
             newAuthor = AuthorServices.saveAuthors(nameAuthor, surnameAuthor);
             if(newAuthor.getId() == null){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -95,12 +103,14 @@ public class AuthorDetailsController {
             }
 
             authorAdapter = new AuthorAdapter(newAuthor.getId(), newAuthor.getName(), null, newAuthor.getSurname(), newAuthor.getAuthorComicList());
+            AuthorServices.uploadImage(authorAdapter, pathImage);
 
-            if(newImage || pathImage != null) {
-                AuthorServices.uploadImage(authorAdapter, pathImage);
+
+            /*if(newImage || pathImage != null) {
+
             } else {
-                AuthorServices.uploadImage(authorAdapter, AuthorServices.class.getResource("/images/icon_author.png").getPath());
-            }
+                AuthorServices.uploadImage(authorAdapter, AuthorServices.class.getResource("images/icon_author.png").getPath());
+            }*/
 
             AuthorListServices.updateDataAuthor();
             Stage stage = (Stage) this.txtName.getScene().getWindow();
