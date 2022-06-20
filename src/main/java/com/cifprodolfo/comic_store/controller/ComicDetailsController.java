@@ -183,7 +183,7 @@ public class ComicDetailsController {
                 return;
             }
 
-            if(numberCast < 0) {
+            if(numberCast < 0 | numberCast > 999) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
                 alert.showAndWait();
                 return;
@@ -195,13 +195,13 @@ public class ComicDetailsController {
                 return;
             }
 
-            if(priceCast < 0.0){
-                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
+            if(priceCast < 0.0 || priceCast > 2000000.0){
+                Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("textErrorPrice"), ButtonType.OK);
                 alert.showAndWait();
                 return;
             }
 
-            if(anhoCast < 1000 || anhoCast > 2022){
+            if(anhoCast < 1700 || anhoCast > 2022){
                 Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("textErrorAnhoPublication"), ButtonType.OK);
                 alert.showAndWait();
                 return;

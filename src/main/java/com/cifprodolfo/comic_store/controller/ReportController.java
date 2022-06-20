@@ -2,6 +2,7 @@ package com.cifprodolfo.comic_store.controller;
 
 import com.cifprodolfo.comic_store.HomeController;
 import com.cifprodolfo.comic_store.model.report_model.AutorReport;
+import com.cifprodolfo.comic_store.model.report_model.CollectionReport;
 import com.cifprodolfo.comic_store.model.report_model.ComicReport;
 import com.cifprodolfo.comic_store.services.AuthorListServices;
 import com.cifprodolfo.comic_store.services.CollectionListServices;
@@ -88,6 +89,14 @@ public class ReportController{
                 in = HomeController.class.getResourceAsStream("reports/CollectionReportGL.jrxml");
             }
 
+            List<CollectionReport> listReport = CollectionListServices.collectionList();
+            if(listReport.size() == 0){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText(resourceBundle.getString("textErrorNotFoundReportCollection"));
+                alert.showAndWait();
+                return;
+            }
+
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
             JasperReport jasperReport = JasperCompileManager.compileReport(in);
@@ -115,10 +124,18 @@ public class ReportController{
                 in = HomeController.class.getResourceAsStream("reports/ComicReportGL.jrxml");
             }
 
+            List<ComicReport> listReport = ComicListServices.comicList();
+            if(listReport.size() == 0){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText(resourceBundle.getString("textErrorNotFoundReportComic"));
+                alert.showAndWait();
+                return;
+            }
+
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("logo", ClassLoader.getSystemResourceAsStream("images/icon_report.png"));
             JasperReport jasperReport = JasperCompileManager.compileReport(in);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JRBeanCollectionDataSource(ComicListServices.comicList()));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JRBeanCollectionDataSource(listReport));
 
             JasperViewer.viewReport(jasperPrint, false);
 
