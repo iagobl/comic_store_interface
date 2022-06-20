@@ -49,7 +49,7 @@ public class AuthorDetailsController {
             newImage = true;
             Window stage = imageViewAuthor.getScene().getWindow();
             fileChooser.setTitle(resourceBundle.getString("textTitleLabelChangeImage"));
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png"));
             File selectedFile = fileChooser.showOpenDialog(stage);
 
             if(selectedFile == null) {
@@ -96,7 +96,7 @@ public class AuthorDetailsController {
 
             authorAdapter = new AuthorAdapter(newAuthor.getId(), newAuthor.getName(), null, newAuthor.getSurname(), newAuthor.getAuthorComicList());
 
-            if(newImage) {
+            if(newImage || pathImage != null) {
                 AuthorServices.uploadImage(authorAdapter, pathImage);
             } else {
                 AuthorServices.uploadImage(authorAdapter, AuthorServices.class.getResource("/images/icon_author.png").getPath());

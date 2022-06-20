@@ -109,7 +109,7 @@ public class ComicDetailsController {
             newImage = true;
             Window stage = txtSynopsisDetailsComics.getScene().getWindow();
             fileChooser.setTitle(resourceBundle.getString("textTitleLabelChangeImage"));
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png"));
             File selectFile = fileChooser.showOpenDialog(stage);
 
             if(selectFile == null) {
@@ -189,7 +189,7 @@ public class ComicDetailsController {
                 return;
             }
 
-            if(pageCast < 0) {
+            if(pageCast < 0 || pageCast > 999) {
                 Alert alert = new Alert(Alert.AlertType.WARNING, resourceBundle.getString("NumberComicException"), ButtonType.OK);
                 alert.showAndWait();
                 return;
@@ -231,7 +231,7 @@ public class ComicDetailsController {
                 return;
             }
 
-            if(newImage){
+            if(newImage || pathImage != null){
                 ComicServices.uploadImage(newComicAdapter.getId(), pathImage);
             } else {
                 ComicServices.uploadImage(newComicAdapter.getId(), ComicDetailsController.class.getResource("/images/icon_photo.png").getPath());

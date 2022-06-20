@@ -52,7 +52,7 @@ public class CollectionDetailsController {
             newImage = true;
             Window stage = imageViewCollectionsDetails.getScene().getWindow();
             fileChooser.setTitle(resourceBundle.getString("textTitleLabelChangeImage"));
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png"));
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png"));
             File selectFile = fileChooser.showOpenDialog(stage);
 
             if (selectFile == null){
@@ -97,7 +97,8 @@ public class CollectionDetailsController {
 
             collection = new CollectionAdapter(newCollection.getId(), newCollection.getName(), null, newCollection.getEditorial());
 
-            if(newImage){
+            System.out.println(pathImage);
+            if(newImage || pathImage != null){
                 CollectionServices.uploadImage(collection, pathImage);
             } else {
                 CollectionServices.uploadImage(collection, CollectionServices.class.getResource("/images/icon_photo.png").getPath());

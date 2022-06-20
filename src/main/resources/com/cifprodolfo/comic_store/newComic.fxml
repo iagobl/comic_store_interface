@@ -261,7 +261,7 @@
                               <Insets bottom="10.0" right="10.0" top="10.0" />
                            </FlowPane.margin>
                         </Label>
-                        <TextArea fx:id="txtSynopsisDetailsComics" prefHeight="122.0" prefWidth="350.0">
+                        <TextArea fx:id="txtSynopsisDetailsComics" prefHeight="122.0" prefWidth="350.0" wrapText="true">
                            <FlowPane.margin>
                               <Insets top="10.0" />
                            </FlowPane.margin>

@@ -25,7 +25,7 @@
                   <Image url="@../../../images/icon_photo.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnComics" mnemonicParsing="false" onAction="#getPanel" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnComics" textFill="#070707">
+            <Button fx:id="btnComics" mnemonicParsing="false" onAction="#getPanel" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754; -fx-background-radius: 10;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnComics" textFill="#070707">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -40,7 +40,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnCollection" mnemonicParsing="false" onAction="#getPanel" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnCollection" textFill="#070707">
+            <Button fx:id="btnCollection" mnemonicParsing="false" onAction="#getPanel" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754; -fx-background-radius: 10;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnCollection" textFill="#070707">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -55,7 +55,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnAuthor" mnemonicParsing="false" onAction="#getPanel" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnAuthor" textFill="#070707">
+            <Button fx:id="btnAuthor" mnemonicParsing="false" onAction="#getPanel" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754; -fx-background-radius: 10;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnAuthor" textFill="#070707">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -70,7 +70,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnReports" mnemonicParsing="false" onAction="#getPanel" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnReports" textFill="#070707">
+            <Button fx:id="btnReports" mnemonicParsing="false" onAction="#getPanel" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754; -fx-background-radius: 10;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnReports" textFill="#070707">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -85,7 +85,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#openJavaHelp" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnHelp" textFill="#070707">
+            <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#openJavaHelp" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754; -fx-background-radius: 10;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnHelp" textFill="#070707">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -100,7 +100,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnConfiguration" mnemonicParsing="false" onMouseClicked="#getPanelConfiguration" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnConfiguration" textFill="#070707">
+            <Button fx:id="btnConfiguration" mnemonicParsing="false" onMouseClicked="#getPanelConfiguration" prefHeight="47.0" prefWidth="220.0" style="-fx-background-color: #F9E754; -fx-background-radius: 10;" styleClass="button-menu" stylesheets="@../../../style/style.css" text="%btnConfiguration" textFill="#070707">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
