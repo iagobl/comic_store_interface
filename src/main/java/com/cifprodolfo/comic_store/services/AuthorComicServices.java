@@ -15,7 +15,7 @@ public class AuthorComicServices {
 
     public static void saveAuthorComic(int timeDedicated, Long idAuthor, Long idComic) throws IOException, InterruptedException {
 
-        String url = "http://localhost:8080/api-spring/authorcomic";
+        String url = "http://192.168.224.128:8080/api-spring/authorcomic";
 
         HttpClient httpClient = HttpClient.newHttpClient();
         String json = "{\n" +

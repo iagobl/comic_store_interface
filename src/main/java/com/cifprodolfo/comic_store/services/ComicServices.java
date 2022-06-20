@@ -31,7 +31,7 @@ public class ComicServices {
 
         NewComicAdapter comicNew;
         ObjectMapper objectMapper = new ObjectMapper();
-        String url = "http://localhost:8080/api-spring/comic/" + idAuthor;
+        String url = "http://192.168.224.128:8080/api-spring/comic/" + idAuthor;
 
         HttpClient httpClient = HttpClient.newHttpClient();
         String json = new StringBuffer()
@@ -64,7 +64,7 @@ public class ComicServices {
 
         NewComicAdapter newComicAdapter;
         ObjectMapper objectMapper = new ObjectMapper();
-        String url = "http://localhost:8080/api-spring/comic";
+        String url = "http://192.168.224.128:8080/api-spring/comic";
         String json = "{\n" +
                 "    \"id\": " + comicAdapter.getId() + ",\n" +
                 "    \"name\": \"" + comicAdapter.getName() + "\",\n" +
@@ -95,7 +95,7 @@ public class ComicServices {
 
     public static void uploadImage(Long id, String pathImage) throws IOException, InterruptedException, URISyntaxException {
 
-        String url = "http://localhost:8080/api-spring/comic/image/" + id;
+        String url = "http://192.168.224.128:8080/api-spring/comic/image/" + id;
         HttpEntity httpEntity = MultipartEntityBuilder.create().addBinaryBody("imageComic", new File(pathImage), ContentType.IMAGE_PNG, "unknown.png").build();
         Pipe pipe = Pipe.open();
 
@@ -115,7 +115,7 @@ public class ComicServices {
     public static void deleteComic(ComicAdapter comicAdapter) throws IOException, InterruptedException {
 
         HttpClient client = HttpClient.newHttpClient();
-        String deleteCollection = "http://localhost:8080/api-spring/comic/"+comicAdapter.getId();
+        String deleteCollection = "http://192.168.224.128:8080/api-spring/comic/"+comicAdapter.getId();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
         client.send(request, HttpResponse.BodyHandlers.ofString());
         ComicListServices.updateDataComic();

@@ -37,7 +37,7 @@ public class CollectionListServices {
         try {
 
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/collection")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/collection")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             List<Collection> data =  objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -72,7 +72,7 @@ public class CollectionListServices {
 
         try {
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/collection")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/collection")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             collectionListReport =  objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -105,7 +105,7 @@ public class CollectionListServices {
         try {
 
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/collection")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/collection")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             List<Collection> data =  objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -138,7 +138,7 @@ public class CollectionListServices {
         ObjectMapper objectMapper = new ObjectMapper();
 
         HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(5)).build();
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/collection")).build();
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/collection")).build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         List<Collection> data =  objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -153,7 +153,7 @@ public class CollectionListServices {
 
         Collection collection;
         ObjectMapper objectMapper = new ObjectMapper();
-        String url = "http://localhost:8080/api-spring/collection/" + id;
+        String url = "http://192.168.224.128:8080/api-spring/collection/" + id;
 
         HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(5)).build();
         HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create(url)).build();

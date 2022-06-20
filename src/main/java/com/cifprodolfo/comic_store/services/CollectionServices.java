@@ -28,7 +28,7 @@ public class CollectionServices {
 
         NewCollectionAdapater newCollectionAdapater;
         ObjectMapper objectMapper = new ObjectMapper();
-        String url = "http://localhost:8080/api-spring/collection";
+        String url = "http://192.168.224.128:8080/api-spring/collection";
 
         HttpClient httpClient = HttpClient.newHttpClient();
         String json = new StringBuffer()
@@ -53,7 +53,7 @@ public class CollectionServices {
 
         NewCollectionAdapater newCollectionAdapater;
         ObjectMapper objectMapper = new ObjectMapper();
-        String url = "http://localhost:8080/api-spring/collection";
+        String url = "http://192.168.224.128:8080/api-spring/collection";
         String json = "{\n" +
                 "    \"id\": "+collectionAdapter.getId()+",\n" +
                 "    \"name\": \""+collectionAdapter.getName()+"\",\n" +
@@ -75,7 +75,7 @@ public class CollectionServices {
 
     public static void uploadImage(CollectionAdapter collection, String pathImage) throws IOException, URISyntaxException, InterruptedException {
 
-        String url = "http://localhost:8080/api-spring/collection/image/"+collection.getId();
+        String url = "http://192.168.224.128:8080/api-spring/collection/image/"+collection.getId();
         HttpEntity httpEntity = MultipartEntityBuilder.create().addBinaryBody("imageCollection", new File(pathImage), ContentType.IMAGE_PNG, "unknown.png").build();
         Pipe pipe = Pipe.open();
 
@@ -95,7 +95,7 @@ public class CollectionServices {
     public static void deleteCollection(CollectionAdapter collection) throws IOException, InterruptedException{
 
         HttpClient client = HttpClient.newHttpClient();
-        String deleteCollection = "http://localhost:8080/api-spring/collection/"+collection.getId();
+        String deleteCollection = "http://192.168.224.128:8080/api-spring/collection/"+collection.getId();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
         client.send(request, HttpResponse.BodyHandlers.ofString());
         CollectionListServices.updateDataCollections();

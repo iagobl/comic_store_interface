@@ -29,7 +29,7 @@ public class AuthorServices {
 
         Author author;
         ObjectMapper objectMapper = new ObjectMapper();
-        String url = "http://localhost:8080/api-spring/author";
+        String url = "http://192.168.224.128:8080/api-spring/author";
 
         HttpClient httpClient = HttpClient.newHttpClient();
         String json = new StringBuffer()
@@ -52,7 +52,7 @@ public class AuthorServices {
 
     public static void uploadImage(AuthorAdapter authorAdapter, String pathImage) throws IOException, URISyntaxException, InterruptedException {
 
-        String url = "http://localhost:8080/api-spring/author/image/" + authorAdapter.getId();
+        String url = "http://192.168.224.128:8080/api-spring/author/image/" + authorAdapter.getId();
         HttpEntity httpEntity = MultipartEntityBuilder.create().addBinaryBody("imageAuthor", new File(pathImage), ContentType.IMAGE_PNG, "unknown.png").build();
         Pipe pipe = Pipe.open();
 
@@ -71,7 +71,7 @@ public class AuthorServices {
 
     public static void putAuthors(AuthorAdapter authorAdapter) throws IOException, InterruptedException {
 
-        String url = "http://localhost:8080/api-spring/author";
+        String url = "http://192.168.224.128:8080/api-spring/author";
         String json = "{\n" +
                 "        \"id\": "+authorAdapter.getId()+",\n" +
                 "        \"name\": \""+authorAdapter.getName()+"\",\n" +
@@ -86,7 +86,7 @@ public class AuthorServices {
     public static void deleteAuthor(AuthorAdapter author) throws IOException, InterruptedException{
 
         HttpClient client = HttpClient.newHttpClient();
-        String deleteCollection = "http://localhost:8080/api-spring/author/"+author.getId();
+        String deleteCollection = "http://192.168.224.128:8080/api-spring/author/"+author.getId();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(deleteCollection)).DELETE().build();
         client.send(request, HttpResponse.BodyHandlers.ofString());
         AuthorListServices.updateDataAuthor();

@@ -38,7 +38,7 @@ public class AuthorListServices {
         try {
 
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/author")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/author")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             List<Author> data = objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -74,7 +74,7 @@ public class AuthorListServices {
 
         try {
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/author/findByName/"+name)).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/author/findByName/"+name)).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             Author author = objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -102,7 +102,7 @@ public class AuthorListServices {
         try {
 
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/author")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/author")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             List<Author> data = objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -137,7 +137,7 @@ public class AuthorListServices {
         ObjectMapper objectMapper = new ObjectMapper();
 
         HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/author")).build();
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/author")).build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         List<Author> data = objectMapper.readValue(response.body(), new TypeReference<>() {});

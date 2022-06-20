@@ -39,7 +39,7 @@ public class ComicListServices {
         try {
 
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/comic")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/comic")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             List<Comic> data =  objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -85,7 +85,7 @@ public class ComicListServices {
 
         try {
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/comic/findComicReport/"+newName)).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/comic/findComicReport/"+newName)).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             Comic comic =  objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -121,7 +121,7 @@ public class ComicListServices {
 
         try {
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/comic")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/comic")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             comicListReport =  objectMapper.readValue(response.body(), new TypeReference<>() {});
@@ -159,7 +159,7 @@ public class ComicListServices {
         try {
 
             HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_1_1).connectTimeout(Duration.ofSeconds(10)).build();
-            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/api-spring/comic")).build();
+            HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://192.168.224.128:8080/api-spring/comic")).build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             List<Comic> data =  objectMapper.readValue(response.body(), new TypeReference<>() {});
